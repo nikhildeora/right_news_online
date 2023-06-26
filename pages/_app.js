@@ -10,20 +10,24 @@ import Preloader from "../components/common/preloader/preloader";
 import ScrollTop from "../components/common/scroll-top";
 import "../styles/css/app.css";
 import "../styles/css/main.css";
+import AuthContextProvider from "../context/auth_context";
 
 function MyApp({ Component, pageProps }) {
 	return (
 		<>
+		    <AuthContextProvider>
 			<Head>
 				{/* common title */}
 				<title>fugu</title>
 			</Head>
+
 			<Layout>
 				<Component {...pageProps} />
 			</Layout>
 
 			<ScrollTop />
 			<Preloader />
+			</AuthContextProvider>
 		</>
 	);
 }

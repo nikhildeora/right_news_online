@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
 	BlogDropdownMenus,
 	ContactDropdownMenus,
@@ -11,9 +11,15 @@ import {
 import NavItem from "../navbar/nav-item";
 import Navbar from "../navbar/navbar";
 import useScroll from "./../../../hooks/useScroll";
+import { AuthContext } from "../../../context/auth_context";
 
 export default function HeaderHomeThree() {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const {curUser,Logout} = useContext(AuthContext);
+
+    const LogoutNow = () => {
+       Logout();
+	}
 
 	const handleCloseMobileMenu = () => {
 		setIsMobileMenuOpen(false);
@@ -56,9 +62,17 @@ export default function HeaderHomeThree() {
 						</nav>
 					</div>
 					<div className="header-btn header-btn-l1 ms-auto d-none d-xs-inline-flex">
-						<a className="fugu--btn fugu--menu-btn1" href="contact.html">
-							Connect Wallet
-						</a>
+						{curUser ? 
+						<Link onClick={LogoutNow} className="fugu--btn fugu--menu-btn1" href={"#"}>
+							Logout
+						</Link> :
+						<Link className="fugu--btn fugu--menu-btn1" href={"/signup"}>
+							Sign up/ Login
+						</Link>
+						}
+						{/* <a className="fugu--btn fugu--menu-btn1" href="contact.html">
+							Sign up/ Login
+						</a> */}
 					</div>
 					<div className="mobile-menu-trigger" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
 						<span></span>
