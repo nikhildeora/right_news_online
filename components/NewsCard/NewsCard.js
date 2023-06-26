@@ -7,7 +7,7 @@ import VideoPlayer from "../videoPlayer/VideoPlayer";
 
 const NewsCard = (props) => {
   const [video, setVideo] = useState(true);
-  let videoPlayBackId = props.news.video.playbackId;
+  let videoPlayBackId = props.news.video ? props.news.video.playbackId : "ODnF58dYehmAowfH1m2wrZRBOY1g01o7zoJBKfHxklOM" ;
 
   let Date = props.news.createdAt.slice(0, 10);
 
