@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 import { AuthContext } from "../context/auth_context";
 import { sanityClient } from "../sanity_client";
 import { v4 as uuidv4 } from 'uuid';
+import { Container, Button, Row, Col, Form } from 'react-bootstrap';
 
 
-const LoginSignUpStyle = {
-    textDecoration: "underline", color: "blue", cursor: "pointer"
-}
+
+const buttonStyle = {padding:"8px 15px",backgroundColor:"blue",borderRadius:"8px",color:"white",fontWeight:"bold",marginTop:"50px",position:"relative",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"20%"}
 
 export default function Signup() {
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -23,6 +23,7 @@ export default function Signup() {
     const [currentId, setCurrentId] = useState("");
     const [newUserPost, setNewUserPost] = useState(true);
     console.log("user", curUser);
+    
 
     const signInWithMobile = async () => {
         try {
@@ -63,6 +64,7 @@ export default function Signup() {
                     sanityClient.create(obj)
                         .then((res) => {
                             console.log("user created successfully")
+                            localStorage.setItem("currentUser",res._id)
                             router.push("/");
                         })
                         .catch((err) => console.log("error while creating new", err))
@@ -71,7 +73,8 @@ export default function Signup() {
                         .set(editObj)
                         .commit()
                         .then((res) => {
-                            console.log("user edited successfully")
+                            console.log("user edited successfully");
+                            localStorage.setItem("currentUser",res._id)
                             router.push("/");
                         })
                         .catch((err) => console.log("error while editing user", err))
@@ -81,7 +84,8 @@ export default function Signup() {
             })
     }
 
-    const verifyPhoneNumber = async () => {
+    const verifyPhoneNumber = async (e) => {
+        e.preventDefault();
         if (phoneNumber.length !== 10) {
             console.log("incorrect phone number");
             return;
@@ -130,31 +134,48 @@ export default function Signup() {
 
     return (
         <div className="fugu-breadcrumb-section">
-            <div className="container">
+            <Container className="container">
                 {verify ?
-                    <>
+                    <div>
                         {signIn ?
-                            <>
-                                <h3>If you Already have an accout <span style={LoginSignUpStyle} onClick={SignInchange}>Login</span></h3>
-                                <input type="text" placeholder="Enter Your Name" value={name} onChange={(e) => setName(e.target.value)} />
-                                <input type="email" placeholder="Enter Your Email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
-                                <input type="number" placeholder="Enter Your Mobile Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-                                <button onClick={verifyPhoneNumber}>Submit</button>
-                            </> :
-                            <>
-                                <h3>If you do not have an accout <span style={LoginSignUpStyle} onClick={SignInchange}>Sign Up</span></h3>
-                                <input type="number" placeholder="Enter Your Mobile Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-                                <button onClick={verifyPhoneNumber}>Submit</button>
-                            </>
+                            <div className="sign_user_card">
+                                <h3 className="mb-3 text-center">Sign Up</h3>    
+                                <form onSubmit={verifyPhoneNumber}>
+                                <input className="form-control mb-2" type="text" placeholder="Enter Your Name" value={name} onChange={(e) => setName(e.target.value)} required />
+                                <input className="form-control mb-2" type="email" placeholder="Enter Your Email" value={email} onChange={(e) => { setEmail(e.target.value) }} required />
+                                <input className="form-control mb-2" type="number" placeholder="Enter Your Mobile Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
+                                <input style={buttonStyle} type="submit" value={"Sign up"} />
+                                </form>
+                                <div className="mt-3">
+                                    <div className="d-flex justify-content-center links">
+                                        Already have an account?
+                                        <span style={{cursor:"pointer"}} onClick={SignInchange} className="text-primary ml-2">Login</span>
+                                    </div>
+                                </div>
+                            </div> :
+                            <div>
+                                <h3 className="mb-3 text-center">Sign In</h3>    
+                                <form onSubmit={verifyPhoneNumber}>
+                                <input className="form-control mb-2" type="number" placeholder="Enter Your Mobile Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
+                                <input style={buttonStyle} type="submit" value={"Login"} />
+                                </form>
+                                <div className="mt-3">
+                                    <div className="d-flex justify-content-center links">
+                                        Don't have an account?
+                                        <span style={{cursor:"pointer"}} onClick={SignInchange} className="text-primary ml-2">Sign up</span>
+                                    </div>
+                                </div>
+                            </div>
                         }
-                    </>
+                    </div>
                     :
-                    <>
-                        <input type="number" placeholder="type your otp here" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} />
-                        <button onClick={verifyOtp}>Verify</button>
-                    </>
+                    <div>
+                        <h3 className="mb-3 text-center">Verify OTP</h3>    
+                        <input className="form-control mb-2" type="number" placeholder="type your otp here" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} required />
+                        <button style={buttonStyle} onClick={verifyOtp}>Verify</button>
+                    </div>
                 }
-            </div>
+            </Container>
             <div id="recaptcha-container"></div>
         </div>
     )
