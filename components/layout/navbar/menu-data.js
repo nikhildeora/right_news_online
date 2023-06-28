@@ -1,3 +1,5 @@
+
+
 export const DemoDropdownMenus = [
 	{
 		title: "Home 01",
@@ -287,7 +289,12 @@ export const ElementsMegaMenu = [
 	},
 ];
 
+
 export const BlogDropdownMenus = [
+	{
+		title : "Create Blog",
+		path : "createblog"
+	},
 	{
 		title: "Blog Dark",
 		path: "blog-dark",

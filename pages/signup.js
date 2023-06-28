@@ -107,7 +107,6 @@ export default function Signup() {
                 return el.userPhone == phoneNumber
             })
             if (checkIfExist.length > 0) {
-                console.log("this no. exist");
                 exist = true;
                 setCurrentId(checkIfExist[0]._id);
             }

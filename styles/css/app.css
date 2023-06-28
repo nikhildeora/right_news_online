@@ -3290,6 +3290,7 @@ input[type="time"],
 input[type="date"],
 input[type="search"],
 input,
+select,
 textarea {
 	margin: 0;
 	width: 100%;
@@ -3304,6 +3305,7 @@ textarea {
 }
 
 input:focus,
+select:focus,
 textarea:focus {
 	border: 1px solid var(--warning-500) !important;
 }
