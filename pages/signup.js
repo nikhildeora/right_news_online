@@ -5,17 +5,12 @@ import { useRouter } from "next/router";
 import { AuthContext } from "../context/auth_context";
 import { sanityClient } from "../sanity_client";
 import { v4 as uuidv4 } from 'uuid';
-import { Container, Button, Row, Col, Form } from 'react-bootstrap';
+import { useForm } from "react-hook-form";
+import BreadcrumbOne from "../components/common/breadcrumb/breadcrumb-one";
 
 
-
-const buttonStyle = {padding:"8px 15px",backgroundColor:"blue",borderRadius:"8px",color:"white",fontWeight:"bold",marginTop:"50px",position:"relative",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"20%"}
 
 export default function Signup() {
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [verificationCode, setVerificationCode] = useState("");
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
     const [verify, setVerify] = useState(true);
     const router = useRouter();
     const { curUser } = useContext(AuthContext);
@@ -23,9 +18,16 @@ export default function Signup() {
     const [currentId, setCurrentId] = useState("");
     const [newUserPost, setNewUserPost] = useState(true);
     console.log("user", curUser);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
     
 
-    const signInWithMobile = async () => {
+    const signInWithMobile = async (formData) => {
+        const {name,email,phoneNumber,verificationCode} = formData;
+
         try {
             let recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
                 "size": "invisible"
@@ -40,7 +42,9 @@ export default function Signup() {
 
     }
 
-    const verifyOtp = () => {
+    const verifyOtp = (formData) => {
+        const {name,email,phoneNumber,verificationCode} = formData;
+
         let date = new Date();
         let formatDate = date.toISOString();
 
@@ -64,7 +68,7 @@ export default function Signup() {
                     sanityClient.create(obj)
                         .then((res) => {
                             console.log("user created successfully")
-                            localStorage.setItem("currentUser",res._id)
+                            localStorage.setItem("currentUser", res._id)
                             router.push("/");
                         })
                         .catch((err) => console.log("error while creating new", err))
@@ -74,7 +78,7 @@ export default function Signup() {
                         .commit()
                         .then((res) => {
                             console.log("user edited successfully");
-                            localStorage.setItem("currentUser",res._id)
+                            localStorage.setItem("currentUser", res._id)
                             router.push("/");
                         })
                         .catch((err) => console.log("error while editing user", err))
@@ -84,8 +88,9 @@ export default function Signup() {
             })
     }
 
-    const verifyPhoneNumber = async (e) => {
-        e.preventDefault();
+    const verifyPhoneNumber = async (formData) => {
+        const {name,email,phoneNumber,verificationCode} = formData;
+
         if (phoneNumber.length !== 10) {
             console.log("incorrect phone number");
             return;
@@ -99,6 +104,7 @@ export default function Signup() {
                 return el.userPhone == phoneNumber
             })
             if (checkIfExist.length > 0) {
+                console.log("this no. exist");
                 exist = true;
                 setCurrentId(checkIfExist[0]._id);
             }
@@ -116,11 +122,11 @@ export default function Signup() {
         }
         else if (!signIn && exist) {
             setNewUserPost(false);
-            signInWithMobile();
+            signInWithMobile(formData);
         }
         else if (signIn && !exist) {
             setNewUserPost(true);
-            signInWithMobile();
+            signInWithMobile(formData);
         }
 
 
@@ -129,54 +135,128 @@ export default function Signup() {
 
     const SignInchange = () => {
         setSignIn(!signIn);
-        setPhoneNumber("");
     }
 
+
     return (
-        <div className="fugu-breadcrumb-section">
-            <Container className="container">
-                {verify ?
+        <div>
+            <BreadcrumbOne title={verify ? signIn ? "Sign up" : "Login" : "Verify OTP"} />
+            <div className="section fugu-section-padding">
+                <div className="container">
+                    {verify ? 
                     <div>
                         {signIn ?
-                            <div className="sign_user_card">
-                                <h3 className="mb-3 text-center">Sign Up</h3>    
-                                <form onSubmit={verifyPhoneNumber}>
-                                <input className="form-control mb-2" type="text" placeholder="Enter Your Name" value={name} onChange={(e) => setName(e.target.value)} required />
-                                <input className="form-control mb-2" type="email" placeholder="Enter Your Email" value={email} onChange={(e) => { setEmail(e.target.value) }} required />
-                                <input className="form-control mb-2" type="number" placeholder="Enter Your Mobile Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
-                                <input style={buttonStyle} type="submit" value={"Sign up"} />
+                            <div className="fugu-contact-wrap  wow fadeInUpX">
+                                <form onSubmit={handleSubmit(verifyPhoneNumber)}>
+                                    <div className="fugu-input-field">
+                                        <label>Your name</label>
+                                        <input
+                                            type="text"
+                                            placeholder="Your Name*"
+                                            {...register("name", { required: true })}
+                                            aria-invalid={errors.name ? "true" : "false"}
+                                        />
+                                        {errors.name?.type === "required" && (
+                                            <p role="alert" className="error">
+                                                First name is required
+                                            </p>
+                                        )}
+                                    </div>
+                                    <div className="fugu-input-field">
+                                        <label>Email address</label>
+                                        <input
+                                            type="email"
+                                            placeholder="Your Email*"
+                                            {...register("email", { required: true })}
+                                            aria-invalid={errors.email ? "true" : "false"}
+                                        />
+                                        {errors.email?.type === "required" && (
+                                            <p role="alert" className="error">
+                                                Email is required
+                                            </p>
+                                        )}
+                                    </div>
+                                    <div className="fugu-input-field">
+                                        <label>Mobile Number</label>
+                                        <input
+                                            type="number"
+                                            placeholder="Your Mobile Number*"
+                                            {...register("phoneNumber", { required: true })}
+                                            aria-invalid={errors.phoneNumber ? "true" : "false"}
+                                        />
+                                        {errors.phoneNumber?.type === "required" && (
+                                            <p role="alert" className="error">
+                                                Mobile Number is required
+                                            </p>
+                                        )}
+                                    </div>
+                                    <button id="fugu-input-submit" type="submit">
+                                        Sign up
+                                    </button>
                                 </form>
                                 <div className="mt-3">
                                     <div className="d-flex justify-content-center links">
                                         Already have an account?
-                                        <span style={{cursor:"pointer"}} onClick={SignInchange} className="text-primary ml-2">Login</span>
+                                        <span style={{ cursor: "pointer" }} onClick={SignInchange} className="text-primary ml-2">Login</span>
                                     </div>
                                 </div>
                             </div> :
-                            <div>
-                                <h3 className="mb-3 text-center">Sign In</h3>    
-                                <form onSubmit={verifyPhoneNumber}>
-                                <input className="form-control mb-2" type="number" placeholder="Enter Your Mobile Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
-                                <input style={buttonStyle} type="submit" value={"Login"} />
+                            <div className="fugu-contact-wrap  wow fadeInUpX">
+                                <form onSubmit={handleSubmit(verifyPhoneNumber)}>
+                                    <div className="fugu-input-field">
+                                        <label>Mobile Number</label>
+                                        <input
+                                            type="number"
+                                            placeholder="Your Mobile Number*"
+                                            {...register("phoneNumber", { required: true })}
+                                            aria-invalid={errors.phoneNumber ? "true" : "false"}
+                                        />
+                                        {errors.phoneNumber?.type === "required" && (
+                                            <p role="alert" className="error">
+                                                Mobile Number is required
+                                            </p>
+                                        )}
+                                    </div>
+                                    <button id="fugu-input-submit" type="submit">
+                                        Login
+                                    </button>
                                 </form>
                                 <div className="mt-3">
                                     <div className="d-flex justify-content-center links">
                                         Don't have an account?
-                                        <span style={{cursor:"pointer"}} onClick={SignInchange} className="text-primary ml-2">Sign up</span>
+                                        <span style={{ cursor: "pointer" }} onClick={SignInchange} className="text-primary ml-2">Sign up</span>
                                     </div>
                                 </div>
                             </div>
                         }
-                    </div>
-                    :
-                    <div>
-                        <h3 className="mb-3 text-center">Verify OTP</h3>    
-                        <input className="form-control mb-2" type="number" placeholder="type your otp here" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} required />
-                        <button style={buttonStyle} onClick={verifyOtp}>Verify</button>
-                    </div>
-                }
-            </Container>
-            <div id="recaptcha-container"></div>
+                    </div> : 
+                     <div className="fugu-contact-wrap  wow fadeInUpX">
+                     <form onSubmit={handleSubmit(verifyOtp)}>
+                         <div className="fugu-input-field">
+                             <label>Verfiy OTP</label>
+                             <input
+                                 type="number"
+                                 placeholder="Your OTP*"
+                                 {...register("verificationCode", { required: true })}
+                                 aria-invalid={errors.verificationCode ? "true" : "false"}
+                             />
+                             {errors.verificationCode?.type === "required" && (
+                                 <p role="alert" className="error">
+                                     OTP Number is required
+                                 </p>
+                             )}
+                         </div>
+                         <button id="fugu-input-submit" type="submit">
+                             Verify 
+                         </button>
+                     </form>
+                 </div>
+                   }
+                </div>
+                <div id="recaptcha-container"></div>
+            </div>
         </div>
     )
-} 
+}
+
+
