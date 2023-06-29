@@ -19,7 +19,7 @@ export default function AuthContextProvider({children}){
     useEffect(()=>{
         let curUserId = localStorage.getItem("currentUser") || null;
         if(curUserId){
-            sanityClient.fetch(`*[_type=="memberships" && user._ref==${curUserId}]{
+            sanityClient.fetch(`*[_type=="memberships" && user._ref=="${curUserId}"]{
                 ...,
                 "userDetails" : user->,
                 "planDetail" : plan->  
