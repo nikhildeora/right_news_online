@@ -58,7 +58,7 @@ export default function BreadcrumbSection() {
       console.log("error in creating order");
       return;
     }
-    console.log("first", hey);
+    console.log("first", "hey");
 
     const options = {
       key: "rzp_test_LWbOWLWKn6A8wz", // Enter the Key ID generated from the Dashboard
