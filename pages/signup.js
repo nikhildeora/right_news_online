@@ -110,27 +110,28 @@ export default function Signup() {
                 exist = true;
                 setCurrentId(checkIfExist[0]._id);
             }
-        }).catch((err) => {
+        })
+        .then(()=>{
+            if (signIn && exist) {
+                alert("You already have an Account, Login with Mobile Number");
+                setSignIn(!signIn);
+            }
+            else if (!signIn && !exist) {
+                alert("first sign up you do not have an account");
+                setSignIn(!signIn);
+            }
+            else if (!signIn && exist) {
+                setNewUserPost(false);
+                signInWithMobile(formData);
+            }
+            else if (signIn && !exist) {
+                setNewUserPost(true);
+                signInWithMobile(formData);
+            }
+        })
+        .catch((err) => {
             console.log("error in fetching", err);
         })
-
-        if (signIn && exist) {
-            alert("You already have an Account, Login with Mobile Number");
-            setSignIn(!signIn);
-        }
-        else if (!signIn && !exist) {
-            alert("first sign up you do not have an account");
-            setSignIn(!signIn);
-        }
-        else if (!signIn && exist) {
-            setNewUserPost(false);
-            signInWithMobile(formData);
-        }
-        else if (signIn && !exist) {
-            setNewUserPost(true);
-            signInWithMobile(formData);
-        }
-
 
     }
 
