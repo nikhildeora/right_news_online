@@ -25,6 +25,7 @@
 		"isotope-layout": "^3.0.6",
 		"next": "13.0.3",
 		"next-sanity": "^5.0.2",
+		"razorpay": "^2.9.0",
 		"react": "18.2.0",
 		"react-bootstrap": "^2.5.0",
 		"react-countdown": "^2.3.3",
