@@ -112,7 +112,7 @@ export default function BreadcrumbSection() {
     };
 
     axios
-      .post(`http://localhost:8080/razorpay/order`, amount_obj)
+      .post(`http://localhost:3000/api/razorpay/order`, amount_obj)
       .then((order) => {
         console.log(order.data);
         handleRazorpayVerify(order.data);
