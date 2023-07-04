@@ -124,11 +124,11 @@ export default function FilterGalarryOne(props) {
             })}
           </ul>
         </div>
-        <div className="container ">
+        {/* <div className="container ">
           <div className="filters">
             <Select onChange={handleChange} options={options} />
           </div>
-        </div>
+        </div> */}
         <div className="fugu--portfolio-wrap mt-2" id="fugu--four-column">
           {News.map((news, index) => {
             return <NewsCard key={index} news={news}></NewsCard>;
