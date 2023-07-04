@@ -3,6 +3,12 @@ import MuxPlayer from "@mux/mux-player-react";
 import { ImCross } from "react-icons/im";
 
 const VideoPlayer = (props) => {
+  let VideoUrl = props.Video
+    ? props.Video.url
+    : "https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4";
+
+  let VideoType = props.Video ? props.Video.mimeType : "video/mp4";
+
   const generateRandomNumber = () => {
     return Math.floor(Math.random() * 90000) + 10000; // Generates a random 5-digit number
   };
@@ -32,7 +38,7 @@ const VideoPlayer = (props) => {
 
   const watchLive = {
     position: "absolute",
-    top: "10px",
+    top: "12px",
     right: "10px",
     paddingBlock: "5px",
     paddingInline: "10px",
@@ -67,7 +73,7 @@ const VideoPlayer = (props) => {
 
   return (
     <div style={{ position: "relative" }}>
-      <MuxPlayer
+      {/* <MuxPlayer
         streamType="on-demand"
         playbackId={props.videoPlayBackId}
         metadata={{
@@ -75,8 +81,11 @@ const VideoPlayer = (props) => {
           video_title: "Test video title",
           viewer_user_id: "user-id-007",
         }}
-      />
+      /> */}
       {/* <div style={watermarkStyle}>{watermarkText}</div> */}
+      <video width="100%" controls autoPlay loop>
+        <source src={VideoUrl} type={VideoType}></source>
+      </video>
 
       <button style={watchLive} onClick={handleWatchLiveClick}>
         Close Video
