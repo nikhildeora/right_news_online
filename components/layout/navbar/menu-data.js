@@ -79,20 +79,20 @@ export const PagesDropdownMenus = [
       },
     ],
   },
-  {
-    title: "Service",
-    path: "#",
-    submenu: [
-      {
-        title: "Services",
-        path: "service",
-      },
-      {
-        title: "Single Service",
-        path: "single-service",
-      },
-    ],
-  },
+	{
+		title: "Service",
+		path: "#",
+		submenu: [
+			{
+				title: "Users",
+				path: "users",
+			},
+			{
+				title: "Single Service",
+				path: "single-service",
+			},
+		],
+	},
   {
     title: "Team",
     path: "team",
