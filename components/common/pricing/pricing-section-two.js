@@ -109,12 +109,7 @@ export default function PricingSectionTwo() {
 	};
   
 	const handlePayment = (order_amount) => {
-		if (localStorage.getItem("currentUser")) {
-			alert(localStorage.getItem("currentUser"));
-		  } else {
-			alert("Please login to buy plan");
-			router.push("/signup");
-		  }
+		
 	  console.log("button clicked");
 	  let amount_obj = {
 		amount: order_amount,
