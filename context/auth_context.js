@@ -1,5 +1,5 @@
 import {createContext,useState,useEffect} from "react";
-import {onAuthStateChanged,signOut,updateProfile,updateEmail,sendEmailVerification } from "firebase/auth";
+import {onAuthStateChanged,signOut,updateProfile,updateEmail,sendEmailVerification,reload } from "firebase/auth";
 import {auth} from "../firebase";
 import {useRouter} from "next/router";
 import { sanityClient } from "../sanity_client";
@@ -21,72 +21,49 @@ export default function AuthContextProvider({children}){
         signOut(auth)
     }
     
-    const UpdateProfileNameFun = () => {
-        console.log("UpdateProfileNameFun",seq);
-        setSeq(seq+1);
-        console.log("user in updator fun",userDetailSanity);
-         updateProfile(auth.currentUser,{
-            displayName : userDetailSanity.userName
-         }).then((res)=>console.log("Profile name updated in firebase",res))
-         .catch((err)=>console.log("error while update Profile Name in firebase",err))
+    function updateUserDetailSanityLogin(profileData){
+          setUserDetailSanity(profileData);
     }
 
-    const UpdateEmailFun = () => {
-        console.log("UpdateEmailFun",seq);
-        setSeq(seq+1);
-        updateEmail(auth.currentUser, userDetailSanity.userEmail)
-        .then((res)=>{
-           console.log("Profile email updated at firebase",res);
-           UpdateEmailVerifiedFun();
+    function UpdateProfileName(profileData){
+       return updateProfile(auth.currentUser,{
+            displayName : profileData.userName
+        }).then((res)=>console.log("Profile name updated",res))
+        .catch((err)=>console.log("error while update profile name",err))
+    }
+
+    function UpdateProfileEmail(profileData){
+        return updateEmail(auth.currentUser, profileData.userEmail)
+        .then(async (res)=>{
+            console.log("profile email updated",res)
+            let data = await reload(auth.currentUser)
+            console.log("data after reload",data);
+            VerifyEmailFunction();
         })
-        .catch((err)=>console.log("error while updating email at firebase",err))
+        .catch((err)=>console.log("error while update email",err))
     }
 
-    const UpdateEmailVerifiedFun = () => {
-        console.log("UpdateEmailVerifiedFun",seq);
-        setSeq(seq+1);
-        sendEmailVerification(auth.currentUser)
-        .then(()=>{
-            alert("verification email sent")
-        })
-        .catch((err)=>console.log("error while sending verification email",err))
+    function VerifyEmailFunction(){
+        console.log("veri function run",auth);
+        if(!auth.currentUser.emailVerified && auth.currentUser.email!==null){
+            sendEmailVerification(auth.currentUser)
+            .then((res)=>{
+                console.log("email sent successfully for verify",res);
+                alert("email sent")
+            })
+            .catch((err)=>console.log("error while sending verify email",err))
+        }
     }
 
-    const updateCurrentUserProfile = () => {
-        console.log("updateCurrentUserProfile",seq);
-        setSeq(seq+1);
-        console.log("auth current user",auth.currentUser);   
-        if(userDetailSanity && auth.currentUser && curUser && curUser.displayName===null){
-            UpdateProfileNameFun();
-        }   
-        if(userDetailSanity && auth.currentUser && curUser && curUser.email===null){
-            UpdateEmailFun();
-        }   
-        else if(userDetailSanity && auth.currentUser && curUser && curUser.email!==null && !curUser.emailVerified){
-            UpdateEmailVerifiedFun();
-        } 
+    async function ChangeProfileNameAndEmail(profileData){
+       setUserDetailSanity(profileData);
+       let profile_name = await UpdateProfileName(profileData);
+       let profile_email = await UpdateProfileEmail(profileData);
+       console.log("profile_name",profile_name,"profile_email",profile_email);
     }
 
     useEffect(()=>{
-        console.log("use Effect 3",userDetailSanity);
-        updateCurrentUserProfileFunction();
-    },[userDetailSanity])
-
-    useEffect(()=>{
-        console.log("useEffect one",seq);
-        setSeq(seq+1);
-        console.log("running for updation of sanity user");
         let curUserId = localStorage.getItem("currentUser") || null;
-        console.log("curUserId",curUserId,"curUser",curUser,"userDetailSanity",userDetailSanity);
-        if(curUserId){
-            if(curUser && userDetailSanity==null){
-               sanityClient.fetch(`*[_type=="users" && _id=="${curUserId}"]`)
-               .then((res)=>{
-                setUserDetailSanity(res[0])})
-               .catch((err)=>console.log("error while fetching current user detail from sanity",err))
-            }
-        } 
-
         if(curUserId){
             sanityClient.fetch(`*[_type=="memberships" && user._ref=="${curUserId}"]{
                 ...,
@@ -102,34 +79,19 @@ export default function AuthContextProvider({children}){
         }
     },[updationState]);
 
-    function updateCurrentUserProfileFunction(){
-        console.log(" updateCurrentUserProfileFunction",seq);
-        setSeq(seq+1);
-        console.log("use effect running","curUser",curUser,"userDetailSanity",userDetailSanity,"auth",auth);
-        if(curUser){
-            updateCurrentUserProfile();
-        }
-    }
-
 
     useEffect(()=>{
         console.log("useEffect two",seq);
         setSeq(seq+1);
-        const unsubscribe = onAuthStateChanged(auth,curUser => {
-            if(curUser){   
+        const unsubscribe = onAuthStateChanged(auth,curUser => { 
                 setCurUser(curUser);
-                setupdationState(!updationState);
-            }
-            else{
-                setCurUser(null);
-            }
         })
     
         return unsubscribe;
     },[])
 
     return (
-        <AuthContext.Provider value={{curUser,setCurUser,Logout,setupdationState,updationState}}>
+        <AuthContext.Provider value={{curUser,setCurUser,Logout,setupdationState,updationState,ChangeProfileNameAndEmail,VerifyEmailFunction,updateUserDetailSanityLogin}}>
             {children}
         </AuthContext.Provider>
     )

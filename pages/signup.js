@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import BreadcrumbOne from "../components/common/breadcrumb/breadcrumb-one";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
+import { async } from "@firebase/util";
 
 
 
@@ -16,7 +17,7 @@ export default function Signup() {
     const [country, setCountry] = useState("91");
     const [verify, setVerify] = useState(true);
     const router = useRouter();
-    const { curUser,setupdationState,updationState} = useContext(AuthContext);
+    const { curUser,setupdationState,updationState,ChangeProfileNameAndEmail,VerifyEmailFunction,updateUserDetailSanityLogin} = useContext(AuthContext);
     const [signIn, setSignIn] = useState(true);
     const [currentId, setCurrentId] = useState("");
     const [newUserPost, setNewUserPost] = useState(true);
@@ -69,12 +70,15 @@ export default function Signup() {
             .then((result) => {
                 if (newUserPost) {
                     sanityClient.create(obj)
-                        .then((res) => {
+                        .then(async (res) => {
                             console.log("user created successfully")
                             localStorage.setItem("currentUser", res._id)
+                            ChangeProfileNameAndEmail(res)
                         })
                         .then(()=>{
-                            setTimeout(()=>{setupdationState(!updationState)},10000)
+                            setTimeout(()=>{
+                                console.log("logging in setTimeout",updationState);
+                                setupdationState(!updationState)},10000)
                             })
                         .then(()=>router.push("/"))
                         .catch((err) => console.log("error while creating new", err))
@@ -85,9 +89,13 @@ export default function Signup() {
                         .then((res) => {
                             console.log("user edited successfully");
                             localStorage.setItem("currentUser", res._id)
+                            updateUserDetailSanityLogin(res);
                         })
                         .then(()=>{
-                            setTimeout(()=>{setupdationState(!updationState)},10000)
+                            setTimeout(()=>{
+                                console.log("logging in setTimeout",updationState);
+                                VerifyEmailFunction();
+                                setupdationState(!updationState)},10000)
                             })
                         .then(()=>router.push("/"))
                         .catch((err) => console.log("error while editing user", err))
