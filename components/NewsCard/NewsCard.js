@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 
 import { useState } from "react";
@@ -15,6 +15,7 @@ const NewsCard = (props) => {
   let Date = props.news.createdAt.slice(0, 10);
 
   let classValue = `collection-grid-item wow fadeInUpX col-lg-6 col-sm-12 ${props.news.Catagory.catagoryName}`;
+
 
   function handleClick() {
     setVideo(!video);

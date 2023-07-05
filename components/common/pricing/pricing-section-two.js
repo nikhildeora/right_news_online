@@ -1,12 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useRouter } from "next/router";
+import { AuthContext } from "../../../context/auth_context";
 
 export default function PricingSectionTwo(props) {
   const [toggleBilled, setToggleBilled] = useState(false);
+  const { curUser,setupdationState,updationState} = useContext(AuthContext);
   const router = useRouter();
 
+  console.log("curuser",curUser);
   console.log(props.newsplans);
 
   const toggleClass = () => {
