@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { signInWithPhoneNumber, RecaptchaVerifier } from "firebase/auth";
+import { signInWithPhoneNumber, RecaptchaVerifier} from "firebase/auth";
 import { auth } from "../firebase";
 import { useRouter } from "next/router";
 import { AuthContext } from "../context/auth_context";
@@ -16,7 +16,7 @@ export default function Signup() {
     const [country, setCountry] = useState("91");
     const [verify, setVerify] = useState(true);
     const router = useRouter();
-    const { curUser } = useContext(AuthContext);
+    const { curUser,setupdationState,updationState} = useContext(AuthContext);
     const [signIn, setSignIn] = useState(true);
     const [currentId, setCurrentId] = useState("");
     const [newUserPost, setNewUserPost] = useState(true);
@@ -72,18 +72,24 @@ export default function Signup() {
                         .then((res) => {
                             console.log("user created successfully")
                             localStorage.setItem("currentUser", res._id)
-                            router.push("/");
                         })
+                        .then(()=>{
+                            setTimeout(()=>{setupdationState(!updationState)},10000)
+                            })
+                        .then(()=>router.push("/"))
                         .catch((err) => console.log("error while creating new", err))
-                } else {
-                    sanityClient.patch(currentId)
+                    } else {
+                        sanityClient.patch(currentId)
                         .set(editObj)
                         .commit()
                         .then((res) => {
                             console.log("user edited successfully");
                             localStorage.setItem("currentUser", res._id)
-                            router.push("/");
                         })
+                        .then(()=>{
+                            setTimeout(()=>{setupdationState(!updationState)},10000)
+                            })
+                        .then(()=>router.push("/"))
                         .catch((err) => console.log("error while editing user", err))
                 }
             }).catch((err) => {
