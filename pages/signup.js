@@ -77,7 +77,6 @@ export default function Signup() {
                         })
                         .then(()=>{
                             setTimeout(()=>{
-                                console.log("logging in setTimeout",updationState);
                                 setupdationState(!updationState)},10000)
                             })
                         .then(()=>router.push("/"))
@@ -93,7 +92,6 @@ export default function Signup() {
                         })
                         .then(()=>{
                             setTimeout(()=>{
-                                console.log("logging in setTimeout",updationState);
                                 VerifyEmailFunction();
                                 setupdationState(!updationState)},10000)
                             })

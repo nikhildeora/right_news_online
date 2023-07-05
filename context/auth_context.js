@@ -63,7 +63,9 @@ export default function AuthContextProvider({children}){
     }
 
     useEffect(()=>{
+        console.log("this useEffect of membership");
         let curUserId = localStorage.getItem("currentUser") || null;
+        console.log("cur user id",curUserId);
         if(curUserId){
             sanityClient.fetch(`*[_type=="memberships" && user._ref=="${curUserId}"]{
                 ...,
@@ -72,7 +74,8 @@ export default function AuthContextProvider({children}){
               }`)
             .then((res)=>{
                 if(res.length>0){
-                    setActivePlan(res);
+                    console.log("it is fetching cur plan",res);
+                    setActivePlan(res[0]);
                 }
             })
             .catch((err)=>console.log("error while set plan",err))
@@ -91,36 +94,10 @@ export default function AuthContextProvider({children}){
     },[])
 
     return (
-        <AuthContext.Provider value={{curUser,setCurUser,Logout,setupdationState,updationState,ChangeProfileNameAndEmail,VerifyEmailFunction,updateUserDetailSanityLogin}}>
+        <AuthContext.Provider value={{curUser,setCurUser,Logout,setupdationState,updationState,ChangeProfileNameAndEmail,VerifyEmailFunction,updateUserDetailSanityLogin,activePlan}}>
             {children}
         </AuthContext.Provider>
     )
 }
 
 
-// for plan page 
-// let date = new Date();
-// let endDate = new Date();
-// endDate.setDate(endDate.getDate()+30);
-// let endDateFormat = endDate.toISOString();
-// let formatDate = date.toISOString();
-
-
-// let planObj = {
-//     _id : uuidv4(),
-//     _type : "memberships",
-//     plan : {
-//         _ref : "id of plan",
-//         _type : "reference"
-//     },
-//     user : {
-//         _ref : "id of user saved in local storage",
-//         _type : "reference"
-//     },
-//     startDate : formatDate,
-//     endtDate : endDateFormat
-// }
-
-// sanityClient.create(planObj)
-// .then((res)=>console.log(res))
-// .catch((err)=>console.log(err))
