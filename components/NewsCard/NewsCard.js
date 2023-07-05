@@ -7,15 +7,22 @@ import { useRouter } from "next/router";
 import VideoPlayer from "../videoPlayer/VideoPlayer";
 
 const NewsCard = (props) => {
-  const [video, setVideo] = useState(true);
+  const [video, setVideo] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (video) {
+      setTimeout(() => {
+        setVideo(!video);
+      }, 7000);
+    }
+  }, [video]);
 
   let Video = props.news.video;
 
   let Date = props.news.createdAt.slice(0, 10);
 
   let classValue = `collection-grid-item wow fadeInUpX col-lg-6 col-sm-12 ${props.news.Catagory.catagoryName}`;
-
 
   function handleClick() {
     setVideo(!video);
@@ -41,6 +48,13 @@ const NewsCard = (props) => {
               <div>
                 {video ? (
                   <div className="fugu--blog-thumb">
+                    <VideoPlayer
+                      handleClick={handleClick}
+                      Video={Video}
+                    ></VideoPlayer>
+                  </div>
+                ) : (
+                  <div className="fugu--blog-thumb">
                     <img
                       src={props.news.newsImage}
                       alt="News Image"
@@ -49,13 +63,6 @@ const NewsCard = (props) => {
                     <div className="fugu--blog-badge">
                       {props.news.Catagory.catagoryName}
                     </div>
-                  </div>
-                ) : (
-                  <div className="fugu--blog-thumb">
-                    <VideoPlayer
-                      handleClick={handleClick}
-                      Video={Video}
-                    ></VideoPlayer>
                   </div>
                 )}
               </div>

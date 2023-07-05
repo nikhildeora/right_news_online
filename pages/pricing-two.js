@@ -18,7 +18,7 @@ export default function PricingTwo(props) {
   //   console.log(props.newsplans);
   return (
     <>
-      <BreadcrumbOne title="Pricing 02" />
+      <BreadcrumbOne title="Pricing" />
       <PricingSectionTwo newsplans={props.newsplans} />
       <FaqSection />
       <ClientSliderTwo />
