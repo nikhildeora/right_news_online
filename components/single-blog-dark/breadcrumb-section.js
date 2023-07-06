@@ -6,7 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-export default function BreadcrumbSection() {
+export default function BreadcrumbSection(props) {
   const Razorpay = useRazorpay();
   const [curLoggedUser, setCurLoggedUser] = useState(null);
 
@@ -139,9 +139,9 @@ export default function BreadcrumbSection() {
   };
 
   return (
-    <div className="fugu--breadcrumbs-section">
+  <>{props.news&& <div className="fugu--breadcrumbs-section">
       <div className="fugu--breadcrumbs-data">
-        <h1>NFTs & Japanese Culture: a rising, diverse community</h1>
+        <h1>{props.news.newsTitle}</h1>
         <div
           style={{
             display: "flex",
@@ -151,9 +151,7 @@ export default function BreadcrumbSection() {
         >
           <div>
             <p>
-              The Japanese NFT community is in its early days. In this article,
-              we’ll provide an overview of the community from the standpoint of
-              cultural exports, namely the mangaverse and gaming.
+              {props.news.newsShortDescription}
             </p>
             <div className="fugu--blog-meta">
               <ul>
@@ -190,6 +188,7 @@ export default function BreadcrumbSection() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>}
+    </>
+      );
 }

@@ -2,13 +2,13 @@
 import BreadcrumbSection from "./breadcrumb-section";
 import SingleBlogPost from "./single-blog-post";
 
-export default function InnerSection() {
+export default function InnerSection(props) {
 	return (
 		<div className="fugu--inner-section dark-version fugu--single-blog">
 			<div className="container">
 				<div className="row">
 					<div className="col-lg-10 offset-lg-1">
-						<BreadcrumbSection />
+						<BreadcrumbSection news={props.news}/>
 						<SingleBlogPost />
 					</div>
 				</div>

@@ -5,7 +5,7 @@ export default function BreadcrumbSection(props) {
 		<div className="fugu--breadcrumbs-section">
 			<div className="fugu--breadcrumbs-data center-content">
 				<h1 className="wow fadeInUpX" data-wow-delay="0s">
-				Transactions
+				Transactions History
 				</h1>
 				<Table striped bordered hover variant="dark">
       <thead>
