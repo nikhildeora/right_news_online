@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import VideoPlayer from "../videoPlayer/VideoPlayer";
 
 const NewsCard = (props) => {
+  console.log(props)
   const [video, setVideo] = useState(false);
   const router = useRouter();
 
@@ -70,13 +71,13 @@ const NewsCard = (props) => {
                 <div className="fugu--blog-date">
                   <ul>
                     <li>
-                      <Link href="/">
+                      <Link href={`/single-blog-dark/${props.news.slug}`}>
                         <img src="/images/svg2/calendar.svg" alt="" />
                         {Date}
                       </Link>
                     </li>
                     <li>
-                      <Link href="/">
+                      <Link href={`/single-blog-dark/${props.news.slug}`}>
                         <img src="/images/svg2/clock.svg" alt="" />5 min read
                       </Link>
                     </li>
@@ -84,7 +85,16 @@ const NewsCard = (props) => {
                 </div>
                 <div className="fugu--blog-title">
                   {/* <Link href="single-blog-dark"> */}
-                  <h3 style={{ color: "#ffffff" }}>{props.news.newsTitle}</h3>
+                  <Link href={`/single-blog-dark/${props.news.slug}`}
+                    style={{
+                      color: '#ffffff',
+                      textDecoration: 'none',
+                      transition: 'text-decoration 0.3s',
+                      cursor: 'pointer',
+                    }}
+                    onMouseEnter={(e) => { e.target.style.textDecoration = 'underline'; }}
+                    onMouseLeave={(e) => { e.target.style.textDecoration = 'none'; }}
+                  >{props.news.newsTitle}</Link>
                   {/* </Link> */}
                 </div>
                 <p>{props.news.newsShortDescription}</p>
