@@ -18,7 +18,7 @@ export default function PricingTwo(props) {
   //   console.log(props.newsplans);
   return (
     <>
-      <BreadcrumbOne title="Pricing" />
+      <BreadcrumbOne title="Membership Pricing" />
       <PricingSectionTwo newsplans={props.newsplans} />
       <FaqSection />
       <ClientSliderTwo />
@@ -32,25 +32,25 @@ export async function getStaticProps() {
     dataset: process.env.SANITY_DATASET,
     token: process.env.SANITY_TOKEN,
 
-    useCdn: false, // set to `false` to bypass the edge cache
+    useCdn: false, // set to `false` to bypass the edge cache-
     apiVersion: "1",
   });
 
   const query = `*[_type=="plans"]{
-             planDays,
-             dailyDownloadLimit,
-             planPrice,
-             planTitle,
-             planScreen,
-             planFocus,
-             "id":_id,
-             "type":_type,
-             "slug":slug.current,
-             "rev":_rev,
-             "createdAt":_createdAt,
-             "updatedAT":_updatedAt,             
-             "planIcon":planIcon.asset->url
-             }`;
+                 planDays,
+                 dailyDownloadLimit,
+                 planPrice,
+                 planTitle,
+                 planScreen,
+                 planFocus,
+                 "id":_id,
+                 "type":_type,
+                 "slug":slug.current,
+                 "rev":_rev,
+                 "createdAt":_createdAt,
+                 "updatedAT":_updatedAt,             
+                 "planIcon":planIcon.asset->url
+                 }`;
   const newsplans = await client.fetch(query);
 
   return {
