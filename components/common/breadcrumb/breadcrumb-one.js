@@ -9,7 +9,7 @@ export default function BreadcrumbOne({ title }) {
           <h1>{title}</h1>
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
-              <li className="breadcrumb-item">
+              <li className="breadcrumb-item" style={{ fontWeight: "600" }}>
                 <Link href={"/"}>Home</Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">

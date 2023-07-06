@@ -7388,10 +7388,11 @@ a.fugu-pricing-btn.active {
   background-color: var(--warning-500);
 }
 
+/* start pricing section button "Buy the plan" */
 button.fugu-pricing-btn {
   display: block;
   width: 100%;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 24px;
   text-align: center;
@@ -7410,6 +7411,8 @@ button.fugu-pricing-btn.active {
   border: 2px solid var(--warning-500);
   background-color: var(--warning-500);
 }
+
+/* end pricing section button "Buy the plan" */
 
 .fugu-pricing-label {
   width: 178px;

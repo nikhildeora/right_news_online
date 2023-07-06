@@ -24,7 +24,7 @@ export default function IndexThree({ newsdata, catagorydata }) {
         <title>fugu - index 01</title>
       </Head>
       <HeroSection />
-      <CardSliderOne />
+      {/* <CardSliderOne /> */}
       <FilterGalarryOne newsdata={newsdata} catagorydata={catagorydata} />
       <TextSliderNews newsdata={newsdata} />
       <Team />
@@ -78,6 +78,10 @@ export async function getStaticProps() {
     },
   };
 }
+
+// ------------------------------------------------------------------------------------------------------------------------------------//
+
+// code written by Adil Warsi related to news catagory
 
 //  const cat = {
 //    id: "",
