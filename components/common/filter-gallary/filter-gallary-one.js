@@ -95,7 +95,7 @@ export default function FilterGalarryOne(props) {
       <div className="container">
         <div className="fugu--section-title">
           <div className="fugu--default-content content-sm">
-            <h2>Explore the most unique artworks</h2>
+            <h2>Explore the latest news here and keep your self updated</h2>
             <p>
               NFTs are usually associated with non-physical art but in reality,
               there are several different types of NFTs and are explained in
