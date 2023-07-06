@@ -6,7 +6,7 @@ export default function InnerSection(props) {
 	return (
 		<div className="fugu--inner-section dark-version">
 			<div className="container">
-				<BreadcrumbSection users={props.users} />
+				<BreadcrumbSection transactions={props.transactions} />
 			</div>
 			<div className="fugu--blog-shape1">
 				<img src="/images/all-img/v3/shape2.png" alt="" />
