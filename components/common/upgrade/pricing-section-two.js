@@ -156,7 +156,7 @@ export default function PricingSectionTwo(props) {
             <h4>
               {activePlan?`Active Plan : ${activePlan.planDetail.planTitle} Valid Till 
               ${format(new Date(activePlan.endtDate), "dd MMMM yyyy")}`
-              :``}
+              :`You don't have any plan for upgrading`}
             </h4>
           
 
