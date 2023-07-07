@@ -2,7 +2,6 @@ import React from "react";
 import { format } from "date-fns";
 import Table from 'react-bootstrap/Table';
 export default function BreadcrumbSection(props) {
-	console.log(props.users[2].userDetails)
 	return (
 		<div className="fugu--breadcrumbs-section">
 			<div className="fugu--breadcrumbs-data center-content">
