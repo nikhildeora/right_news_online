@@ -31,12 +31,8 @@ export default function HeaderHomeOne() {
       <div className="container-fluid">
         <nav className="navbar site-navbar">
           <div className="brand-logo">
-            <Link href={"/"}>
-              <img
-                src="/images/logo/logo-black.svg"
-                alt="logo"
-                className="light-version-logo"
-              />
+            <Link href={"/"} style={{ color: "black" }}>
+              RNO
             </Link>
           </div>
           <div className="menu-block-wrapper">
