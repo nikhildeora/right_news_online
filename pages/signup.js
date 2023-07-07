@@ -151,7 +151,7 @@ export default function Signup() {
         if (signIn && exist) {
           Swal.fire({
             title: "User existed",
-            text: "You already have an Account, Login with your Mobile Number",
+            text: "You already have an Account, Login with your Mobile Number.",
             icon: "info",
             confirmButtonColor: "#26215c",
             confirmButtonText: "Close",
@@ -160,7 +160,7 @@ export default function Signup() {
         } else if (!signIn && !exist) {
           Swal.fire({
             title: "Can't find user",
-            text: "You don't have an Account, Please signup !",
+            text: "You don't have an Account, Please Signup!",
             icon: "error",
             confirmButtonColor: "#26215c",
             confirmButtonText: "Close",

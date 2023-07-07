@@ -40,7 +40,7 @@ const NewsCard = (props) => {
     } else {
       Swal.fire({
         title: "Can't find user",
-        text: "Please Login/Signup to proceed further",
+        text: "Please Login / Signup to proceed further!",
         icon: "info",
         showCancelButton: true,
         confirmButtonColor: "#26215c",
