@@ -13,6 +13,10 @@ export async function getStaticProps() {
 		  useCdn: false, // set to `false` to bypass the edge cache
 		  apiVersion: "1",
 		});
-		const users = await client.fetch('*[_type == "users" && _id in *[_type == "memberships"].user._ref]')
+		const users = await client.fetch(`*[_type == "memberships"]{
+			...,
+			"userDetails" : user->,
+			"planDetail" : plan->  
+		  }`)
 	return { props: { header: "three", footer: "three", users: users } }
 }

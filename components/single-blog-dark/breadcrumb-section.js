@@ -157,14 +157,12 @@ export default function BreadcrumbSection(props) {
               <ul>
                 <li>
                   <Link href={"#"}>
-                    <img src="assets/images/svg2/calendar.svg" alt="" /> Art &
-                    Analusis
+                    <img src="assets/images/svg2/calendar.svg" alt="" /> {props.news.newsCategory}
                   </Link>
                 </li>
                 <li>
                   <Link href={"#"}>
-                    <img src="assets/images/svg2/clock.svg" alt="" /> July 18,
-                    2022
+                    <img src="assets/images/svg2/clock.svg" alt="" /> {props.news.createdAt.slice(0,10)}
                   </Link>
                 </li>
               </ul>

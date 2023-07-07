@@ -1,6 +1,8 @@
 import React from "react";
+import { format } from "date-fns";
 import Table from 'react-bootstrap/Table';
 export default function BreadcrumbSection(props) {
+	console.log(props.users[2].userDetails)
 	return (
 		<div className="fugu--breadcrumbs-section">
 			<div className="fugu--breadcrumbs-data center-content">
@@ -11,12 +13,16 @@ export default function BreadcrumbSection(props) {
       <thead>
         <tr>
 		  <th>Email</th>
+		  <th>Active Plan</th>
+		  <td>Plan Expiry</td>
         </tr>
       </thead>
       <tbody>
 		{props.users.map((user,i)=>(
 			    <tr key={i}>
-				<td>{user.userEmail}</td>
+				<td>{user.userDetails.userEmail}</td>
+				<td>{user.planDetail.planTitle}</td>
+				<td>{format(new Date(user.endtDate), "dd MMMM yyyy")}</td>
 			  </tr>))}
       </tbody>
     </Table>
