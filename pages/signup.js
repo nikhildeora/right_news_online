@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import BreadcrumbOne from "../components/common/breadcrumb/breadcrumb-one";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
-import { async } from "@firebase/util";
 
 
 

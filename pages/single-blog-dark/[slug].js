@@ -1,8 +1,10 @@
 import InnerSection from "../../components/single-blog-dark/inner-section";
 import { createClient } from "next-sanity";
+
 export default function SingleBlogDark(props) {
 	return <InnerSection news={props.news} />;
 }
+
 export const getStaticPaths = async () => {
 	return {
 	  paths: [
