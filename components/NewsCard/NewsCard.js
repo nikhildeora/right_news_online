@@ -4,10 +4,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
+
 import VideoPlayer from "../videoPlayer/VideoPlayer";
 
 const NewsCard = (props) => {
-  console.log(props)
+  console.log(props);
   const [video, setVideo] = useState(false);
   const router = useRouter();
 
@@ -35,8 +38,20 @@ const NewsCard = (props) => {
     if (localStorage.getItem("currentUser")) {
       router.push("/pricing-two");
     } else {
-      alert("Please login to download video");
-      router.push("/signup");
+      Swal.fire({
+        title: "Can't find user",
+        text: "Please Login / Signup to proceed further!",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#26215c",
+        cancelButtonColor: "#757575",
+        confirmButtonText: "Login / Signup",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/signup");
+        }
+      });
     }
   };
 
@@ -85,16 +100,23 @@ const NewsCard = (props) => {
                 </div>
                 <div className="fugu--blog-title">
                   {/* <Link href="single-blog-dark"> */}
-                  <Link href={`/single-blog-dark/${props.news.slug}`}
+                  <Link
+                    href={`/single-blog-dark/${props.news.slug}`}
                     style={{
-                      color: '#ffffff',
-                      textDecoration: 'none',
-                      transition: 'text-decoration 0.3s',
-                      cursor: 'pointer',
+                      color: "#ffffff",
+                      textDecoration: "none",
+                      transition: "text-decoration 0.3s",
+                      cursor: "pointer",
                     }}
-                    onMouseEnter={(e) => { e.target.style.textDecoration = 'underline'; }}
-                    onMouseLeave={(e) => { e.target.style.textDecoration = 'none'; }}
-                  >{props.news.newsTitle}</Link>
+                    onMouseEnter={(e) => {
+                      e.target.style.textDecoration = "underline";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.textDecoration = "none";
+                    }}
+                  >
+                    {props.news.newsTitle}
+                  </Link>
                   {/* </Link> */}
                 </div>
                 <p>{props.news.newsShortDescription}</p>

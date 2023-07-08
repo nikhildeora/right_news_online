@@ -36,13 +36,7 @@ export default function HeaderHomeThree() {
       <div className="container-fluid">
         <nav className="navbar site-navbar">
           <div className="brand-logo">
-            <Link href={"/"}>
-              <img
-                src="/images/logo/logo-white.svg"
-                alt=""
-                className="light-version-logo"
-              />
-            </Link>
+            <Link href={"/"}>RNO</Link>
           </div>
           <div className="menu-block-wrapper">
             <div

@@ -39,7 +39,10 @@
     "react-razorpay": "^1.2.0",
     "react-select": "^5.7.3",
     "react-slick": "^0.29.0",
+    "sass": "^1.63.6",
     "slick-carousel": "^1.8.1",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.7.12",
     "swiper": "^8.4.4",
     "uuid": "^9.0.0"
   },
