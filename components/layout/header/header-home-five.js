@@ -52,12 +52,13 @@ export default function HeaderHomeFive() {
               </div>
 
               <Navbar>
-                <NavItem navItemText="Demo" menuItems={DemoDropdownMenus} />
+                <NavItem navItemText="Home" />
+                {/* <NavItem navItemText="Demo" menuItems={DemoDropdownMenus} /> */}
                 <NavItem navItemText="Pages" menuItems={PagesDropdownMenus} />
                 <NavItem
                   navItemText="Elements"
                   menuItems={ElementsMegaMenu}
-                  megaMenu
+                  // megaMenu
                 />
                 <NavItem navItemText="Blog" menuItems={BlogDropdownMenus} />
                 <NavItem

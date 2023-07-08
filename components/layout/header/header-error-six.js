@@ -48,12 +48,13 @@ export default function HeaderErrorSix() {
               </div>
 
               <Navbar>
-                <NavItem navItemText="Demo" menuItems={DemoDropdownMenus} />
+                {/* menuItems={DemoDropdownMenus} */}
+                <NavItem navItemText="Home" />
                 <NavItem navItemText="Pages" menuItems={PagesDropdownMenus} />
                 <NavItem
                   navItemText="Elements"
                   menuItems={ElementsMegaMenu}
-                  megaMenu
+                  //megaMenu
                 />
                 <NavItem navItemText="Blog" menuItems={BlogDropdownMenus} />
                 <NavItem
