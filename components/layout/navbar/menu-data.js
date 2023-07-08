@@ -131,6 +131,10 @@ export const PagesDropdownMenus = [
         title: "Pricing",
         path: "pricing-two",
       },
+      {
+        title: "Upgrade Plan",
+        path: "upgrade-plan",
+      },
     ],
   },
   {

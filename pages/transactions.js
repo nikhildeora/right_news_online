@@ -13,12 +13,9 @@ export async function getStaticProps() {
 		  useCdn: false, // set to `false` to bypass the edge cache
 		  apiVersion: "1",
 		});
-		const transactions = await client.fetch('*[_type == "orders"]')
-		for(let i=0; i<transactions.length; i++){
-		 if(transactions[i].news){
-		 const news = await client.fetch(`*[_type == "news" && _id == "${transactions[i].news._ref}"][0]`)
-		 transactions[i].newsTitle = news.newsTitle
-		 }
-		}
+		const transactions = await client.fetch(`*[_type == "orders"]{
+			...,
+			"newsDetails" : news->
+		  }`)
 	return { props: { header: "three", footer: "three", transactions: transactions } }
 }

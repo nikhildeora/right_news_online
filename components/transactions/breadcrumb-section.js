@@ -24,7 +24,7 @@ export default function BreadcrumbSection(props) {
 				<td>{transaction.orderID}</td>
 				<td>{transaction.transcationID}</td>
 				<td>{transaction.orderTimeDate}</td>
-				<td>{transaction.newsTitle}</td>
+				<td>{transaction.newsDetails.newsTitle}</td>
 				<td>{transaction.orderValue}</td>
 				<td>{transaction.genre}</td>
 			  </tr>))}

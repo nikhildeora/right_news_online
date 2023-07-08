@@ -9,7 +9,7 @@ export default function InnerSection(props) {
 				<div className="row">
 					<div className="col-lg-10 offset-lg-1">
 						<BreadcrumbSection news={props.news}/>
-						<SingleBlogPost />
+						<SingleBlogPost news={props.news}/>
 					</div>
 				</div>
 			</div>
