@@ -1,136 +1,136 @@
 // export const DemoDropdownMenus = [
 //   {
 //     title: "Home 01",
-//     path: "/",
+//     path: "//",
 //   },
 //   {
 //     title: "Home 02",
-//     path: "index-two",
+//     path: "/index-two",
 //   },
 //   {
 //     title: "Home 03",
-//     path: "index-three",
+//     path: "/index-three",
 //   },
 //   {
 //     title: "Home 04",
-//     path: "index-four",
+//     path: "/index-four",
 //   },
 //   {
 //     title: "Home 05",
-//     path: "index-five",
+//     path: "/index-five",
 //   },
 // ];
 export const PagesDropdownMenus = [
   // {
   //   title: "About",
-  //   path: "about",
+  //   path: "/about",
   //   submenu: [
   //     {
   //       title: "About Dark",
-  //       path: "about-dark",
+  //       path: "/about-dark",
   //     },
   //     {
   //       title: "About Light 01",
-  //       path: "about-us",
+  //       path: "/about-us",
   //     },
   //     {
   //       title: "Blog Light 02",
-  //       path: "about-light",
+  //       path: "/about-light",
   //     },
   //   ],
   // },
   // {
   //   title: "Blog Light",
-  //   path: "blog",
+  //   path: "/blog",
   //   submenu: [
   //     {
   //       title: "Blog Light",
-  //       path: "blog-light",
+  //       path: "/blog-light",
   //     },
   //     {
   //       title: "Blog Light Sidebar 01",
-  //       path: "blog",
+  //       path: "/blog",
   //     },
   //     {
   //       title: "Blog Light Sidebar 02",
-  //       path: "blog-light-sidebar",
+  //       path: "/blog-light-sidebar",
   //     },
   //     {
   //       title: "Single Blog Light",
-  //       path: "single-blog-light",
+  //       path: "/single-blog-light",
   //     },
   //   ],
   // },
   {
     title: "Resources",
-    path: "blog-dark",
+    path: "/blog-dark",
     submenu: [
       {
         title: "Blog & Resources 1",
-        path: "blog-dark",
+        path: "/blog-dark",
       },
       {
         title: "Blog & Resources 2",
-        path: "blog-dark-sidebar",
+        path: "/blog-dark-sidebar",
       },
       // {
       //   title: "Blog Dark Details",
-      //   path: "single-blog-dark",
+      //   path: "/single-blog-dark",
       // },
     ],
   },
   {
     title: "Service",
-    path: "#",
+    path: "/#",
     submenu: [
       {
         title: "Active Users",
-        path: "users",
+        path: "/users",
       },
       {
         title: "Transaction History",
-        path: "transactions",
+        path: "/transactions",
       },
       // {
       //   title: "Single Service",
-      //   path: "single-service",
+      //   path: "/single-service",
       // },
     ],
   },
   {
     title: "Team",
     //team
-    path: "team-light",
+    path: "/team-light",
     // submenu: [
     // {
     //   title: "Team Dark",
-    //   path: "team-dark",
+    //   path: "/team-dark",
     // },
     // {
     //   title: "Team Light 01",
-    //   path: "team",
+    //   path: "/team",
     // },
     // {
     //   title: "Team Light 02",
-    //   path: "team-light",
+    //   path: "/team-light",
     // },
     // {
     //   title: "Single Team",
-    //   path: "single-team",
+    //   path: "/single-team",
     // },
     // ],
   },
   {
     title: "Pricing",
-    path: "pricing",
+    path: "/pricing",
     submenu: [
       // {
       //   title: "Pricing 01",
-      //   path: "pricing-one",
+      //   path: "/pricing-one",
       // },
       {
         title: "Pricing",
-        path: "pricing-two",
+        path: "/pricing-two",
       },
       {
         title: "Upgrade Plan",
@@ -140,60 +140,60 @@ export const PagesDropdownMenus = [
   },
   // {
   //   title: "Carrer",
-  //   path: "carrer",
+  //   path: "/carrer",
   //   submenu: [
   //     {
   //       title: "Career",
-  //       path: "carrer",
+  //       path: "/carrer",
   //     },
   //     {
   //       title: "Single-Career",
-  //       path: "sinlge-career",
+  //       path: "/sinlge-career",
   //     },
   //   ],
   // },
   {
     title: "Portfolio",
     // portfolio
-    path: "portfolio-one",
+    path: "/portfolio-one",
     // submenu: [
     //   {
     //     title: "Portfolio Classic",
-    //     path: "portfolio-one",
+    //     path: "/portfolio-one",
     //   },
     //   {
     //     title: "Portfolio-Minimal",
-    //     path: "portfolio-two",
+    //     path: "/portfolio-two",
     //   },
     //   {
     //     title: "Portfolio-Modern",
-    //     path: "portfolio-three",
+    //     path: "/portfolio-three",
     //   },
     //   {
     //     title: "Single Portfolio",
-    //     path: "single-portfolio",
+    //     path: "/single-portfolio",
     //   },
     // ],
   },
   // {
   //   title: "Utility",
-  //   path: "utility",
+  //   path: "/utility",
   //   submenu: [
   //     {
   //       title: "Faq",
-  //       path: "faq",
+  //       path: "/faq",
   //     },
   //     {
   //       title: "Error-404",
-  //       path: "404",
+  //       path: "/404",
   //     },
   //     {
   //       title: "Testimonial",
-  //       path: "testimonial",
+  //       path: "/testimonial",
   //     },
   //     {
   //       title: "coming-soon",
-  //       path: "coming-soon",
+  //       path: "/coming-soon",
   //     },
   //   ],
   // },
@@ -202,113 +202,113 @@ export const PagesDropdownMenus = [
 export const ElementsMegaMenu = [
   // {
   //   title: "About Style",
-  //   path: "#",
+  //   path: "/#",
   //   submenu: [
   //     {
   //       title: "About Dark",
-  //       path: "about-dark",
+  //       path: "/about-dark",
   //     },
   //     {
   //       title: "About Light 01",
-  //       path: "about-us",
+  //       path: "/about-us",
   //     },
   //     {
   //       title: "Blog Light 02",
-  //       path: "about-light",
+  //       path: "/about-light",
   //     },
   //   ],
   // },
   {
     title: "Resources",
-    path: "blog-dark",
+    path: "/blog-dark",
     submenu: [
       {
         title: "News & Resources 1",
-        path: "blog-dark",
+        path: "/blog-dark",
       },
       {
         title: "News & Resources 2",
-        path: "blog-dark-sidebar",
+        path: "/blog-dark-sidebar",
       },
       // {
       //   title: "Blog Dark Details",
-      //   path: "single-blog-dark",
+      //   path: "/single-blog-dark",
       // },
     ],
   },
   // {
   //   title: "Blog Style",
-  //   path: "#",
+  //   path: "/#",
   //   submenu: [
   //     {
   //       title: "Blog Dark",
-  //       path: "blog-dark",
+  //       path: "/blog-dark",
   //     },
   //     {
   //       title: "Blog Dark Sidebar",
-  //       path: "blog-dark-sidebar",
+  //       path: "/blog-dark-sidebar",
   //     },
   //     {
   //       title: "Blog Dark Details",
-  //       path: "single-blog-dark",
+  //       path: "/single-blog-dark",
   //     },
   //     {
   //       title: "Blog Light",
-  //       path: "blog-light",
+  //       path: "/blog-light",
   //     },
   //     {
   //       title: "Blog Light Sidebar 01",
-  //       path: "blog",
+  //       path: "/blog",
   //     },
   //     {
   //       title: "Blog Light Sidebar 02",
-  //       path: "blog-light-sidebar",
+  //       path: "/blog-light-sidebar",
   //     },
   //     {
   //       title: "Single Blog light",
-  //       path: "single-blog",
+  //       path: "/single-blog",
   //     },
   //   ],
   // },
 
   // {
   //   title: "Masonry Style",
-  //   path: "#",
+  //   path: "/#",
   //   submenu: [
   //     {
   //       title: "Portfolio Classic",
-  //       path: "portfolio-one",
+  //       path: "/portfolio-one",
   //     },
   //     {
   //       title: "Portfolio-Minimal",
-  //       path: "portfolio-two",
+  //       path: "/portfolio-two",
   //     },
   //     {
   //       title: "Portfolio-Modern",
-  //       path: "portfolio-three",
+  //       path: "/portfolio-three",
   //     },
   //     {
   //       title: "Single Portfolio",
-  //       path: "single-portfolio",
+  //       path: "/single-portfolio",
   //     },
   //   ],
   // },
 
   {
     title: "Contact Style",
-    path: "#",
+    path: "/#",
     submenu: [
       {
         title: "Contact Dark",
-        path: "contact-dark",
+        path: "/contact-dark",
       },
       {
         title: "Contact Light 01",
-        path: "contact",
+        path: "/contact",
       },
       {
         title: "Contact Light 02",
-        path: "contact-light",
+        path: "/contact-light",
       },
     ],
   },
@@ -317,49 +317,49 @@ export const ElementsMegaMenu = [
 export const BlogDropdownMenus = [
   {
     title: "Upload News",
-    path: "createblog",
+    path: "/createblog",
   },
   // {
   //   title: "Blog Dark",
-  //   path: "blog-dark",
+  //   path: "/blog-dark",
   // },
   // {
   //   title: "Blog Dark Sidebar",
-  //   path: "blog-dark-sidebar",
+  //   path: "/blog-dark-sidebar",
   // },
   // {
   //   title: "Blog Dark Details",
-  //   path: "single-blog-dark",
+  //   path: "/single-blog-dark",
   // },
   {
     title: "News Light",
-    path: "blog-light",
+    path: "/blog-light",
   },
   {
     title: "News Light Sidebar",
-    path: "blog",
+    path: "/blog",
   },
   // {
   //   title: "News Light Sidebar 02",
-  //   path: "blog-light-sidebar",
+  //   path: "/blog-light-sidebar",
   // },
   // {
   //   title: "Single Blog Light",
-  //   path: "single-blog-light",
+  //   path: "/single-blog-light",
   // },
 ];
 
 export const ContactDropdownMenus = [
   {
     title: "Contact Dark",
-    path: "contact-dark",
+    path: "/contact-dark",
   },
   {
     title: "Contact Light 01",
-    path: "contact",
+    path: "/contact",
   },
   {
     title: "Contact Light 02",
-    path: "contact-light",
+    path: "/contact-light",
   },
 ];
