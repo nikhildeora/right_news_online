@@ -134,7 +134,7 @@ export const PagesDropdownMenus = [
       },
       {
         title: "Upgrade Plan",
-        path: "upgrade-plan",
+        path: "/upgrade-plan",
       },
     ],
   },
