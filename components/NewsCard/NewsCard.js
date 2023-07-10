@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
-
+import { createClient } from "next-sanity";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
@@ -34,9 +34,21 @@ const NewsCard = (props) => {
 
   //Function for plan buying and login check
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     if (localStorage.getItem("currentUser")) {
-      router.push("/pricing-two");
+      const client = createClient({
+        projectId: process.env.SANITY_PROJECT_ID,
+        dataset: process.env.SANITY_DATASET,
+        token: process.env.SANITY_TOKEN,
+      
+        useCdn: false, // set to `false` to bypass the edge cache
+        apiVersion: "1",
+      });
+      const link = await client.fetch(`*[_type == "news" && _id == "${props.news.id}"][0] {
+        title,
+        "link": newsVideo.asset->url
+      }`)
+      window.location.href=`${link.link}?dl=`
     } else {
       Swal.fire({
         title: "Can't find user",
