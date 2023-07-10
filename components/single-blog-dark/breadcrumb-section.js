@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { sanityClient } from "../../sanity_client";
 import Link from "next/link";
+import { format } from "date-fns";
 import useRazorpay from "react-razorpay";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -162,7 +163,7 @@ export default function BreadcrumbSection(props) {
                 </li>
                 <li>
                   <Link href={"#"}>
-                    <img src="assets/images/svg2/clock.svg" alt="" /> {props.news.createdAt.slice(0,10)}
+                    <img src="assets/images/svg2/clock.svg" alt="" /> {props.news.createdAt&&format(new Date(props.news.createdAt), "dd MMMM yyyy")}
                   </Link>
                 </li>
               </ul>

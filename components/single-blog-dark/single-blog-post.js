@@ -11,7 +11,7 @@ export default function SingleBlogPost(props) {
 	return (
 		<>{props.news&& <div className="fugu--single-blog-section">
 			<img className="fugu--single-thumb" src={props.news.newsImage} alt="" />
-			{props.news?.newsLongDescription[0].children.map((child,i)=>(
+			{props.news.newsLongDescription&&props.news?.newsLongDescription[0].children.map((child,i)=>(
 				<p key={i}>{child.text}</p>
 			))}
 			<BlockquoteSection />
