@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { sanityClient } from "../../sanity_client";
 import Link from "next/link";
+import { format } from "date-fns";
 import useRazorpay from "react-razorpay";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -139,57 +140,54 @@ export default function BreadcrumbSection(props) {
   };
 
   return (
-    <>
-      {props.news && (
-        <div className="fugu--breadcrumbs-section">
-          <div className="fugu--breadcrumbs-data">
-            <h1>{props.news.newsTitle}</h1>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <div>
-                <p>{props.news.newsShortDescription}</p>
-                <div className="fugu--blog-meta">
-                  <ul>
-                    <li>
-                      <Link href={"#"}>
-                        <img src="assets/images/svg2/calendar.svg" alt="" />{" "}
-                        {props.news.newsCategory}
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href={"#"}>
-                        <img src="assets/images/svg2/clock.svg" alt="" />{" "}
-                        {props.news.createdAt.slice(0, 10)}
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div>
-                <button
-                  onClick={() => handlePayment(300)}
-                  style={{
-                    color: "white",
-                    padding: "12px 28px",
-                    backgroundColor: "red",
-                    cursor: "pointer",
-                    fontWeight: "bold",
-                    borderRadius: "10px",
-                    fontSize: "23px",
-                  }}
-                >
-                  &#8377; 300
-                </button>
-              </div>
+  <>{props.news&& <div className="fugu--breadcrumbs-section">
+      <div className="fugu--breadcrumbs-data">
+        <h1>{props.news.newsTitle}</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <p>
+              {props.news.newsShortDescription}
+            </p>
+            <div className="fugu--blog-meta">
+              <ul>
+                <li>
+                  <Link href={"#"}>
+                    <img src="assets/images/svg2/calendar.svg" alt="" /> {props.news.newsCategory}
+                  </Link>
+                </li>
+                <li>
+                  <Link href={"#"}>
+                    <img src="assets/images/svg2/clock.svg" alt="" /> {props.news.createdAt&&format(new Date(props.news.createdAt), "dd MMMM yyyy")}
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
+          <div>
+            <button
+              onClick={() => handlePayment(300)}
+              style={{
+                color: "white",
+                padding: "12px 28px",
+                backgroundColor: "red",
+                cursor: "pointer",
+                fontWeight: "bold",
+                borderRadius: "10px",
+                fontSize: "23px",
+              }}
+            >
+              &#8377; 300
+            </button>
+          </div>
         </div>
-      )}
+      </div>
+    </div>}
     </>
-  );
+      );
 }
