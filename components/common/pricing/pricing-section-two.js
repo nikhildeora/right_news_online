@@ -47,7 +47,7 @@ export default function PricingSectionTwo(props) {
         showCancelButton: true,
         confirmButtonColor: "#26215c",
         cancelButtonColor: "#757575",
-        confirmButtonText: "Login / Signup",
+        confirmButtonText: "LOGIN / SIGNUP",
         reverseButtons: true,
       }).then((result) => {
         if (result.isConfirmed) {
