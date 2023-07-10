@@ -9,6 +9,9 @@ import useRazorpay from "react-razorpay";
 import { v4 as uuidv4 } from "uuid";
 import { sanityClient } from "../../../sanity_client";
 
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
+
 export default function PricingSectionTwo(props) {
   const [toggleBilled, setToggleBilled] = useState(false);
   const { curUser, setupdationState, updationState, activePlan } =
@@ -36,7 +39,14 @@ export default function PricingSectionTwo(props) {
     if (CurUserIdNow) {
       handlePayment(CurUserIdNow, plan_amount, plan_ref, plan_days);
     } else {
-      alert("Please login to buy plan");
+      Swal.fire({
+        title: "Can't find user",
+        text: "Please Login / Signup to buy plan",
+        icon: "error",
+        confirmButtonColor: "#26215c",
+        confirmButtonText: "Close",
+        reverseButtons: true,
+      });
       router.push("/signup");
     }
   };
@@ -101,7 +111,14 @@ export default function PricingSectionTwo(props) {
     const rzp1 = new Razorpay(options);
 
     rzp1.on("payment.failed", function (response) {
-      alert("payment unsuccessfull");
+      Swal.fire({
+        title: "Payment Unsuccessfull",
+        text: "Due to some technical reason payment failed",
+        icon: "error",
+        confirmButtonColor: "#26215c",
+        confirmButtonText: "Close",
+        reverseButtons: true,
+      });
     });
 
     rzp1.open();
@@ -153,13 +170,12 @@ export default function PricingSectionTwo(props) {
         </div>
 
         <div className="fugu-section-title">
-            <h4>
-              {activePlan?`Active Plan : ${activePlan.planDetail.planTitle} Valid Till 
+          <h4>
+            {activePlan
+              ? `Active Plan : ${activePlan.planDetail.planTitle} Valid Till 
               ${format(new Date(activePlan.endtDate), "dd MMMM yyyy")}`
-              :`You don't have any plan for upgrading`}
-            </h4>
-          
-
+              : `You don't have any plan for upgrading`}
+          </h4>
         </div>
 
         <div className="pricing-btn d-flex align-items-center justify-content-center flex-wrap ">
@@ -182,143 +198,156 @@ export default function PricingSectionTwo(props) {
           data-pricing-dynamic
           data-value-active="monthly"
         >
-          {activePlan&&activePlan?.planDetail.planTitle!='Silver'&&<div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-          <div
-              className="fugu-pricing-wrap fugu-pricing-wrap3 wow fadeInUpX"
-              data-wow-delay="0s"
-            >
-              <div className="fugu-pricing-header">
-                <h5>Silver</h5>
-              </div>
-              <div className="fugu-pricing-price">
-                <span className="fugu-pricing-currency">&#8377;</span>
-                <div className="fugu-price">{toggleBilled ? "500" : "500"}</div>
-                <p className="bottom_text">
-                  {toggleBilled ? "/Yearly" : "/Monthly"}
-                </p>
-              </div>
-              <p>Suitable for small companies and personal use</p>
-              <div className="fugu-pricing-body">
-                <span>What you get:</span>
-                <ul>
-                  <li>
-                    <img src="/images/svg/check5.svg" alt="" />
-                    Plan limit 30 days
-                  </li>
-                  <li>
-                    <img src="/images/svg/check5.svg" alt="" />5 Downloads / day
-                  </li>
-                  <li>
-                    <img src="/images/svg/check5.svg" alt="" />1 Screen at a
-                    time
-                  </li>
-                </ul>
-              </div>
+          {activePlan && activePlan?.planDetail.planTitle != "Silver" && (
+            <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
               <div
-                onClick={() =>
-                  handlePlanBuy(500, "a5647fad-9ab3-42f6-9116-f9bd12409463", 30)
-                }
+                className="fugu-pricing-wrap fugu-pricing-wrap3 wow fadeInUpX"
+                data-wow-delay="0s"
               >
-                <button className="fugu-pricing-btn">Buy the plan</button>
-              </div>
-            </div>
-          </div>}
-          {activePlan&&activePlan?.planDetail.planTitle!='Platinum'&&<div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-            <div
-              className="fugu-pricing-wrap fugu-pricing-wrap3 wow fadeInUpX"
-              data-wow-delay=".10s"
-            >
-              <div className="fugu-pricing-header">
-                <h5>Platinum</h5>
-              </div>
-              <div className="fugu-pricing-price">
-                <span className="fugu-pricing-currency">&#8377;</span>
-                <div className="fugu-price">
-                  {toggleBilled ? "2500" : "2500"}
+                <div className="fugu-pricing-header">
+                  <h5>Silver</h5>
                 </div>
-                <p className="bottom_text">
-                  {toggleBilled ? "/Yearly" : "/Monthly"}
-                </p>
-              </div>
-              <p>Suitable for small companies and personal use</p>
-              <div className="fugu-pricing-body">
-                <span>What you get:</span>
-                <ul>
-                  <li>
-                    <img src="/images/svg/check5.svg" alt="" />
-                    Plan limit 90 days
-                  </li>
-                  <li>
-                    <img src="/images/svg/check5.svg" alt="" />
-                    50 Downloads / day
-                  </li>
-                  <li>
-                    <img src="/images/svg/check5.svg" alt="" />2 Screen at a
-                    time
-                  </li>
-                </ul>
-              </div>
-              <div
-                onClick={() =>
-                  handlePlanBuy(
-                    2500,
-                    "3b24ec2f-a75b-42a8-8491-1afbd0d8d8ae",
-                    90
-                  )
-                }
-              >
-                <button className="fugu-pricing-btn">Buy the plan</button>
-              </div>
-            </div>
-          </div>}
-          {activePlan&&activePlan?.planDetail.planTitle!='Golden'&&<div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
-            <div
-              className="fugu-pricing-wrap fugu-pricing-wrap3 wow fadeInUpX"
-              data-wow-delay=".20s"
-            >
-              <div className="fugu-pricing-header">
-                <h5>Golden</h5>
-              </div>
-              <div className="fugu-pricing-price">
-                <span className="fugu-pricing-currency">&#8377;</span>
-                <div className="fugu-price">
-                  {toggleBilled ? "1500" : "1500"}
+                <div className="fugu-pricing-price">
+                  <span className="fugu-pricing-currency">&#8377;</span>
+                  <div className="fugu-price">
+                    {toggleBilled ? "500" : "500"}
+                  </div>
+                  <p className="bottom_text">
+                    {toggleBilled ? "/Yearly" : "/Monthly"}
+                  </p>
                 </div>
-                <p className="bottom_text">
-                  {toggleBilled ? "/Yearly" : "/Monthly"}
-                </p>
-              </div>
-              <p>Suitable for small companies and personal use</p>
-              <div className="fugu-pricing-body">
-                <span>What you get:</span>
-                <ul>
-                  <li>
-                    <img src="/images/svg/check5.svg" alt="" />
-                    Plan limit 30 days
-                  </li>
-                  <li>
-                    <img src="/images/svg/check5.svg" alt="" />
-                    10 Downloads / day
-                  </li>
-                  <li>
-                    <img src="/images/svg/check5.svg" alt="" />2 Screen at a
-                    time
-                  </li>
-                </ul>
-              </div>
-              <div
-                onClick={() =>
-                  handlePlanBuy(
-                    1500,
-                    "666e5ad1-2a7c-4dab-9ca4-99c1a0ab0183",
-                    30
-                  )
-                }
-              >
-                <button className="fugu-pricing-btn">Buy the plan</button>
+                <p>Suitable for small companies and personal use</p>
+                <div className="fugu-pricing-body">
+                  <span>What you get:</span>
+                  <ul>
+                    <li>
+                      <img src="/images/svg/check5.svg" alt="" />
+                      Plan limit 30 days
+                    </li>
+                    <li>
+                      <img src="/images/svg/check5.svg" alt="" />5 Downloads /
+                      day
+                    </li>
+                    <li>
+                      <img src="/images/svg/check5.svg" alt="" />1 Screen at a
+                      time
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  onClick={() =>
+                    handlePlanBuy(
+                      500,
+                      "a5647fad-9ab3-42f6-9116-f9bd12409463",
+                      30
+                    )
+                  }
+                >
+                  <button className="fugu-pricing-btn">Buy the plan</button>
+                </div>
               </div>
             </div>
-          </div>}
+          )}
+          {activePlan && activePlan?.planDetail.planTitle != "Platinum" && (
+            <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+              <div
+                className="fugu-pricing-wrap fugu-pricing-wrap3 wow fadeInUpX"
+                data-wow-delay=".10s"
+              >
+                <div className="fugu-pricing-header">
+                  <h5>Platinum</h5>
+                </div>
+                <div className="fugu-pricing-price">
+                  <span className="fugu-pricing-currency">&#8377;</span>
+                  <div className="fugu-price">
+                    {toggleBilled ? "2500" : "2500"}
+                  </div>
+                  <p className="bottom_text">
+                    {toggleBilled ? "/Yearly" : "/Monthly"}
+                  </p>
+                </div>
+                <p>Suitable for small companies and personal use</p>
+                <div className="fugu-pricing-body">
+                  <span>What you get:</span>
+                  <ul>
+                    <li>
+                      <img src="/images/svg/check5.svg" alt="" />
+                      Plan limit 90 days
+                    </li>
+                    <li>
+                      <img src="/images/svg/check5.svg" alt="" />
+                      50 Downloads / day
+                    </li>
+                    <li>
+                      <img src="/images/svg/check5.svg" alt="" />2 Screen at a
+                      time
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  onClick={() =>
+                    handlePlanBuy(
+                      2500,
+                      "3b24ec2f-a75b-42a8-8491-1afbd0d8d8ae",
+                      90
+                    )
+                  }
+                >
+                  <button className="fugu-pricing-btn">Buy the plan</button>
+                </div>
+              </div>
+            </div>
+          )}
+          {activePlan && activePlan?.planDetail.planTitle != "Golden" && (
+            <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+              <div
+                className="fugu-pricing-wrap fugu-pricing-wrap3 wow fadeInUpX"
+                data-wow-delay=".20s"
+              >
+                <div className="fugu-pricing-header">
+                  <h5>Golden</h5>
+                </div>
+                <div className="fugu-pricing-price">
+                  <span className="fugu-pricing-currency">&#8377;</span>
+                  <div className="fugu-price">
+                    {toggleBilled ? "1500" : "1500"}
+                  </div>
+                  <p className="bottom_text">
+                    {toggleBilled ? "/Yearly" : "/Monthly"}
+                  </p>
+                </div>
+                <p>Suitable for small companies and personal use</p>
+                <div className="fugu-pricing-body">
+                  <span>What you get:</span>
+                  <ul>
+                    <li>
+                      <img src="/images/svg/check5.svg" alt="" />
+                      Plan limit 30 days
+                    </li>
+                    <li>
+                      <img src="/images/svg/check5.svg" alt="" />
+                      10 Downloads / day
+                    </li>
+                    <li>
+                      <img src="/images/svg/check5.svg" alt="" />2 Screen at a
+                      time
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  onClick={() =>
+                    handlePlanBuy(
+                      1500,
+                      "666e5ad1-2a7c-4dab-9ca4-99c1a0ab0183",
+                      30
+                    )
+                  }
+                >
+                  <button className="fugu-pricing-btn">Buy the plan</button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
