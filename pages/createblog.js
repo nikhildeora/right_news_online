@@ -1,13 +1,14 @@
 import { useRouter } from "next/router";
 import { AuthContext } from "../context/auth_context";
 import { sanityClient } from "../sanity_client";
+import { Editor } from '@tinymce/tinymce-react';
 import { v4 as uuidv4 } from 'uuid';
 import { useForm } from "react-hook-form";
 import BreadcrumbOne from "../components/common/breadcrumb/breadcrumb-one";
-import { useEffect, useState } from "react";
-
+import { useEffect, useState, useRef } from "react";
 
 export default function CreateNews() {
+    const editorRef = useRef(null);
     const {
         register,
         handleSubmit,
@@ -43,19 +44,7 @@ export default function CreateNews() {
             current : slugStr,
             _type : "slug"
            },
-           newsLongDescription : [
-            {
-                _key : uuidv4(),
-                _type : "block",
-                children : [{
-                    _key : uuidv4(),
-                    _type : "span",
-                    text : newsData.longDescription
-                }],
-                markDefs : [],
-                style : "normal"
-            }
-           ],
+           newsLongDescription : [],
            newsImage : {
              _type : "image",
              asset : {
@@ -71,7 +60,30 @@ export default function CreateNews() {
             }
            }
         }
-
+        const extractElements = (input) => {
+            const elementPattern = /<(\w+)>(.*?)<\/\1>/g;
+            const longDescription = [];
+          
+            let match;
+            while ((match = elementPattern.exec(input)) !== null) {
+              const [, tag, text] = match;
+              longDescription.push(
+                {
+                    _key : uuidv4(),
+                    _type : "block",
+                    children : [{
+                        _key : uuidv4(),
+                        _type : "span",
+                        text : text
+                    }],
+                    markDefs : [],
+                    style : tag=='p'?'normal':tag
+                });
+            }
+          
+            return longDescription
+          };
+          newsObj.newsLongDescription8 = extractElements(editorRef.current.getContent())
         sanityClient.assets.upload("file",newsData.newsVideo[0])
         .then((res)=>{
             newsObj.newsVideo.asset._ref = res._id;
@@ -162,12 +174,23 @@ export default function CreateNews() {
                             </div>
                             <div className="fugu-input-field">
                                 <label>Write News Long Description</label>
-                                <textarea
-                                    name="textarea"
-                                    placeholder="Write News Long Description*"
-                                    {...register("longDescription", { required: true })}
-                                    aria-invalid={errors.longDescription ? "true" : "false"}
-                                ></textarea>
+                                <Editor
+    onInit={(evt, editor) => editorRef.current = editor}
+    initialValue="<p>This is the initial content of the editor.</p>"
+    init={{
+    height: 500,
+    menubar: false,
+    plugins: [
+       'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
+       'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
+       'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
+    ],
+    toolbar: 'undo redo | casechange blocks | bold italic backcolor | ' +
+       'alignleft aligncenter alignright alignjustify | ' +
+       'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
+    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+    }}
+/>
                                 {errors.longDescription?.type === "required" && (
                                     <p role="alert" className="error">
                                         Long Description is required
