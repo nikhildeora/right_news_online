@@ -43,7 +43,7 @@ html {
 body {
 	height: 100%;
 	color: rgba(255, 255, 255, 0.8);
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	vertical-align: baseline;
@@ -241,7 +241,7 @@ button:hover,
 [type='button']:hover,
 [type='reset']:hover,
 [type='submit']:hover {
-	cursor: pointer;
+	cursor: poPoppins;
 }
 
 @media print {
@@ -337,7 +337,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	color: #fff;
 	font-weight: 700;
 }
@@ -726,8 +726,8 @@ img {
 }
 
 .mouse-cursor,
-.pointer {
-	cursor: pointer;
+.poPoppins {
+	cursor: poPoppins;
 }
 
 blockquote {
@@ -2162,8 +2162,8 @@ blockquote {
 		height: 100px;
 	}
 }
-.pointer {
-	cursor: pointer;
+.poPoppins {
+	cursor: poPoppins;
 }
 
 .text-hide {
@@ -2389,15 +2389,18 @@ header.fugu--header-section {
 	transition: all 0.4s;
 }
 header.fugu--header-section.fugu--header-three {
-	background-color: var(--gray-800);
+	background-color: #000000d4;
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
 }
 header.fugu--header-section.fugu--header-three .site-menu-main .nav-link-item {
 	color: var(--gray-10);
 }
 
 header.fugu--header-section.sticky-menu {
-	padding: 10px 0;
-	background-color: var(--gray-800);
+	background-color: #000000d4;
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(15px);
 }
 
 .fugu--header-two .site-menu-main .nav-link-item {
@@ -2969,7 +2972,7 @@ footer.fugo--footer-section.white-version .fugo--footer-bottom p {
 	border-radius: 3px;
 	padding: 20px 55px;
 	font-weight: 700;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	width: fit-content;
 	position: relative;
 	z-index: 1;
@@ -3052,7 +3055,7 @@ footer.fugo--footer-section.white-version .fugo--footer-bottom p {
 	border-radius: 10px;
 	display: inline-block;
 	color: var(--gray-10);
-	background: linear-gradient(to right, #ff00d4, #7d41ea, #0080ff);
+	background: #db0303;
 }
 .fugu--outline-btn span {
 	display: flex;
@@ -3075,7 +3078,7 @@ footer.fugo--footer-section.white-version .fugo--footer-bottom p {
 	font-size: 16px;
 	line-height: 24px;
 	font-weight: 700;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	width: fit-content;
 	position: relative;
 	z-index: 1;
@@ -3352,7 +3355,7 @@ textarea::-moz-placeholder {
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
-	/* Internet Explorer 10-11 */
+	/* Poppinsnet Explorer 10-11 */
 	color: #fff;
 	opacity: 0.6;
 }
@@ -3511,7 +3514,7 @@ button#fugu--search-btn {
 }
 
 .fugu--newsletter input:-ms-input-placeholder {
-	/* Internet Explorer 10-11 */
+	/* Poppinsnet Explorer 10-11 */
 	color: #13111a;
 	opacity: 0.5;
 }
@@ -3946,7 +3949,7 @@ button#fugu--search-btn {
 	line-height: 28px;
 	color: var(--gray-10);
 	margin: 0 0 10px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu--card-data p {
 	font-weight: 600;
@@ -3974,7 +3977,7 @@ button#fugu--search-btn {
 	line-height: 28px;
 	color: var(--gray-10);
 	margin: 0;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu--card-footer .fugu--btn {
 	min-width: inherit;
@@ -4060,7 +4063,7 @@ button#fugu--search-btn {
 	position: relative;
 }
 .fugu--blog-thumb:hover {
-	cursor: pointer !important;
+	cursor: poPoppins !important;
 }
 @media (max-width: 991px) {
 	.fugu--blog-thumb {
@@ -4861,7 +4864,7 @@ a.fugu-app-btn:last-child {
 }
 .fugu--hero-content2 h1 {
 	color: var(--gray-800);
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu--hero-content2 p {
 	margin-right: 0;
@@ -5542,7 +5545,7 @@ a.fugu-app-btn:last-child {
 	line-height: 28px;
 	margin-bottom: 10px;
 	color: var(--gray-10);
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu--team-data p {
 	opacity: 0.8;
@@ -5834,7 +5837,7 @@ a.fugu-app-btn:last-child {
 	font-weight: 600;
 	font-size: 24px;
 	margin-bottom: 15px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	display: inline-block;
 	padding: 0 10px;
 	color: white;
@@ -5988,7 +5991,7 @@ a.fugu-app-btn:last-child {
 .fugu-accordion-wrap2 .fugu-accordion-item h4 {
 	margin: 0;
 	font-weight: 700;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 @media (max-width: 1199px) {
 	.fugu-accordion-wrap2 .fugu-accordion-item h4 {
@@ -6037,7 +6040,7 @@ a.fugu-faq-btn:hover {
 	font-weight: 600;
 	font-size: 20px;
 	line-height: 1;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	color: var(--gray-800);
 	background-color: transparent;
 }
@@ -6107,7 +6110,7 @@ a.fugu-faq-btn:hover {
 	padding: 0;
 	padding-bottom: 10px;
 
-	color: rgba(19, 17, 26, 0.8);
+	color: #fff;
 	position: relative;
 }
 @media (max-width: 767px) {
@@ -6165,7 +6168,7 @@ a.fugu-faq-btn:hover {
 	font-weight: 600;
 	font-size: 24px;
 	line-height: 1;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	color: var(--gray-800);
 	background-color: transparent;
 }
@@ -6287,7 +6290,7 @@ a.fugu-faq-btn:hover {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	cursor: pointer;
+	cursor: poPoppins;
 }
 
 .fugu-popup img {
@@ -6397,7 +6400,7 @@ a.fugu-faq-btn:hover {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	cursor: pointer;
+	cursor: poPoppins;
 }
 @media (max-width: 767px) {
 	.fugu--video-thumb .fugu--popup {
@@ -6570,7 +6573,7 @@ a.fugu-faq-btn:hover {
 	line-height: 28px;
 	font-weight: 700;
 	margin-bottom: 15px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu-testimonial-card p {
 	font-weight: 500;
@@ -6599,7 +6602,7 @@ a.fugu-faq-btn:hover {
 	font-size: 18px;
 	margin-bottom: 0;
 	line-height: 1;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu-testimonial-author-data span {
 	font-size: 14px;
@@ -7021,7 +7024,7 @@ a.fugu-faq-btn:hover {
 	margin: 0;
 	font-weight: 600;
 	letter-spacing: -0.5px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 .fugu-brand-logo {
@@ -7146,7 +7149,7 @@ PRICING SECTION
 	height: 30px;
 	border-radius: 15px;
 	border: none;
-	cursor: pointer;
+	cursor: poPoppins;
 	background-color: #202020 !important;
 	background-image: url('/images/all-img/service/circle-bg.png');
 }
@@ -7301,7 +7304,7 @@ PRICING SECTION
 	margin: 0;
 	font-size: 60px;
 	font-weight: 700;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	color: #fff;
 }
 
@@ -7988,7 +7991,7 @@ button.fugu-pricing-btn.active {
 }
 .fugu--default-content.content-black h2 {
 	color: var(--gray-800);
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu--default-content.content-black p {
 	opacity: 0.8;
@@ -8199,7 +8202,7 @@ button.fugu-pricing-btn.active {
 	bottom: 10%;
 	right: 3%;
 	z-index: 99;
-	cursor: pointer;
+	cursor: poPoppins;
 	-webkit-font-smoothing: antialiased;
 }
 .fugu-go-top:before {
@@ -8249,7 +8252,7 @@ button.fugu-pricing-btn.active {
 	height: 60px;
 	color: #201c2c;
 	font-size: 20px;
-	cursor: pointer;
+	cursor: poPoppins;
 	border-radius: 100%;
 	background-size: 10px;
 	background-position: center;
@@ -8320,9 +8323,9 @@ button.fugu-pricing-btn.active {
 	padding: 2px;
 	margin: 0 10px;
 	color: white;
-	cursor: pointer;
+	cursor: poPoppins;
 	transition: all 0.4s;
-	background: linear-gradient(to right, #ff00d4, #7d41ea, #0080ff);
+	background: #db0303;
 }
 .fugu--portfolio-menu ul li.active {
 	transition: all 0.4s;
@@ -8497,7 +8500,7 @@ button.fugu-pricing-btn.active {
 	margin: -2px;
 	transition: all 0.4s;
 	border-radius: inherit;
-	background: linear-gradient(to right, #ff00d4, #7d41ea, #0080ff);
+	background: #db0303;
 }
 
 .fugu-text-slider-section {
@@ -9449,7 +9452,7 @@ button.fugu-pricing-btn.active {
 	line-height: 38px;
 	font-weight: 600;
 	display: inline-block;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	border-bottom: 2px solid var(--gray-800);
 }
 
@@ -9494,7 +9497,7 @@ button.fugu-pricing-btn.active {
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 24px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu-recent-post-item h6 a {
 	color: var(--gray-800);
@@ -9733,7 +9736,7 @@ button.fugu-pricing-btn.active {
 .fugu-comment-author-data h6 {
 	font-size: 14px;
 	font-weight: 600;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	margin-bottom: 5px;
 }
 .fugu-comment-author-data span {
@@ -9980,7 +9983,7 @@ button#fugu-input-submit:hover {
 	font-size: 24px;
 	font-weight: 700;
 	margin-bottom: 25px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	color: var(--gray-10);
 }
 .fugu--blog-sidebar-item:last-child {
@@ -10036,7 +10039,7 @@ button#fugu-input-submit:hover {
 	font-weight: 600;
 	font-size: 18px;
 	line-height: 30px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	margin: 0;
 	color: #ffffff;
 }
@@ -10232,7 +10235,7 @@ button#fugu-input-submit:hover {
 	font-size: 24px;
 	font-weight: 700;
 	margin-bottom: 25px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu--blog-sidebar-item:last-child {
 	margin-bottom: 0;
@@ -10287,7 +10290,7 @@ button#fugu-input-submit:hover {
 	font-weight: 600;
 	font-size: 18px;
 	line-height: 30px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	margin: 0;
 }
 
@@ -10446,8 +10449,9 @@ button#fugu-input-submit:hover {
 	max-width: 100%;
 }
 .fugu--single-blog .fugu--breadcrumbs-data p {
-	margin-right: 120px;
-	margin-bottom: 30px;
+	opacity: 0.6;
+	font-size: 16px;
+	line-height: 26px;
 }
 @media (max-width: 767px) {
 	.fugu--single-blog .fugu--breadcrumbs-data p {
@@ -10539,7 +10543,7 @@ button#fugu-input-submit:hover {
 	font-weight: 600;
 	margin-bottom: 5px;
 	color: white;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu--blockquote-user-data p {
 	opacity: 0.4;
@@ -10571,7 +10575,7 @@ button#fugu-input-submit:hover {
 }
 .fugu--tags.fugu--tags2 h4 {
 	margin-bottom: 30px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 .fugu--post-navigation {
@@ -10686,7 +10690,7 @@ button#fugu-input-submit:hover {
 	font-weight: 700;
 	font-size: 24px;
 	margin-bottom: 30px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu--comment-list {
 	background: rgba(90, 75, 124, 0.2);
@@ -10759,7 +10763,7 @@ button#fugu-input-submit:hover {
 	object-position: center top;
 }
 .fugu--comment-meta h5 {
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	font-weight: 600;
 	font-size: 14px;
 	margin-bottom: 10px;
@@ -10782,7 +10786,7 @@ button#fugu-input-submit:hover {
 	font-weight: 700;
 	font-size: 24px;
 	margin-bottom: 15px;
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 .fugu--comment-respond-area p {
 	color: #ffffff;
@@ -10893,7 +10897,7 @@ button#fugu-input-submit:hover {
 }
 
 .fugu--contact-info h4 {
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	margin-bottom: 40px;
 }
 .fugu--contact-info ul li {
@@ -11010,7 +11014,7 @@ button#fugu-input-submit:hover {
 }
 .white-version .fugu--comment-field input:-ms-input-placeholder,
 .white-version .fugu--comment-field textarea:-ms-input-placeholder {
-	/* Internet Explorer 10-11 */
+	/* Poppinsnet Explorer 10-11 */
 	color: #13111a;
 	opacity: 0.5;
 }
@@ -11055,7 +11059,7 @@ button#fugu-input-submit:hover {
 }
 .dark-version .fugu--comment-field input:-ms-input-placeholder,
 .dark-version .fugu--comment-field textarea:-ms-input-placeholder {
-	/* Internet Explorer 10-11 */
+	/* Poppinsnet Explorer 10-11 */
 	color: #fff;
 	opacity: 0.5;
 }
@@ -11302,7 +11306,7 @@ circle {
 	display: inline-block;
 	margin-right: 50px;
 	position: relative;
-	cursor: pointer;
+	cursor: poPoppins;
 	padding-bottom: 10px;
 	transition: all 0.4s;
 	color: rgba(19, 17, 26, 0.8);
@@ -11551,7 +11555,7 @@ circle {
 }
 /* News Card Download button */
 .downloadButton:hover {
-	cursor: pointer;
+	cursor: poPoppins;
 }
 
 /* Pricing Cards */
@@ -11649,4 +11653,65 @@ circle {
 }
 .breadcrumbs H2 {
 	font-weight: 300 !important;
+}
+.bcgrayTabs {
+	background-color: #000000d4;
+	backdrop-filter: blur(6px);
+	padding: 25px;
+	border-radius: 10px;
+}
+.bcgrayTabs .small-text {
+	width: 100%;
+	font-size: 14px;
+	line-height: 25px;
+	font-weight: 300;
+}
+.bcgrayTabs .nav-tabs .nav-item {
+	margin-right: 0px !important;
+	text-align: center;
+	margin: auto;
+	width: 50%;
+}
+.bcgrayTabs .nav-tabs .nav-item button {
+	width: 100%;
+}
+.bcgrayTabs .nav {
+	margin-bottom: 20px;
+}
+.tabpanel button {
+	width: 100%;
+}
+.imageBG {
+	background-image: url('https://cdn.sanity.io/images/kbgpbmgs/production/e1ecb49f27702899214e3204a184a8cd02c27cb3-750x416.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	padding: 210px 40px 120px;
+}
+.imageBG::before {
+	content: '';
+	display: block;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: -3;
+	backdrop-filter: grayscale(0.5) blur(5px);
+}
+.imageBG::after {
+	content: '';
+	display: block;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -2;
+	box-shadow: 0 0 800px rgba(0, 0, 0, 1) inset;
+}
+.video-title {
+	font-size: 36px;
+	line-height: 60px;
 }

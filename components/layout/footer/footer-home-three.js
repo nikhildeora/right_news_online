@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import Link from "next/link";
-import React from "react";
+import Link from 'next/link';
+import React from 'react';
 
 export default function FooterHomeThree() {
 	return (
@@ -11,7 +11,11 @@ export default function FooterHomeThree() {
 						<div className="col-lg-3">
 							<div className="fugu--textarea">
 								<div className="fugu--footer-logo">
-									<img src="/images/logo/logo-white.svg" alt="" className="light-version-logo" />
+									<img
+										src="https://rightnewsonline.com/wp-content/uploads/2023/03/download.png"
+										alt=""
+										width={'120px'}
+									/>
 								</div>
 								<p>
 									Discover NFTs by category, track the latest drops, and follow the collections you
