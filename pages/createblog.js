@@ -176,7 +176,6 @@ export default function CreateNews() {
                                 <label>Write News Long Description</label>
                                 <Editor
     onInit={(evt, editor) => editorRef.current = editor}
-    initialValue="<p>This is the initial content of the editor.</p>"
     init={{
     height: 500,
     menubar: false,
@@ -185,9 +184,7 @@ export default function CreateNews() {
        'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',
        'powerpaste','fullscreen','formatpainter','insertdatetime','media','table','help','wordcount'
     ],
-    toolbar: 'undo redo | casechange blocks | bold italic backcolor | ' +
-       'alignleft aligncenter alignright alignjustify | ' +
-       'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
+    toolbar: 'undo redo | casechange blocks',
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
     }}
 />
