@@ -95,8 +95,3 @@ const VideoPlayer = (props) => {
 };
 
 export default VideoPlayer;
-
-//---------------------------------------------------------------------------------------------------------------------//
-
-// attributes of video player/ video tag
-// controls
