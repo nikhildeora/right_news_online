@@ -83,7 +83,7 @@ export default function CreateNews() {
           
             return longDescription
           };
-          newsObj.newsLongDescription8 = extractElements(editorRef.current.getContent())
+          newsObj.newsLongDescription = extractElements(editorRef.current.getContent())
         sanityClient.assets.upload("file",newsData.newsVideo[0])
         .then((res)=>{
             newsObj.newsVideo.asset._ref = res._id;
