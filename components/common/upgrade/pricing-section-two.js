@@ -8,6 +8,7 @@ import axios from "axios";
 import useRazorpay from "react-razorpay";
 import { v4 as uuidv4 } from "uuid";
 import { sanityClient } from "../../../sanity_client";
+import { FaCheck } from "react-icons/fa";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
@@ -197,11 +198,13 @@ export default function PricingSectionTwo(props) {
           id="table-price-value"
           data-pricing-dynamic
           data-value-active="monthly"
+          style={{ display: "flex", justifyContent: "center" }}
         >
           {activePlan && activePlan?.planDetail.planTitle != "Silver" && (
             <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
               <div
-                className="fugu-pricing-wrap fugu-pricing-wrap3 wow fadeInUpX"
+                id="silverCard"
+                className="fugu-pricing-wrap fugu-pricing-wrap3 wow fadeInUpX "
                 data-wow-delay="0s"
               >
                 <div className="fugu-pricing-header">
@@ -221,16 +224,16 @@ export default function PricingSectionTwo(props) {
                   <span>What you get:</span>
                   <ul>
                     <li>
-                      <img src="/images/svg/check5.svg" alt="" />
+                      <FaCheck className="silvergoldenFAicon"></FaCheck>
                       Plan limit 30 days
                     </li>
                     <li>
-                      <img src="/images/svg/check5.svg" alt="" />5 Downloads /
-                      day
+                      <FaCheck className="silvergoldenFAicon"></FaCheck>5
+                      Downloads / day
                     </li>
                     <li>
-                      <img src="/images/svg/check5.svg" alt="" />1 Screen at a
-                      time
+                      <FaCheck className="silvergoldenFAicon"></FaCheck>1 Screen
+                      at a time
                     </li>
                   </ul>
                 </div>
@@ -243,7 +246,9 @@ export default function PricingSectionTwo(props) {
                     )
                   }
                 >
-                  <button className="fugu-pricing-btn">Buy the plan</button>
+                  <button id="SilverGoldBtn1" className="fugu-pricing-btn Btn">
+                    SUBSCRIBE NOW
+                  </button>
                 </div>
               </div>
             </div>
@@ -251,38 +256,49 @@ export default function PricingSectionTwo(props) {
           {activePlan && activePlan?.planDetail.planTitle != "Platinum" && (
             <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
               <div
+                id="platinumCard"
                 className="fugu-pricing-wrap fugu-pricing-wrap3 wow fadeInUpX"
                 data-wow-delay=".10s"
               >
                 <div className="fugu-pricing-header">
-                  <h5>Platinum</h5>
+                  <h5 style={{ color: "#fff" }}>Platinum</h5>
                 </div>
                 <div className="fugu-pricing-price">
-                  <span className="fugu-pricing-currency">&#8377;</span>
-                  <div className="fugu-price">
+                  <span
+                    className="fugu-pricing-currency"
+                    style={{ color: "#fff" }}
+                  >
+                    &#8377;
+                  </span>
+                  <div className="fugu-price" style={{ color: "#fff" }}>
                     {toggleBilled ? "2500" : "2500"}
                   </div>
-                  <p className="bottom_text">
+                  <p className="bottom_text" style={{ color: "#fff" }}>
                     {toggleBilled ? "/Yearly" : "/Monthly"}
                   </p>
                 </div>
-                <p>Suitable for small companies and personal use</p>
-                <div className="fugu-pricing-body">
-                  <span>What you get:</span>
+                <p style={{ color: "#fff" }}>
+                  Suitable for small companies and personal use
+                </p>
+                <div className="fugu-pricing-body" style={{ Color: "#fff" }}>
+                  <span style={{ color: "#fff" }}>What you get:</span>
                   <ul>
-                    <li>
-                      <img src="/images/svg/check5.svg" alt="" />
+                    <li style={{ color: "#fff" }}>
+                      <FaCheck className="platinumFaicon"></FaCheck>
                       Plan limit 90 days
                     </li>
-                    <li>
-                      <img src="/images/svg/check5.svg" alt="" />
+                    <li style={{ color: "#fff" }}>
+                      <FaCheck className="platinumFaicon"></FaCheck>
                       50 Downloads / day
                     </li>
-                    <li>
-                      <img src="/images/svg/check5.svg" alt="" />2 Screen at a
-                      time
+                    <li style={{ color: "#fff" }}>
+                      <FaCheck className="platinumFaicon"></FaCheck>2 Screen at
+                      a time
                     </li>
                   </ul>
+                  <div className="fugu-pricing-label" style={{ color: "#fff" }}>
+                    Popular
+                  </div>
                 </div>
                 <div
                   onClick={() =>
@@ -293,7 +309,9 @@ export default function PricingSectionTwo(props) {
                     )
                   }
                 >
-                  <button className="fugu-pricing-btn">Buy the plan</button>
+                  <button className="fugu-pricing-btn Btn" id="platinumBtn">
+                    SUBSCRIBE NOW
+                  </button>
                 </div>
               </div>
             </div>
@@ -301,6 +319,7 @@ export default function PricingSectionTwo(props) {
           {activePlan && activePlan?.planDetail.planTitle != "Golden" && (
             <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
               <div
+                id="goldenCard"
                 className="fugu-pricing-wrap fugu-pricing-wrap3 wow fadeInUpX"
                 data-wow-delay=".20s"
               >
@@ -321,16 +340,16 @@ export default function PricingSectionTwo(props) {
                   <span>What you get:</span>
                   <ul>
                     <li>
-                      <img src="/images/svg/check5.svg" alt="" />
+                      <FaCheck className="silvergoldenFAicon"></FaCheck>
                       Plan limit 30 days
                     </li>
                     <li>
-                      <img src="/images/svg/check5.svg" alt="" />
+                      <FaCheck className="silvergoldenFAicon"></FaCheck>
                       10 Downloads / day
                     </li>
                     <li>
-                      <img src="/images/svg/check5.svg" alt="" />2 Screen at a
-                      time
+                      <FaCheck className="silvergoldenFAicon"></FaCheck>2 Screen
+                      at a time
                     </li>
                   </ul>
                 </div>
@@ -343,7 +362,9 @@ export default function PricingSectionTwo(props) {
                     )
                   }
                 >
-                  <button className="fugu-pricing-btn">Buy the plan</button>
+                  <button className="fugu-pricing-btn Btn" id="SilverGoldBtn2">
+                    SUBSCRIBE NOW
+                  </button>
                 </div>
               </div>
             </div>
