@@ -107,6 +107,32 @@ export default function BreadcrumbSection(props) {
 		rzp1.open();
 	};
 
+const handlePlanBuy = (plan_amount) => {
+    let CurUserIdNow = localStorage.getItem("currentUser") || null;
+
+    if (CurUserIdNow) {
+      handlePayment(plan_amount);
+    } else {
+      Swal.fire({
+        title: "Can't find user",
+        text: "Please Login / Signup to proceed further",
+        icon: "error",
+        showCancelButton: true,
+        confirmButtonColor: "#26215c",
+        cancelButtonColor: "#757575",
+        confirmButtonText: "LOGIN / SIGNUP",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/signup");
+        }
+      });
+    }
+  };
+
+
+
+	
 	const handlePayment = (order_amount) => {
 		console.log('button clicked');
 		let amount_obj = {
@@ -188,7 +214,7 @@ export default function BreadcrumbSection(props) {
 											and policies.
 										</p>
 										<button
-											onClick={() => handlePayment(300)}
+											onClick={() => handlePlanBuy(300)}
 											style={{
 												color: 'white',
 												padding: '12px 28px',
