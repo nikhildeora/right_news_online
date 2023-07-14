@@ -114,7 +114,7 @@ export default function BreadcrumbSection(props) {
 		};
 
 		axios
-			.post(`http://localhost:3000/api/razorpay/order`, amount_obj)
+			.post(`https://right-news-online.vercel.app/api/razorpay/order`, amount_obj)
 			.then((order) => {
 				console.log(order.data);
 				handleRazorpayVerify(order.data);
