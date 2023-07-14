@@ -5,12 +5,19 @@ import { format } from 'date-fns';
 import useRazorpay from 'react-razorpay';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useRouter } from "next/router";
 import { v4 as uuidv4 } from 'uuid';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
+
+
 export default function BreadcrumbSection(props) {
 	const Razorpay = useRazorpay();
 	const [curLoggedUser, setCurLoggedUser] = useState(null);
+	const router = useRouter();
 
 	useEffect(() => {
 		let curUserId = localStorage.getItem('currentUser') || null;
@@ -166,6 +173,11 @@ const handlePlanBuy = (plan_amount) => {
 		// }
 	};
 
+
+	const handleNavigate = (amount)=>{
+		router.push("/pricing-two");
+	};
+
 	return (
 		<>
 			{props.news && (
@@ -237,7 +249,7 @@ const handlePlanBuy = (plan_amount) => {
 											Don't miss out!
 										</p>
 										<button
-											onClick={() => handlePayment(300)}
+											onClick={() => handleNavigate(300)}
 											style={{
 												color: 'white',
 												padding: '12px 28px',
