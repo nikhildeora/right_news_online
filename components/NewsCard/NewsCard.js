@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Link from 'next/link';
-
+import { sanityClient } from '../../sanity_client';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { createClient } from 'next-sanity';
@@ -18,6 +18,7 @@ import { TextStyle } from '@cloudinary/url-gen/qualifiers/textStyle';
 import { Cloudinary, Transformation } from '@cloudinary/url-gen';
 import { scale } from '@cloudinary/url-gen/actions/resize';
 import axios from 'axios';
+import { AuthContext } from '../../context/auth_context';
 
 const NewsCard = (props) => {
 	console.log(props);
@@ -27,21 +28,26 @@ const NewsCard = (props) => {
 	const [state, setState] = useState(true);
 	const [rdstate, setRdState] = useState(true);
 	const router = useRouter();
+	const {activePlan} = useContext(AuthContext);
+	const [purchasePlan , setPurchasePlan] = useState(true);
+	console.log("active plan on news card",activePlan);
 
 	useEffect(() => {
-		if (video) {
+		if (video && activePlan==null) {
 			setTimeout(() => {
 				setVideo(!video);
+				setPurchasePlan(!purchasePlan);
 			}, 7000);
 		}
 	}, [video]);
 
+
 	let Video = props.news.video
 		? props.news.video
 		: {
-				url: 'https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4',
-				mimeType: 'video/mp4',
-		  };
+			url: 'https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4',
+			mimeType: 'video/mp4',
+		};
 	console.log(Video);
 
 	let Date = props.news.createdAt.slice(0, 10);
@@ -57,39 +63,83 @@ const NewsCard = (props) => {
 		},
 	});
 
-	const ReadyVideoForDownload = async () => {
-		if (localStorage.getItem('currentUser')) {
-			let link = Video.url
-				? Video.url
-				: 'https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4';
-			setRdState(!state);
-			const formData = new FormData();
-			formData.append('file', link);
-			formData.append('upload_preset', 'awesome_preset');
-			console.log('form', formData);
-			let data = await axios.post(`https://api.cloudinary.com/v1_1/dmdnkgldu/video/upload`, formData);
-			console.log('res_data', data);
-			let myVideo = cloudinary.video(data.data.public_id);
-			console.log('myvideo', myVideo);
+	const checkMembership = async (curUser) => {
+		let result =  await sanityClient
+			.fetch(
+				`*[_type=="memberships" && user._ref=="${curUser}"]`
+			)
+			.then((res) => {
+				console.log("respo", res);
+				if (res.length > 0) {
+					return false;
+				} else {
+					return true;
+				}
+			})
+			.catch((err) => {
+				console.log("error while set plan", err)
+				return true;
+			});
 
-			myVideo
-				.overlay(
-					source(
-						image('Newfitnexylogo_nl9uuy').transformation(
-							new Transformation()
-								.resize(scale().width(0.5))
-								.adjust(opacity(60))
-								.adjust(brightness().level(50))
-						)
-					).position(new Position().gravity(compass('north_east')).offsetY(20))
-				)
-				.format('mp4');
-			console.log('my video after adding logo', myVideo);
-			let myVideoURL = myVideo.toURL();
-			console.log('myURL', myVideoURL);
-			setRdState(!state);
-			setReadyDownload(!readyDownload);
-			setLinkForDownload(myVideoURL);
+			console.log("result",result);
+			return result;
+	}
+
+	const ReadyVideoForDownload = async () => {
+		let currentLoggedUser = localStorage.getItem('currentUser') || null;
+
+		if (currentLoggedUser) {
+			let membershipExist = await checkMembership(currentLoggedUser);
+			console.log("men",membershipExist);
+			if (membershipExist) {
+				Swal.fire({
+					title: '🔒 Purchase Plan first to Download🔒',
+					text: 'To access our extensive collection of videos, we kindly ask you to purchase our plan.  Your privacy matters to us. Thank you for your cooperation!',
+					icon: 'info',
+					showCancelButton: false,
+					confirmButtonColor: '#db0303',
+					cancelButtonColor: '#757575',
+					confirmButtonText: 'Purchase Plan',
+					reverseButtons: false,
+				}).then((result) => {
+					if (result.isConfirmed) {
+						router.push('/pricing-two');
+					}
+				});
+			} else {
+
+				let link = Video.url
+					? Video.url
+					: 'https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4';
+				setRdState(!state);
+				const formData = new FormData();
+				formData.append('file', link);
+				formData.append('upload_preset', 'awesome_preset');
+				console.log('form', formData);
+				let data = await axios.post(`https://api.cloudinary.com/v1_1/dmdnkgldu/video/upload`, formData);
+				console.log('res_data', data);
+				let myVideo = cloudinary.video(data.data.public_id);
+				console.log('myvideo', myVideo);
+
+				myVideo
+					.overlay(
+						source(
+							image('Newfitnexylogo_nl9uuy').transformation(
+								new Transformation()
+									.resize(scale().width(0.5))
+									.adjust(opacity(60))
+									.adjust(brightness().level(50))
+							)
+						).position(new Position().gravity(compass('north_east')).offsetY(20))
+					)
+					.format('mp4');
+				console.log('my video after adding logo', myVideo);
+				let myVideoURL = myVideo.toURL();
+				console.log('myURL', myVideoURL);
+				setRdState(!state);
+				setReadyDownload(!readyDownload);
+				setLinkForDownload(myVideoURL);
+			}
 		} else {
 			Swal.fire({
 				title: '🔒 LOGIN REQUIRED🔒',
@@ -149,19 +199,35 @@ const NewsCard = (props) => {
 					<div className={classValue} data-wow-delay="0s">
 						<div className="fugu--blog-wrap">
 							<div>
+							{purchasePlan ? 
+							<div>
 								{video ? (
 									<div className="fugu--blog-thumb">
 										<VideoPlayer handleClick={handleClick} Video={Video}></VideoPlayer>
 									</div>
 								) : (
-									<div className="fugu--blog-thumb">
-										<img src={props.news.newsImage} alt="News Image" onClick={handleClick} />
+									<div className="fugu--blog-thumb" onClick={handleClick}>
+										<img src={props.news.newsImage} alt="News Image" />
 
 										<div className="video-badge">
 											<AiOutlinePlayCircle className="redAura" />
 										</div>
 									</div>
 								)}
+							</div>
+							:
+							<div className="fugu--blog-thumb">
+								<img src="https://t4.ftcdn.net/jpg/01/97/92/77/360_F_197927767_MISwwnukYrfEH7BoyWazNXLS2p32Plcb.jpg" alt="purchase plan image" />
+
+								<div className="text_of_purchase_plan">
+								<h3>Purchase plan to see whole video & access download video</h3>
+								</div>
+
+								
+								<button onClick={()=>{router.push('/pricing-two');}} className='Purchase_plan_button_news_card'>Purchase Plan</button>
+								
+							</div>
+                            }
 							</div>
 							<div className="fugu--blog-content">
 								<div className="fugu--blog-date">

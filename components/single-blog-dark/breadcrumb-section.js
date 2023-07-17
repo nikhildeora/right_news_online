@@ -5,19 +5,12 @@ import { format } from 'date-fns';
 import useRazorpay from 'react-razorpay';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useRouter } from "next/router";
 import { v4 as uuidv4 } from 'uuid';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import "sweetalert2/src/sweetalert2.scss";
-
-
 export default function BreadcrumbSection(props) {
 	const Razorpay = useRazorpay();
 	const [curLoggedUser, setCurLoggedUser] = useState(null);
-	const router = useRouter();
 
 	useEffect(() => {
 		let curUserId = localStorage.getItem('currentUser') || null;
@@ -114,32 +107,6 @@ export default function BreadcrumbSection(props) {
 		rzp1.open();
 	};
 
-const handlePlanBuy = (plan_amount) => {
-    let CurUserIdNow = localStorage.getItem("currentUser") || null;
-
-    if (CurUserIdNow) {
-      handlePayment(plan_amount);
-    } else {
-      Swal.fire({
-        title: "Can't find user",
-        text: "Please Login / Signup to proceed further",
-        icon: "error",
-        showCancelButton: true,
-        confirmButtonColor: "#26215c",
-        cancelButtonColor: "#757575",
-        confirmButtonText: "LOGIN / SIGNUP",
-        reverseButtons: true,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          router.push("/signup");
-        }
-      });
-    }
-  };
-
-
-
-	
 	const handlePayment = (order_amount) => {
 		console.log('button clicked');
 		let amount_obj = {
@@ -147,7 +114,7 @@ const handlePlanBuy = (plan_amount) => {
 		};
 
 		axios
-			.post(`https://right-news-online.vercel.app/api/razorpay/order`, amount_obj)
+			.post(`http://localhost:3000/api/razorpay/order`, amount_obj)
 			.then((order) => {
 				console.log(order.data);
 				handleRazorpayVerify(order.data);
@@ -171,11 +138,6 @@ const handlePlanBuy = (plan_amount) => {
 		// 	receipt : null,
 		// 	status :"created"
 		// }
-	};
-
-
-	const handleNavigate = (amount)=>{
-		router.push("/pricing-two");
 	};
 
 	return (
@@ -226,7 +188,7 @@ const handlePlanBuy = (plan_amount) => {
 											and policies.
 										</p>
 										<button
-											onClick={() => handlePlanBuy(300)}
+											onClick={() => handlePayment(300)}
 											style={{
 												color: 'white',
 												padding: '12px 28px',
@@ -249,7 +211,7 @@ const handlePlanBuy = (plan_amount) => {
 											Don't miss out!
 										</p>
 										<button
-											onClick={() => handleNavigate(300)}
+											onClick={() => handlePayment(300)}
 											style={{
 												color: 'white',
 												padding: '12px 28px',

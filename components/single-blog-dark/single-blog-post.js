@@ -13,7 +13,7 @@ export default function SingleBlogPost(props) {
 			{props.news && (
 				<div className="fugu--single-blog-section">
 					<img className="fugu--single-thumb" src={props.news.newsImage} alt="" />
-					{props.news.newsLongDescription && <PortableText content={props.news.newsLongDescription} />}
+					<PortableText content={props.news.newsLongDescription && props.news.newsLongDescription} />
 					<TagSection />
 					<PostNavigation />
 				</div>

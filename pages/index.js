@@ -23,7 +23,7 @@ export default function IndexThree({ newsdata, catagorydata }) {
       <Head>
         <title>Rno</title>
       </Head>
-      <HeroSection />
+      <HeroSection newsdata={newsdata}/>
       {/* <CardSliderOne /> */}
       <FilterGalarryOne newsdata={newsdata} catagorydata={catagorydata} />
       <TextSliderNews newsdata={newsdata} />

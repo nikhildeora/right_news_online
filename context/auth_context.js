@@ -24,9 +24,26 @@ export default function AuthContextProvider({ children }) {
   const [seq, setSeq] = useState(1);
   const router = useRouter();
 
+  useEffect(()=>{
+    let curUserId = localStorage.getItem("currentUser") || null;
+    if(curUserId){
+      sanityClient
+      .fetch(
+        `*[_type=="users" && _id=="${curUserId}"]`
+      )
+      .then((res) => {
+        if (res.length > 0) {
+          setUserDetailSanity(res[0]);
+        }
+      })
+      .catch((err) => console.log("error while set user", err));
+    }
+  },[])
+
   const Logout = () => {
     localStorage.removeItem("currentUser");
     signOut(auth);
+    setActivePlan(null);
   };
 
   function updateUserDetailSanityLogin(profileData) {
@@ -123,6 +140,8 @@ export default function AuthContextProvider({ children }) {
         VerifyEmailFunction,
         updateUserDetailSanityLogin,
         activePlan,
+        setActivePlan,
+        userDetailSanity
       }}
     >
       {children}

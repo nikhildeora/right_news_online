@@ -83,7 +83,8 @@ const VideoPlayer = (props) => {
         }}
       /> */}
 			{/* <div style={watermarkStyle}>{watermarkText}</div> */}
-			<video width="100%" autoPlay loop>
+			{/* <video width="100%" autoPlay loop> */}
+			<video width="100%" autoPlay controls controlsList='nodownload'>
 				<source src={VideoUrl} type={VideoType}></source>
 			</video>
 
