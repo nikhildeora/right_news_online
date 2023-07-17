@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import CountUp from 'react-countup';
 
-export default function HeroSection() {
+export default function HeroSection(newsdata) {
 	return (
 		<div className="fugu--hero-section newsbcg">
 			<div id="fugu--counter"></div>
@@ -31,8 +31,8 @@ export default function HeroSection() {
 							<div className="fugu--counter-wrap wow fadeInUpX" data-wow-delay="0.30s">
 								<div className="fugu--counter-data text-center">
 									<h2>
-										<span data-percentage="45000" className="fugu--counter">
-											<CountUp end={45000} />
+									<span data-percentage={`${newsdata.newsdata?newsdata.newsdata.length.toString():'0'}`} className="fugu--counter">
+											<CountUp end={newsdata.newsdata?newsdata.newsdata.length:0} />
 										</span>
 									</h2>
 									<p>Total News Articles</p>
