@@ -1,291 +1,314 @@
-export const DemoDropdownMenus = [
-  {
-    title: "Home 01",
-    path: "/",
-  },
-  {
-    title: "Home 02",
-    path: "index-two",
-  },
-  {
-    title: "Home 03",
-    path: "index-three",
-  },
-  {
-    title: "Home 04",
-    path: "index-four",
-  },
-  {
-    title: "Home 05",
-    path: "index-five",
-  },
-];
+// export const DemoDropdownMenus = [
+//   {
+//     title: "Home 01",
+//     path: "//",
+//   },
+//   {
+//     title: "Home 02",
+//     path: "/index-two",
+//   },
+//   {
+//     title: "Home 03",
+//     path: "/index-three",
+//   },
+//   {
+//     title: "Home 04",
+//     path: "/index-four",
+//   },
+//   {
+//     title: "Home 05",
+//     path: "/index-five",
+//   },
+// ];
 export const PagesDropdownMenus = [
+  // {
+  //   title: "About",
+  //   path: "/about",
+  //   submenu: [
+  //     {
+  //       title: "About Dark",
+  //       path: "/about-dark",
+  //     },
+  //     {
+  //       title: "About Light 01",
+  //       path: "/about-us",
+  //     },
+  //     {
+  //       title: "Blog Light 02",
+  //       path: "/about-light",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Blog Light",
+  //   path: "/blog",
+  //   submenu: [
+  //     {
+  //       title: "Blog Light",
+  //       path: "/blog-light",
+  //     },
+  //     {
+  //       title: "Blog Light Sidebar 01",
+  //       path: "/blog",
+  //     },
+  //     {
+  //       title: "Blog Light Sidebar 02",
+  //       path: "/blog-light-sidebar",
+  //     },
+  //     {
+  //       title: "Single Blog Light",
+  //       path: "/single-blog-light",
+  //     },
+  //   ],
+  // },
   {
-    title: "About",
-    path: "about",
+    title: "Resources",
+    path: "/blog-dark",
     submenu: [
       {
-        title: "About Dark",
-        path: "about-dark",
+        title: "Blog & Resources 1",
+        path: "/blog-dark",
       },
       {
-        title: "About Light 01",
-        path: "about-us",
+        title: "Blog & Resources 2",
+        path: "/blog-dark-sidebar",
       },
-      {
-        title: "Blog Light 02",
-        path: "about-light",
-      },
+      // {
+      //   title: "Blog Dark Details",
+      //   path: "/single-blog-dark",
+      // },
     ],
   },
   {
-    title: "Blog Light",
-    path: "blog",
+    title: "Service",
+    path: "/#",
     submenu: [
       {
-        title: "Blog Light",
-        path: "blog-light",
+        title: "Active Users",
+        path: "/users",
       },
       {
-        title: "Blog Light Sidebar 01",
-        path: "blog",
+        title: "Transaction History",
+        path: "/transactions",
       },
-      {
-        title: "Blog Light Sidebar 02",
-        path: "blog-light-sidebar",
-      },
-      {
-        title: "Single Blog Light",
-        path: "single-blog-light",
-      },
+      // {
+      //   title: "Single Service",
+      //   path: "/single-service",
+      // },
     ],
   },
-  {
-    title: "Blog Dark",
-    path: "blog-dark",
-    submenu: [
-      {
-        title: "Blog Dark",
-        path: "blog-dark",
-      },
-      {
-        title: "Blog Dark Sidebar",
-        path: "blog-dark-sidebar",
-      },
-      {
-        title: "Blog Dark Details",
-        path: "single-blog-dark",
-      },
-    ],
-  },
-	{
-		title: "Service",
-		path: "#",
-		submenu: [
-			{
-				title: "Users",
-				path: "users",
-			},
-      {
-				title: "Transactions",
-				path: "transactions",
-			},
-			{
-				title: "Single Service",
-				path: "single-service",
-			},
-		],
-	},
   {
     title: "Team",
-    path: "team",
-    submenu: [
-      {
-        title: "Team Dark",
-        path: "team-dark",
-      },
-      {
-        title: "Team Light 01",
-        path: "team",
-      },
-      {
-        title: "Team Light 02",
-        path: "team-light",
-      },
-      {
-        title: "Single Team",
-        path: "single-team",
-      },
-    ],
+    //team
+    path: "/team-light",
+    // submenu: [
+    // {
+    //   title: "Team Dark",
+    //   path: "/team-dark",
+    // },
+    // {
+    //   title: "Team Light 01",
+    //   path: "/team",
+    // },
+    // {
+    //   title: "Team Light 02",
+    //   path: "/team-light",
+    // },
+    // {
+    //   title: "Single Team",
+    //   path: "/single-team",
+    // },
+    // ],
   },
   {
     title: "Pricing",
-    path: "pricing",
+    path: "/pricing",
     submenu: [
       // {
       //   title: "Pricing 01",
-      //   path: "pricing-one",
+      //   path: "/pricing-one",
       // },
       {
         title: "Pricing",
-        path: "pricing-two",
+        path: "/pricing-two",
+      },
+      {
+        title: "Upgrade Plan",
+        path: "/upgrade-plan",
       },
     ],
   },
-  {
-    title: "Carrer",
-    path: "carrer",
-    submenu: [
-      {
-        title: "Career",
-        path: "carrer",
-      },
-      {
-        title: "Single-Career",
-        path: "sinlge-career",
-      },
-    ],
-  },
+  // {
+  //   title: "Carrer",
+  //   path: "/carrer",
+  //   submenu: [
+  //     {
+  //       title: "Career",
+  //       path: "/carrer",
+  //     },
+  //     {
+  //       title: "Single-Career",
+  //       path: "/sinlge-career",
+  //     },
+  //   ],
+  // },
   {
     title: "Portfolio",
-    path: "portfolio",
-    submenu: [
-      {
-        title: "Portfolio Classic",
-        path: "portfolio-one",
-      },
-      {
-        title: "Portfolio-Minimal",
-        path: "portfolio-two",
-      },
-      {
-        title: "Portfolio-Modern",
-        path: "portfolio-three",
-      },
-      {
-        title: "Single Portfolio",
-        path: "single-portfolio",
-      },
-    ],
+    // portfolio
+    path: "/portfolio-one",
+    // submenu: [
+    //   {
+    //     title: "Portfolio Classic",
+    //     path: "/portfolio-one",
+    //   },
+    //   {
+    //     title: "Portfolio-Minimal",
+    //     path: "/portfolio-two",
+    //   },
+    //   {
+    //     title: "Portfolio-Modern",
+    //     path: "/portfolio-three",
+    //   },
+    //   {
+    //     title: "Single Portfolio",
+    //     path: "/single-portfolio",
+    //   },
+    // ],
   },
-  {
-    title: "Utility",
-    path: "utility",
-    submenu: [
-      {
-        title: "Faq",
-        path: "faq",
-      },
-      {
-        title: "Error-404",
-        path: "404",
-      },
-      {
-        title: "Testimonial",
-        path: "testimonial",
-      },
-      {
-        title: "coming-soon",
-        path: "coming-soon",
-      },
-    ],
-  },
+  // {
+  //   title: "Utility",
+  //   path: "/utility",
+  //   submenu: [
+  //     {
+  //       title: "Faq",
+  //       path: "/faq",
+  //     },
+  //     {
+  //       title: "Error-404",
+  //       path: "/404",
+  //     },
+  //     {
+  //       title: "Testimonial",
+  //       path: "/testimonial",
+  //     },
+  //     {
+  //       title: "coming-soon",
+  //       path: "/coming-soon",
+  //     },
+  //   ],
+  // },
 ];
 
 export const ElementsMegaMenu = [
+  // {
+  //   title: "About Style",
+  //   path: "/#",
+  //   submenu: [
+  //     {
+  //       title: "About Dark",
+  //       path: "/about-dark",
+  //     },
+  //     {
+  //       title: "About Light 01",
+  //       path: "/about-us",
+  //     },
+  //     {
+  //       title: "Blog Light 02",
+  //       path: "/about-light",
+  //     },
+  //   ],
+  // },
   {
-    title: "About Style",
-    path: "#",
+    title: "Resources",
+    path: "/blog-dark",
     submenu: [
       {
-        title: "About Dark",
-        path: "about-dark",
+        title: "News & Resources 1",
+        path: "/blog-dark",
       },
       {
-        title: "About Light 01",
-        path: "about-us",
+        title: "News & Resources 2",
+        path: "/blog-dark-sidebar",
       },
-      {
-        title: "Blog Light 02",
-        path: "about-light",
-      },
+      // {
+      //   title: "Blog Dark Details",
+      //   path: "/single-blog-dark",
+      // },
     ],
   },
+  // {
+  //   title: "Blog Style",
+  //   path: "/#",
+  //   submenu: [
+  //     {
+  //       title: "Blog Dark",
+  //       path: "/blog-dark",
+  //     },
+  //     {
+  //       title: "Blog Dark Sidebar",
+  //       path: "/blog-dark-sidebar",
+  //     },
+  //     {
+  //       title: "Blog Dark Details",
+  //       path: "/single-blog-dark",
+  //     },
+  //     {
+  //       title: "Blog Light",
+  //       path: "/blog-light",
+  //     },
+  //     {
+  //       title: "Blog Light Sidebar 01",
+  //       path: "/blog",
+  //     },
+  //     {
+  //       title: "Blog Light Sidebar 02",
+  //       path: "/blog-light-sidebar",
+  //     },
+  //     {
+  //       title: "Single Blog light",
+  //       path: "/single-blog",
+  //     },
+  //   ],
+  // },
 
-  {
-    title: "Blog Style",
-    path: "#",
-    submenu: [
-      {
-        title: "Blog Dark",
-        path: "blog-dark",
-      },
-      {
-        title: "Blog Dark Sidebar",
-        path: "blog-dark-sidebar",
-      },
-      {
-        title: "Blog Dark Details",
-        path: "single-blog-dark",
-      },
-      {
-        title: "Blog Light",
-        path: "blog-light",
-      },
-      {
-        title: "Blog Light Sidebar 01",
-        path: "blog",
-      },
-      {
-        title: "Blog Light Sidebar 02",
-        path: "blog-light-sidebar",
-      },
-      {
-        title: "Single Blog light",
-        path: "single-blog",
-      },
-    ],
-  },
-
-  {
-    title: "Masonry Style",
-    path: "#",
-    submenu: [
-      {
-        title: "Portfolio Classic",
-        path: "portfolio-one",
-      },
-      {
-        title: "Portfolio-Minimal",
-        path: "portfolio-two",
-      },
-      {
-        title: "Portfolio-Modern",
-        path: "portfolio-three",
-      },
-      {
-        title: "Single Portfolio",
-        path: "single-portfolio",
-      },
-    ],
-  },
+  // {
+  //   title: "Masonry Style",
+  //   path: "/#",
+  //   submenu: [
+  //     {
+  //       title: "Portfolio Classic",
+  //       path: "/portfolio-one",
+  //     },
+  //     {
+  //       title: "Portfolio-Minimal",
+  //       path: "/portfolio-two",
+  //     },
+  //     {
+  //       title: "Portfolio-Modern",
+  //       path: "/portfolio-three",
+  //     },
+  //     {
+  //       title: "Single Portfolio",
+  //       path: "/single-portfolio",
+  //     },
+  //   ],
+  // },
 
   {
     title: "Contact Style",
-    path: "#",
+    path: "/#",
     submenu: [
       {
         title: "Contact Dark",
-        path: "contact-dark",
+        path: "/contact-dark",
       },
       {
         title: "Contact Light 01",
-        path: "contact",
+        path: "/contact",
       },
       {
         title: "Contact Light 02",
-        path: "contact-light",
+        path: "/contact-light",
       },
     ],
   },
@@ -294,49 +317,49 @@ export const ElementsMegaMenu = [
 export const BlogDropdownMenus = [
   {
     title: "Upload News",
-    path: "createblog",
+    path: "/createblog",
+  },
+  // {
+  //   title: "Blog Dark",
+  //   path: "/blog-dark",
+  // },
+  // {
+  //   title: "Blog Dark Sidebar",
+  //   path: "/blog-dark-sidebar",
+  // },
+  // {
+  //   title: "Blog Dark Details",
+  //   path: "/single-blog-dark",
+  // },
+  {
+    title: "News Light",
+    path: "/blog-light",
   },
   {
-    title: "Blog Dark",
-    path: "blog-dark",
+    title: "News Light Sidebar",
+    path: "/blog",
   },
-  {
-    title: "Blog Dark Sidebar",
-    path: "blog-dark-sidebar",
-  },
-  {
-    title: "Blog Dark Details",
-    path: "single-blog-dark",
-  },
-  {
-    title: "Blog Light",
-    path: "blog-light",
-  },
-  {
-    title: "Blog Light Sidebar 01",
-    path: "blog",
-  },
-  {
-    title: "Blog Light Sidebar 02",
-    path: "blog-light-sidebar",
-  },
-  {
-    title: "Single Blog Light",
-    path: "single-blog-light",
-  },
+  // {
+  //   title: "News Light Sidebar 02",
+  //   path: "/blog-light-sidebar",
+  // },
+  // {
+  //   title: "Single Blog Light",
+  //   path: "/single-blog-light",
+  // },
 ];
 
 export const ContactDropdownMenus = [
   {
     title: "Contact Dark",
-    path: "contact-dark",
+    path: "/contact-dark",
   },
   {
     title: "Contact Light 01",
-    path: "contact",
+    path: "/contact",
   },
   {
     title: "Contact Light 02",
-    path: "contact-light",
+    path: "/contact-light",
   },
 ];

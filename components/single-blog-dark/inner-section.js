@@ -1,15 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import BreadcrumbSection from "./breadcrumb-section";
-import SingleBlogPost from "./single-blog-post";
+import BreadcrumbSection from './breadcrumb-section';
+import SingleBlogPost from './single-blog-post';
 
 export default function InnerSection(props) {
 	return (
 		<div className="fugu--inner-section dark-version fugu--single-blog">
 			<div className="container">
 				<div className="row">
-					<div className="col-lg-10 offset-lg-1">
-						<BreadcrumbSection news={props.news}/>
-						<SingleBlogPost />
+					<div className="col-lg-12">
+						<BreadcrumbSection news={props.news} />
+						<SingleBlogPost news={props.news} />
 					</div>
 				</div>
 			</div>
