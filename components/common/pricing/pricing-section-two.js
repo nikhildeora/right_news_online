@@ -15,8 +15,7 @@ import "sweetalert2/src/sweetalert2.scss";
 
 export default function PricingSectionTwo(props) {
   const [toggleBilled, setToggleBilled] = useState(false);
-  const { curUser, setupdationState, updationState, activePlan } =
-    useContext(AuthContext);
+  const { curUser, setupdationState, updationState, activePlan, setActivePlan, userDetailSanity } = useContext(AuthContext);
   const Razorpay = useRazorpay();
   const router = useRouter();
 
@@ -98,7 +97,7 @@ export default function PricingSectionTwo(props) {
       description: "Test Transaction for RNO",
       order_id: order_data.message.id,
       handler: function (response) {
-        MemberPostInSanity(CurUserIdNow, plan_amount, plan_ref, plan_days);
+        MemberPostInSanity(CurUserIdNow, plan_amount, plan_ref, plan_days, response.razorpay_payment_id, response.razorpay_order_id);
       },
       prefill: {
         // here we will give data of user
@@ -130,42 +129,44 @@ export default function PricingSectionTwo(props) {
     rzp1.open();
   };
 
-  const MemberPostInSanity = (
-    CurUserIdNow,
-    plan_amount,
-    plan_ref,
-    plan_days
-  ) => {
-    let date = new Date();
-    let endDate = new Date();
-    endDate.setDate(endDate.getDate() + plan_days);
-    let endDateFormat = endDate.toISOString();
-    let formatDate = date.toISOString();
 
-    let planObj = {
-      _id: uuidv4(),
-      _type: "memberships",
-      plan: {
-        _ref: plan_ref,
-        _type: "reference",
-      },
-      user: {
-        _ref: CurUserIdNow,
-        _type: "reference",
-      },
-      startDate: formatDate,
-      endtDate: endDateFormat,
-    };
+	const MemberPostInSanity = async (CurUserIdNow, plan_amount, plan_ref, plan_days, razorpay_payment_id, razorpay_order_id) => {
+		let date = new Date();
+		let endDate = new Date();
+		endDate.setDate(endDate.getDate() + plan_days);
+		let endDateFormat = endDate.toISOString();
+		let formatDate = date.toISOString();
 
-    sanityClient
-      .create(planObj)
-      .then((res) => {
-        console.log(res);
-        setupdationState(!updationState);
-      })
-      .catch((err) => console.log(err));
-  };
+		let planObj = {
+			_id: uuidv4(),
+			_type: "memberships",
+			plan: {
+				_ref: plan_ref,
+				_type: "reference",
+			},
+			user: {
+				_ref: CurUserIdNow,
+				_type: "reference",
+			},
+			startDate: formatDate,
+			endtDate: endDateFormat,
+			membershipTranscationID: razorpay_payment_id,
+			membershipOrderID: razorpay_order_id
+		};
 
+		let planDetailObj = await sanityClient.fetch(`*[_type=="plans" && _id=="${plan_ref}"]`)
+
+		sanityClient
+			.create(planObj)
+			.then((res) => {
+				console.log(res);
+				res.planDetail = planDetailObj[0];
+				res.userDetails = userDetailSanity;
+				setActivePlan(res);
+			})
+			.catch((err) => console.log(err));
+	};
+  
   return (
     <div className="fugu--portfolio-section">
       <div className="container">
