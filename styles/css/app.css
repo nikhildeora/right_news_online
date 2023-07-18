@@ -2,19 +2,19 @@
 
 :root {
   --gray-900: #26242c;
-  --gray-800: #13111a;
+  --gray-800: #000;
   --gray-700: #e1e1e1;
   --gray-10: #fff;
   --primary-600: #724fe5;
   --primary-500: #2c04fe;
   --success-500: #32e7b1;
   --warning-600: #eee6d0;
-  --warning-500: #ffc947;
-  --warning-400: #f0e9e1;
-  --warning-300: #fffdf5;
-  --warning-200: #f6f2e8;
-  --warning-100: #fffcf2;
-  --danger-500: #ff6b55;
+  --warning-500: #db0303;
+  --warning-400: #000;
+  --warning-300: #000;
+  --warning-200: #000;
+  --warning-100: #000;
+  --danger-500: #000;
   --fs-xl-20: 20px;
   --fs-xl-lineheight: 32px;
   --fs-lg-18: 18px;
@@ -42,17 +42,17 @@ html {
 
 body {
   height: 100%;
-  color: rgba(19, 17, 26, 0.8);
-  font-family: "Inter", sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   vertical-align: baseline;
   text-rendering: optimizeLegibility;
   font-weight: 400;
   overflow-x: hidden;
-  background-color: #fff;
+  background-color: #000;
   counter-reset: my-sec-counter;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 30px;
 }
 
@@ -241,7 +241,7 @@ button:hover,
 [type="button"]:hover,
 [type="reset"]:hover,
 [type="submit"]:hover {
-  cursor: pointer;
+  cursor: poPoppins;
 }
 
 @media print {
@@ -337,8 +337,8 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Public Sans", sans-serif;
-  color: var(--gray-800);
+  font-family: "Poppins", sans-serif;
+  color: #fff;
   font-weight: 700;
 }
 
@@ -708,6 +708,13 @@ a {
   transition: all 0.24s ease-in-out;
 }
 
+.brand-logo > a {
+  font-size: 35px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1.2px;
+}
+
 img {
   max-width: 100%;
 }
@@ -719,8 +726,8 @@ img {
 }
 
 .mouse-cursor,
-.pointer {
-  cursor: pointer;
+.poPoppins {
+  cursor: poPoppins;
 }
 
 blockquote {
@@ -1081,31 +1088,31 @@ blockquote {
 }
 
 .text-warning-500 {
-  color: #ffc947 !important;
+  color: #db0303 !important;
 }
 
 .bg-warning-500 {
-  background-color: #ffc947 !important;
+  background-color: #db0303 !important;
 }
 
 .border-warning-500 {
-  border-color: #ffc947 !important;
+  border-color: #db0303 !important;
 }
 
 .hoverbg-warning-500:hover {
-  background-color: #ffc947 !important;
+  background-color: #db0303 !important;
 }
 
 .hover\:bg-warning-500:hover {
-  background-color: #ffc947 !important;
+  background-color: #db0303 !important;
 }
 
 .hover\:text-warning-500:hover {
-  color: #ffc947 !important;
+  color: #db0303 !important;
 }
 
 .hover\:border-warning-500:hover {
-  border-color: #ffc947 !important;
+  border-color: #db0303 !important;
 }
 
 .text-warning-400 {
@@ -1141,11 +1148,11 @@ blockquote {
 }
 
 .bg-warning-300 {
-  background-color: #fffdf5 !important;
+  background-color: #000 !important;
 }
 
 .border-warning-300 {
-  border-color: #fffdf5 !important;
+  border-color: #232323 !important;
 }
 
 .hoverbg-warning-300:hover {
@@ -2155,8 +2162,8 @@ blockquote {
     height: 100px;
   }
 }
-.pointer {
-  cursor: pointer;
+.poPoppins {
+  cursor: poPoppins;
 }
 
 .text-hide {
@@ -2382,15 +2389,18 @@ header.fugu--header-section {
   transition: all 0.4s;
 }
 header.fugu--header-section.fugu--header-three {
-  background-color: var(--gray-800);
+  background-color: #000000d4;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 header.fugu--header-section.fugu--header-three .site-menu-main .nav-link-item {
   color: var(--gray-10);
 }
 
 header.fugu--header-section.sticky-menu {
-  padding: 10px 0;
-  background-color: var(--gray-800);
+  background-color: #000000d4;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(15px);
 }
 
 .fugu--header-two .site-menu-main .nav-link-item {
@@ -2962,7 +2972,7 @@ footer.fugo--footer-section.white-version .fugo--footer-bottom p {
   border-radius: 3px;
   padding: 20px 55px;
   font-weight: 700;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   width: fit-content;
   position: relative;
   z-index: 1;
@@ -3045,7 +3055,7 @@ footer.fugo--footer-section.white-version .fugo--footer-bottom p {
   border-radius: 10px;
   display: inline-block;
   color: var(--gray-10);
-  background: linear-gradient(to right, #ff00d4, #7d41ea, #0080ff);
+  background: #db0303;
 }
 .fugu--outline-btn span {
   display: flex;
@@ -3068,7 +3078,7 @@ footer.fugo--footer-section.white-version .fugo--footer-bottom p {
   font-size: 16px;
   line-height: 24px;
   font-weight: 700;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   width: fit-content;
   position: relative;
   z-index: 1;
@@ -3094,13 +3104,10 @@ footer.fugo--footer-section.white-version .fugo--footer-bottom p {
   color: #fff;
   padding: 10.5px 31px;
   background-size: 200% auto !important;
-  background: linear-gradient(
-    to right,
-    #ff00d4 0%,
-    #7d41ea 30.35%,
-    #0080ff 100%
-  );
+  background: #db0303;
+  width: 100%;
 }
+
 .fugu--btn.fugu--menu-btn1:hover {
   background-position: right center;
 }
@@ -3229,7 +3236,7 @@ footer.fugo--footer-section.white-version .fugo--footer-bottom p {
   transition: all 0.4s;
   opacity: 0;
   border-radius: 10px;
-  background: linear-gradient(225deg, #0080ff 0%, #7d41ea 46.35%, #ff00d4 100%);
+  background: linear-gradient(225deg, #ff0022 0%, #ff002b 46.35%, #ff4800 100%);
 }
 .fugu--btn:hover:before {
   opacity: 1;
@@ -3300,19 +3307,19 @@ textarea {
   margin: 0;
   width: 100%;
   height: 60px;
-  color: var(--gray-800);
+  color: #fff;
   border-radius: 10px;
   background-color: transparent;
   padding: 15px 30px !important;
   border: none !important;
   transition: all 0.4s;
-  border: 1px solid var(--gray-700) !important;
+  border: 2px solid #000 !important;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  border: 1px solid var(--warning-500) !important;
+  border: 2px solid var(--warning-500) !important;
 }
 
 textarea {
@@ -3328,42 +3335,42 @@ textarea {
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: var(--gray-800);
+  color: #fff;
   opacity: 0.6;
 }
 
 input:-moz-placeholder,
 textarea:-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: var(--gray-800);
+  color: #fff;
   opacity: 0.6;
 }
 
 input::-moz-placeholder,
 textarea::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: var(--gray-800);
+  color: #fff;
   opacity: 0.6;
 }
 
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: var(--gray-800);
+  /* Poppinsnet Explorer 10-11 */
+  color: #fff;
   opacity: 0.6;
 }
 
 input::-ms-input-placeholder,
 textarea::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: var(--gray-800);
+  color: #fff;
   opacity: 0.6;
 }
 
 input::placeholder,
 textarea::placeholder {
   /* Most modern browsers support this now. */
-  color: var(--gray-800);
+  color: #fff;
   opacity: 0.6;
 }
 
@@ -3512,7 +3519,7 @@ button#fugu--search-btn {
 }
 
 .fugu--newsletter input:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
+  /* Poppinsnet Explorer 10-11 */
   color: #13111a;
   opacity: 0.5;
 }
@@ -3541,7 +3548,7 @@ button#fugu--search-btn {
 }
 
 .fugu-breadcrumb-section {
-  padding: 188px 0 120px;
+  padding: 160px 0 0px;
   position: relative;
   background-color: var(--warning-400);
 }
@@ -3925,34 +3932,7 @@ button#fugu--search-btn {
 }
 
 /* card */
-.fugu--card-wrap {
-  border-radius: 10px;
-  padding: 20px;
-  transition: all 0.4s;
-  position: relative;
-  background: #201c2c;
-  box-shadow: 0 0 0 1px white;
-}
-.fugu--card-wrap:hover {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0);
-}
-.fugu--card-wrap:hover:before {
-  opacity: 1;
-}
-.fugu--card-wrap::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  margin: -1px;
-  opacity: 0;
-  transition: all 0.4s;
-  border-radius: inherit;
-  background: linear-gradient(to right, #ff00d4, #7d41ea, #0080ff);
-}
+
 .fugu--card-wrap:hover .fugu--btn:before {
   color: var(--gray-10);
   opacity: 1;
@@ -3960,9 +3940,7 @@ button#fugu--search-btn {
 .fugu--card-wrap:hover .fugu--btn {
   color: var(--gray-10);
 }
-.fugu--card-wrap:hover .fugu--card-thumb img {
-  transform: scale(1.1) rotate(3deg);
-}
+
 .fugu--card-thumb {
   overflow: hidden;
   border-radius: 10px;
@@ -3982,7 +3960,7 @@ button#fugu--search-btn {
   line-height: 28px;
   color: var(--gray-10);
   margin: 0 0 10px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu--card-data p {
   font-weight: 600;
@@ -4010,7 +3988,7 @@ button#fugu--search-btn {
   line-height: 28px;
   color: var(--gray-10);
   margin: 0;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu--card-footer .fugu--btn {
   min-width: inherit;
@@ -4091,15 +4069,15 @@ button#fugu--search-btn {
   overflow: hidden;
   border-radius: 10px;
   backdrop-filter: blur(400px);
-  background: rgba(90, 75, 124, 0.2);
+  background: rgb(32 32 32 / 20%);
 }
-.fugu--blog-wrap:hover .fugu--blog-thumb img {
-  transform: scale(1.07) rotate(2deg);
-}
+
 .fugu--blog-thumb {
-  height: 400px;
   overflow: hidden;
   position: relative;
+}
+.fugu--blog-thumb:hover {
+  cursor: poPoppins !important;
 }
 @media (max-width: 991px) {
   .fugu--blog-thumb {
@@ -4108,24 +4086,27 @@ button#fugu--search-btn {
 }
 .fugu--blog-thumb img {
   width: 100%;
-  height: 100%;
+  height: 250px !important;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
   transition: all 0.5s;
 }
 .fugu--blog-thumb .fugu--blog-badge {
-  background: #ffffff;
+  background: #00000078;
   border-radius: 10px;
   position: absolute;
   top: 40px;
   right: 40px;
   font-weight: 700;
-  font-size: 16px;
-  color: var(--gray-800);
-  padding: 10.5px 19.7px;
+  font-size: 13px;
+  color: #fff;
+  padding: 10px 15px;
 }
 .fugu--blog-content {
-  padding: 40px;
+  padding: 15px;
+  min-height: 270px;
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 767px) {
   .fugu--blog-content {
@@ -4133,21 +4114,26 @@ button#fugu--search-btn {
   }
 }
 .fugu--blog-content p {
-  font-size: 18px;
-  line-height: 30px;
+  font-size: 14px;
+  line-height: 23px;
   color: #ffffff;
   opacity: 0.8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .fugu--blog-date {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .fugu--blog-date ul {
   display: flex;
   align-items: center;
 }
 .fugu--blog-date ul li {
-  font-weight: 600;
-  font-size: 18px;
+  font-weight: 300;
+  font-size: 12px;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -4166,7 +4152,8 @@ button#fugu--search-btn {
   margin-right: 0;
 }
 .fugu--blog-date ul li img {
-  margin-right: 13px;
+  margin-right: 6px;
+  width: 16px;
 }
 .fugu--blog-title h3 {
   font-size: 28px;
@@ -4293,7 +4280,7 @@ a.fugu--readmore-btn span:before {
   border-radius: 50%;
   transition: all 0.4s;
   position: absolute;
-  background: linear-gradient(225deg, #0080ff 0%, #7d41ea 46.35%, #ff00d4 100%);
+  background: linear-gradient(225deg, #ff0022 0%, #ff002b 46.35%, #ff4800 100%);
 }
 
 .fugu--blog-wrap2:hover a.fugu--readmore-btn span::before {
@@ -4698,9 +4685,6 @@ a.fugu-app-btn:last-child {
   }
 }
 
-.fugu--hero-content {
-  max-width: 636px;
-}
 .fugu--hero-content h1 {
   color: white;
   font-family: "Space Grotesk", sans-serif;
@@ -4762,7 +4746,7 @@ a.fugu-app-btn:last-child {
   width: 18%;
   height: 37%;
   position: absolute;
-  background: #2c04fe;
+  background: #fe04044a;
   opacity: 1;
   filter: blur(136.18px);
   border-radius: 100%;
@@ -4801,10 +4785,8 @@ a.fugu-app-btn:last-child {
 }
 
 .fugu--hero-right {
-  width: 490px;
   float: right;
   z-index: 0;
-  transform: rotate(3deg);
   position: relative;
 }
 @media (max-width: 1400px) {
@@ -4826,16 +4808,11 @@ a.fugu-app-btn:last-child {
     width: 100%;
   }
 }
-.fugu--hero-right .fugu--card-wrap {
-  background: rgba(90, 75, 124, 0.5);
-  backdrop-filter: blur(400px);
-}
+
 .fugu--hero-right .fugu--card-wrap:before {
   content: none;
 }
-.fugu--hero-right .fugu--card-wrap:hover {
-  box-shadow: 0 0 0 1px #fff;
-}
+
 .fugu--hero-right .fugu--card-data {
   margin: 0;
   padding: 40px 10px 20px;
@@ -4906,7 +4883,7 @@ a.fugu-app-btn:last-child {
 }
 .fugu--hero-content2 h1 {
   color: var(--gray-800);
-  font-family: "Public Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu--hero-content2 p {
   margin-right: 0;
@@ -5200,8 +5177,7 @@ a.fugu-app-btn:last-child {
 
 .fugu--counter-wrap {
   display: flex;
-  max-width: 385px;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 55px;
 }
 @media (max-width: 991px) {
@@ -5222,7 +5198,7 @@ a.fugu-app-btn:last-child {
   color: white;
 }
 .fugu--counter-data h2 strong {
-  background: linear-gradient(225deg, #0080ff 0%, #7d41ea 46.35%, #ff00d4 100%);
+  background: linear-gradient(225deg, #ff0022 0%, #ff002b 46.35%, #ff4800 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -5588,7 +5564,7 @@ a.fugu-app-btn:last-child {
   line-height: 28px;
   margin-bottom: 10px;
   color: var(--gray-10);
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu--team-data p {
   opacity: 0.8;
@@ -5880,7 +5856,7 @@ a.fugu-app-btn:last-child {
   font-weight: 600;
   font-size: 24px;
   margin-bottom: 15px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   display: inline-block;
   padding: 0 10px;
   color: white;
@@ -5992,7 +5968,7 @@ a.fugu-app-btn:last-child {
   border-radius: 10px;
 }
 .fugu--iconbox-wrap5 .fugu--iconbox-thumb {
-  background: linear-gradient(225deg, #0080ff 0%, #7d41ea 46.35%, #ff00d4 100%);
+  background: linear-gradient(225deg, #ff0022 0%, #ff002b 46.35%, #ff4800 100%);
 }
 .fugu--iconbox-wrap5 .fugu--iconbox-data a {
   font-weight: 700;
@@ -6038,7 +6014,7 @@ a.fugu-app-btn:last-child {
 .fugu-accordion-wrap2 .fugu-accordion-item h4 {
   margin: 0;
   font-weight: 700;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 @media (max-width: 1199px) {
   .fugu-accordion-wrap2 .fugu-accordion-item h4 {
@@ -6087,7 +6063,7 @@ a.fugu-faq-btn:hover {
   font-weight: 600;
   font-size: 20px;
   line-height: 1;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: var(--gray-800);
   background-color: transparent;
 }
@@ -6157,7 +6133,7 @@ a.fugu-faq-btn:hover {
   padding: 0;
   padding-bottom: 10px;
 
-  color: rgba(19, 17, 26, 0.8);
+  color: #fff;
   position: relative;
 }
 @media (max-width: 767px) {
@@ -6215,7 +6191,7 @@ a.fugu-faq-btn:hover {
   font-weight: 600;
   font-size: 24px;
   line-height: 1;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: var(--gray-800);
   background-color: transparent;
 }
@@ -6337,7 +6313,7 @@ a.fugu-faq-btn:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  cursor: pointer;
+  cursor: poPoppins;
 }
 
 .fugu-popup img {
@@ -6447,7 +6423,7 @@ a.fugu-faq-btn:hover {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  cursor: pointer;
+  cursor: poPoppins;
 }
 @media (max-width: 767px) {
   .fugu--video-thumb .fugu--popup {
@@ -6620,7 +6596,7 @@ a.fugu-faq-btn:hover {
   line-height: 28px;
   font-weight: 700;
   margin-bottom: 15px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu-testimonial-card p {
   font-weight: 500;
@@ -6649,7 +6625,7 @@ a.fugu-faq-btn:hover {
   font-size: 18px;
   margin-bottom: 0;
   line-height: 1;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu-testimonial-author-data span {
   font-size: 14px;
@@ -6985,7 +6961,7 @@ a.fugu-faq-btn:hover {
   opacity: 0;
   transition: all 0.4s;
   position: absolute;
-  background: linear-gradient(225deg, #0080ff 0%, #7d41ea 46.35%, #ff00d4 100%);
+  background: linear-gradient(225deg, #ff0022 0%, #ff002b 46.35%, #ff4800 100%);
 }
 .fugu--social-icon ul li a:hover::before {
   opacity: 1;
@@ -7071,7 +7047,7 @@ a.fugu-faq-btn:hover {
   margin: 0;
   font-weight: 600;
   letter-spacing: -0.5px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .fugu-brand-logo {
@@ -7196,8 +7172,8 @@ PRICING SECTION
   height: 30px;
   border-radius: 15px;
   border: none;
-  cursor: pointer;
-  background-color: var(--gray-800) !important;
+  cursor: poPoppins;
+  background-color: #202020 !important;
   background-image: url("/images/all-img/service/circle-bg.png");
 }
 
@@ -7205,13 +7181,13 @@ PRICING SECTION
   border: none !important;
   outline: none;
   box-shadow: none;
-  background-color: var(--gray-800) !important;
+  background-color: #202020 !important;
   background-image: url("/images/all-img/service/circle-bg.png");
 }
 
 .pricing-btn .btn-toggle:checked {
   border: none !important;
-  background-color: var(--gray-800) !important;
+  background-color: #202020 !important;
   background-image: url("/images/all-img/service/circle-bg.png");
 }
 
@@ -7271,9 +7247,8 @@ PRICING SECTION
 }
 .fugu-pricing-wrap.fugu-pricing-wrap3:hover {
   border-radius: 10px;
-  background: #ffffff;
-  border: 1px solid #fff;
-  box-shadow: 0px 4px 60px rgba(0, 0, 0, 0.06);
+  background-color: #000 !important;
+  box-shadow: 4px 4px 20px rgba(255, 0, 0, 0.6);
 }
 .fugu-pricing-wrap.fugu-pricing-wrap3:hover a.fugu-pricing-btn {
   border: 2px solid var(--warning-500);
@@ -7306,7 +7281,7 @@ PRICING SECTION
 }
 .fugu-pricing-wrap.fugu-pricing-wrap3 .fugu-pricing-body ul li {
   font-weight: 400;
-  color: var(--gray-800);
+  color: #fff;
 }
 .fugu-pricing-wrap.fugu-pricing-wrap3 .fugu-pricing-body ul .disable {
   opacity: 0.4;
@@ -7352,8 +7327,8 @@ PRICING SECTION
   margin: 0;
   font-size: 60px;
   font-weight: 700;
-  font-family: "Inter", sans-serif;
-  color: var(--gray-800);
+  font-family: "Poppins", sans-serif;
+  color: #fff;
 }
 
 p.bottom_text {
@@ -7362,7 +7337,7 @@ p.bottom_text {
   font-weight: 700;
   position: relative;
   bottom: 5px;
-  color: var(--gray-800);
+  color: #fff;
 }
 
 a.fugu-pricing-btn {
@@ -7388,28 +7363,31 @@ a.fugu-pricing-btn.active {
   background-color: var(--warning-500);
 }
 
+/* start pricing section button "Buy the plan" */
 button.fugu-pricing-btn {
   display: block;
   width: 100%;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 24px;
   text-align: center;
   border-radius: 10px;
   padding: 15px;
-  color: var(--gray-800);
-  border: 2px solid var(--gray-800);
+  color: #fff;
+  border: 2px solid #fff;
   transition: all 0.4s;
   margin-bottom: 40px;
 }
 button.fugu-pricing-btn:hover {
   border: 2px solid var(--warning-500);
-  background-color: var(--warning-500);
+  background-color: #db0303;
 }
 button.fugu-pricing-btn.active {
   border: 2px solid var(--warning-500);
   background-color: var(--warning-500);
 }
+
+/* end pricing section button "Buy the plan" */
 
 .fugu-pricing-label {
   width: 178px;
@@ -7777,16 +7755,16 @@ button.fugu-pricing-btn.active {
 }
 
 .fugu-section-padding {
-  padding: 120px 0;
+  padding: 60px 0;
 }
 @media (max-width: 991px) {
   .fugu-section-padding {
-    padding: 100px 0;
+    padding: 40px 0;
   }
 }
 @media (max-width: 767px) {
   .fugu-section-padding {
-    padding: 80px 0;
+    padding: 40px 0;
   }
 }
 
@@ -8036,7 +8014,7 @@ button.fugu-pricing-btn.active {
 }
 .fugu--default-content.content-black h2 {
   color: var(--gray-800);
-  font-family: "Public Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu--default-content.content-black p {
   opacity: 0.8;
@@ -8247,7 +8225,7 @@ button.fugu-pricing-btn.active {
   bottom: 10%;
   right: 3%;
   z-index: 99;
-  cursor: pointer;
+  cursor: poPoppins;
   -webkit-font-smoothing: antialiased;
 }
 .fugu-go-top:before {
@@ -8297,7 +8275,7 @@ button.fugu-pricing-btn.active {
   height: 60px;
   color: #201c2c;
   font-size: 20px;
-  cursor: pointer;
+  cursor: poPoppins;
   border-radius: 100%;
   background-size: 10px;
   background-position: center;
@@ -8370,17 +8348,17 @@ button.fugu-pricing-btn.active {
   padding: 2px;
   margin: 0 10px;
   color: white;
-  cursor: pointer;
+  cursor: poPoppins;
   transition: all 0.4s;
-  background: linear-gradient(to right, #ff00d4, #7d41ea, #0080ff);
+  background: #db0303;
 }
 .fugu--portfolio-menu ul li.active {
   transition: all 0.4s;
-  background: linear-gradient(225deg, #0080ff 0%, #7d41ea 46.35%, #ff00d4 100%);
+  background: linear-gradient(225deg, #ff0022 0%, #ff002b 46.35%, #ff4800 100%);
 }
 .fugu--portfolio-menu ul li.active span {
   transition: all 0.4s;
-  background: linear-gradient(225deg, #0080ff 0%, #7d41ea 46.35%, #ff00d4 100%);
+  background: linear-gradient(225deg, #ff0022 0%, #ff002b 46.35%, #ff4800 100%);
 }
 @media (max-width: 1199px) {
   .fugu--portfolio-menu ul li {
@@ -8444,7 +8422,7 @@ button.fugu-pricing-btn.active {
 .fugu--text-slider-section {
   padding: 22px 0;
   overflow: hidden;
-  background: linear-gradient(225deg, #0080ff 0%, #7d41ea 46.35%, #ff00d4 100%);
+  background: linear-gradient(225deg, #ff0022 0%, #ff002b 46.35%, #ff4800 100%);
 }
 
 .fugu--text-slider-data {
@@ -8547,7 +8525,7 @@ button.fugu-pricing-btn.active {
   margin: -2px;
   transition: all 0.4s;
   border-radius: inherit;
-  background: linear-gradient(to right, #ff00d4, #7d41ea, #0080ff);
+  background: #db0303;
 }
 
 .fugu-text-slider-section {
@@ -9511,7 +9489,7 @@ button.fugu-pricing-btn.active {
   line-height: 38px;
   font-weight: 600;
   display: inline-block;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   border-bottom: 2px solid var(--gray-800);
 }
 
@@ -9556,7 +9534,7 @@ button.fugu-pricing-btn.active {
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu-recent-post-item h6 a {
   color: var(--gray-800);
@@ -9795,7 +9773,7 @@ button.fugu-pricing-btn.active {
 .fugu-comment-author-data h6 {
   font-size: 14px;
   font-weight: 600;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-bottom: 5px;
 }
 .fugu-comment-author-data span {
@@ -9853,15 +9831,17 @@ a.comment-reply:hover {
 }
 
 button#fugu-input-submit {
-  width: 196px;
+  width: 100%;
   height: 55px;
   left: 182px;
   top: 4119px;
   border-radius: 10px;
   font-weight: 700;
+  text-transform: uppercase;
   font-size: 16px;
   transition: all 0.4s;
   background-color: var(--warning-500);
+  color: #fff;
 }
 button#fugu-input-submit:hover {
   color: var(--gray-10);
@@ -10040,7 +10020,7 @@ button#fugu-input-submit:hover {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 25px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: var(--gray-10);
 }
 .fugu--blog-sidebar-item:last-child {
@@ -10096,7 +10076,7 @@ button#fugu-input-submit:hover {
   font-weight: 600;
   font-size: 18px;
   line-height: 30px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   color: #ffffff;
 }
@@ -10292,7 +10272,7 @@ button#fugu-input-submit:hover {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 25px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu--blog-sidebar-item:last-child {
   margin-bottom: 0;
@@ -10347,7 +10327,7 @@ button#fugu-input-submit:hover {
   font-weight: 600;
   font-size: 18px;
   line-height: 30px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
 }
 
@@ -10516,8 +10496,9 @@ button#fugu-input-submit:hover {
   max-width: 100%;
 }
 .fugu--single-blog .fugu--breadcrumbs-data p {
-  margin-right: 120px;
-  margin-bottom: 30px;
+  opacity: 0.6;
+  font-size: 16px;
+  line-height: 26px;
 }
 @media (max-width: 767px) {
   .fugu--single-blog .fugu--breadcrumbs-data p {
@@ -10609,7 +10590,7 @@ button#fugu-input-submit:hover {
   font-weight: 600;
   margin-bottom: 5px;
   color: white;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu--blockquote-user-data p {
   opacity: 0.4;
@@ -10641,7 +10622,7 @@ button#fugu-input-submit:hover {
 }
 .fugu--tags.fugu--tags2 h4 {
   margin-bottom: 30px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .fugu--post-navigation {
@@ -10696,7 +10677,7 @@ button#fugu-input-submit:hover {
   border-radius: 10px;
   position: absolute;
   transition: all 0.4s;
-  background: linear-gradient(225deg, #0080ff 0%, #7d41ea 46.35%, #ff00d4 100%);
+  background: linear-gradient(225deg, #ff0022 0%, #ff002b 46.35%, #ff4800 100%);
 }
 .fugu--post-navigation-data p {
   font-size: 20px;
@@ -10756,7 +10737,7 @@ button#fugu-input-submit:hover {
   font-weight: 700;
   font-size: 24px;
   margin-bottom: 30px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu--comment-list {
   background: rgba(90, 75, 124, 0.2);
@@ -10829,7 +10810,7 @@ button#fugu-input-submit:hover {
   object-position: center top;
 }
 .fugu--comment-meta h5 {
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 10px;
@@ -10852,7 +10833,7 @@ button#fugu-input-submit:hover {
   font-weight: 700;
   font-size: 24px;
   margin-bottom: 15px;
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .fugu--comment-respond-area p {
   color: #ffffff;
@@ -10909,8 +10890,8 @@ button#fugu-input-submit:hover {
 }
 
 .fugu-contact-wrap {
-  background: #ffffff;
-  box-shadow: 0px 4px 80px rgba(0, 0, 0, 0.06);
+  background: #202020;
+  box-shadow: 1px 1px 30px rgba(41, 41, 41, 0.656);
   border-radius: 5px;
   padding: 40px;
 }
@@ -10924,8 +10905,8 @@ button#fugu-input-submit:hover {
 .fugu-input-field label {
   display: block;
   margin-bottom: 10px;
-  font-weight: 600;
-  color: var(--gray-800);
+  font-weight: 400;
+  color: #fff;
 }
 
 #map {
@@ -10963,7 +10944,7 @@ button#fugu-input-submit:hover {
 }
 
 .fugu--contact-info h4 {
-  font-family: "Inter", sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-bottom: 40px;
 }
 .fugu--contact-info ul li {
@@ -10992,7 +10973,7 @@ button#fugu-input-submit:hover {
   position: absolute;
   left: 0;
   top: -10px;
-  background: linear-gradient(225deg, #0080ff 0%, #7d41ea 46.35%, #ff00d4 100%);
+  background: linear-gradient(225deg, #ff0022 0%, #ff002b 46.35%, #ff4800 100%);
 }
 .fugu--contact-info.fugu--contact-info2 {
   margin-top: 60px;
@@ -11080,7 +11061,7 @@ button#fugu-input-submit:hover {
 }
 .white-version .fugu--comment-field input:-ms-input-placeholder,
 .white-version .fugu--comment-field textarea:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
+  /* Poppinsnet Explorer 10-11 */
   color: #13111a;
   opacity: 0.5;
 }
@@ -11125,7 +11106,7 @@ button#fugu-input-submit:hover {
 }
 .dark-version .fugu--comment-field input:-ms-input-placeholder,
 .dark-version .fugu--comment-field textarea:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
+  /* Poppinsnet Explorer 10-11 */
   color: #fff;
   opacity: 0.5;
 }
@@ -11190,7 +11171,7 @@ button#fugu-input-submit:hover {
 .fugu-title {
   display: flex;
   justify-content: center;
-  color: #ffc947;
+  color: #db0303;
   user-select: none;
   font-size: 35px;
   font-weight: bold;
@@ -11372,7 +11353,7 @@ circle {
   display: inline-block;
   margin-right: 50px;
   position: relative;
-  cursor: pointer;
+  cursor: poPoppins;
   padding-bottom: 10px;
   transition: all 0.4s;
   color: rgba(19, 17, 26, 0.8);
@@ -11614,7 +11595,240 @@ circle {
   padding: 0 15px;
 }
 
+.downloadButton {
+  margin-top: auto !important;
+  background-color: #000 !important;
+  transition: all ease-in-out 0.8s;
+}
 /* News Card Download button */
 .downloadButton:hover {
-  cursor: pointer;
+  cursor: poPoppins;
+}
+
+/* Pricing Cards */
+#silverCard {
+  background-color: #202020;
+}
+#platinumCard {
+  background-color: #202020;
+}
+#goldenCard {
+  background-color: #202020;
+}
+.silvergoldenFAicon {
+  color: #fff;
+  font-size: 18px;
+  margin-left: -28px;
+  margin-right: 15px;
+}
+.platinumFaicon {
+  color: #fff;
+  font-size: 18px;
+  margin-left: -28px;
+  margin-right: 15px;
+}
+.Btn {
+  transition: all ease-in-out 0.8s;
+}
+#platinumBtn {
+  border: 2px solid #fff;
+  color: #fff;
+}
+#platinumBtn:hover {
+  border: 2px solid #db0303;
+  background-color: #db0303;
+  color: #fff;
+}
+#SilverGoldBtn1:hover {
+  background-color: #db0303;
+  border: 2px solid #db0303;
+}
+#SilverGoldBtn2:hover {
+  background-color: #db0303;
+  border: 2px solid #db0303;
+}
+.hero-heading {
+  font-size: 42px;
+  line-height: 50px !important;
+}
+.hero-small-heading {
+  font-size: 32px;
+  font-weight: 300;
+  display: block;
+}
+.newsbcg {
+  background-image: url(/images/all-img/v3/maharashtra.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  padding: 200px 0px;
+  text-align: center;
+}
+.elipText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 30px !important;
+}
+.download-icon {
+  margin-right: 10px;
+  font-size: 24px;
+}
+.video-badge {
+  border-radius: 10px;
+  position: absolute;
+  top: 35%;
+  right: 41%;
+  font-weight: 700;
+  font-size: 65px;
+  color: #fff;
+  padding: 10px 15px;
+  display: none;
+  transition: all 0.4s ease-in-out;
+}
+
+.text_of_purchase_plan {
+  border-radius: 10px;
+
+  font-weight: 700;
+  font-size: 65px;
+  color: #fff;
+  padding: 10px 10px;
+  display: block;
+}
+.news-card-purchase-plan-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  background-color: #f9a3a3;
+}
+.purchase-plan_text {
+  color: #000;
+  font-size: 18px;
+  text-align: center;
+  line-height: 28px;
+}
+
+.Purchase_plan_button_news_card {
+  border-radius: 10px;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: normal;
+  font-size: 17px;
+  letter-spacing: 1px;
+  background-color: #1f1f1f;
+  color: white;
+  padding: 8px 10px;
+  display: block;
+  transition: all 0.4s ease-in-out;
+}
+.Purchase_plan_button_Single_news {
+  background-color: #000;
+  color: #fff;
+  font-size: 25px;
+  display: block;
+  transition: all 0.4s ease-in-out;
+  font-weight: normal;
+  border-radius: 8px;
+  padding: 15px 30px;
+  letter-spacing: 1.5px;
+}
+
+.Purchase_plan_button_news_card:hover {
+  background-color: #010203;
+}
+
+.single-news-purchase-plan-div {
+  background-color: #f9a3a3;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 5rem;
+  border: 5px solid #be7c7c;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.redAura {
+  -webkit-filter: drop-shadow(1px 1px 7px rgba(255, 0, 0, 0.868));
+  filter: drop-shadow(1px 1px 7px rgba(255, 0, 0, 0.845));
+}
+.fugu--blog-wrap:hover .video-badge {
+  display: block;
+}
+.fugu--blog-wrap:hover .downloadButton {
+  background-color: #db0303 !important;
+}
+.breadcrumbs H2 {
+  font-weight: 300 !important;
+}
+.bcgrayTabs {
+  background-color: #000000d4;
+  backdrop-filter: blur(6px);
+  padding: 25px;
+  border-radius: 10px;
+}
+.bcgrayTabs .small-text {
+  width: 100%;
+  font-size: 14px;
+  line-height: 25px;
+  font-weight: 300;
+}
+.bcgrayTabs .nav-tabs .nav-item {
+  margin-right: 0px !important;
+  text-align: center;
+  margin: auto;
+  width: 50%;
+}
+.bcgrayTabs .nav-tabs .nav-item button {
+  width: 100%;
+}
+.bcgrayTabs .nav {
+  margin-bottom: 20px;
+}
+.tabpanel button {
+  width: 100%;
+}
+.imageBG {
+  /* background-image: url('https://cdn.sanity.io/images/kbgpbmgs/production/e1ecb49f27702899214e3204a184a8cd02c27cb3-750x416.jpg'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  padding: 210px 40px 120px;
+}
+.imageBG::before {
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: -3;
+  backdrop-filter: grayscale(0.5) blur(3.8px);
+}
+.imageBG::after {
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -2;
+  box-shadow: 0 0 800px rgba(0, 0, 0, 1) inset;
+}
+.video-title {
+  font-size: 36px;
+  line-height: 60px;
 }

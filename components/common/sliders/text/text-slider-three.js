@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import Slider from "react-slick";
+import Slider from 'react-slick';
 export default function TextSliderThree() {
 	const settings = {
 		infinite: true,
@@ -10,7 +10,7 @@ export default function TextSliderThree() {
 		autoplay: true,
 		autoplaySpeed: 0,
 		speed: 10000,
-		cssEase: "linear",
+		cssEase: 'linear',
 		pauseOnHover: true,
 		adaptiveHeight: true,
 		responsive: [
@@ -31,13 +31,13 @@ export default function TextSliderThree() {
 						<div className="fugu--text-slider-icon">
 							<img src="/images/all-img/v4/star.png" alt="" />
 						</div>
-						<h3>COLLECT RARE AND EXTRAORDINARY RARE ARTWORK</h3>
+						<h3>LIVE VIDEO</h3>
 					</div>
 					<div className="fugu--text-slider-data">
 						<div className="fugu--text-slider-icon">
 							<img src="/images/all-img/v4/star.png" alt="" />
 						</div>
-						<h3>COLLECT RARE AND EXTRAORDINARY RARE ARTWORK</h3>
+						<h3>LIVE VIDEO</h3>
 					</div>
 					<div className="fugu--text-slider-data">
 						<div className="fugu--text-slider-icon">

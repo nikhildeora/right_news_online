@@ -1,8 +1,6 @@
 import React from "react";
-import { format } from "date-fns";
 import Table from "react-bootstrap/Table";
 export default function BreadcrumbSection(props) {
-  console.log("user",props);
   return (
     <div className="fugu--breadcrumbs-section">
       <h2
@@ -16,9 +14,9 @@ export default function BreadcrumbSection(props) {
           letterSpacing: "1.5px",
         }}
       >
-        PAID USERS
+        TRANSACTIONS HISTORY
       </h2>
-      <div className="fugu--breadcrumbs-data center-content">
+      <div className=" container">
         <Table
           striped
           bordered
@@ -28,22 +26,34 @@ export default function BreadcrumbSection(props) {
         >
           <thead>
             <tr>
-              <th style={{ paddingBlock: "18px 18px" }}>Email</th>
-              <th style={{ paddingBlock: "18px 18px" }}>Active Plan</th>
-              <td style={{ paddingBlock: "18px 18px" }}>Plan Expiry</td>
+              <th style={{ paddingBlock: "18px 18px" }}>Order Id</th>
+              <th style={{ paddingBlock: "18px 18px" }}>Transaction ID</th>
+              <th style={{ paddingBlock: "18px 18px" }}>Timestamp</th>
+              <th style={{ paddingBlock: "18px 18px" }}>News</th>
+              <th style={{ paddingBlock: "18px 18px" }}>Amount</th>
+              <th style={{ paddingBlock: "18px 18px" }}>Status</th>
             </tr>
           </thead>
           <tbody>
-          {props.users.map((user, i) => (
+            {props.transactions.map((transaction, i) => (
               <tr key={i}>
                 <td style={{ paddingBlock: "15px 15px" }}>
-                  {user?.userDetails?.userEmail}
+                  {transaction.orderID}
                 </td>
                 <td style={{ paddingBlock: "15px 15px" }}>
-                  {user?.planDetail?.planTitle}
+                  {transaction.transcationID}
                 </td>
                 <td style={{ paddingBlock: "15px 15px" }}>
-                  {user.endtDate ? format(new Date(user?.endtDate), "dd MMMM yyyy") : null}
+                  {transaction.orderTimeDate.slice(0, 10)}
+                </td>
+                <td style={{ paddingBlock: "15px 15px" }}>
+                  {transaction.newsDetails.newsTitle}
+                </td>
+                <td style={{ paddingBlock: "15px 15px" }}>
+                  {transaction.orderValue}
+                </td>
+                <td style={{ paddingBlock: "15px 15px" }}>
+                  {transaction.genre}
                 </td>
               </tr>
             ))}

@@ -1,7 +1,7 @@
-import InnerSection from "../components/users/inner-section";
+import InnerSection from "../components/transactions/inner-section";
 import { createClient } from "next-sanity";
 export default function ContactDark(props) {
-	return <InnerSection users={props.users}/>;
+	return <InnerSection transactions={props.transactions}/>;
 }
 
 export async function getStaticProps() {
@@ -13,10 +13,9 @@ export async function getStaticProps() {
 		  useCdn: false, // set to `false` to bypass the edge cache
 		  apiVersion: "1",
 		});
-		const users = await client.fetch(`*[_type == "memberships"]{
+		const transactions = await client.fetch(`*[_type == "orders"]{
 			...,
-			"userDetails" : user->,
-			"planDetail" : plan->  
+			"newsDetails" : news->
 		  }`)
-	return { props: { header: "three", footer: "three", users: users } }
+	return { props: { header: "three", footer: "three", transactions: transactions } }
 }

@@ -2,13 +2,13 @@ import dynamic from "next/dynamic";
 
 import FaqSection from "../components/common/faq/faq-section";
 // import PricingSectionTwo from "../components/common/pricing/pricing-section-two";
-import BreadcrumbOne from "./../components/common/breadcrumb/breadcrumb-one";
-import ClientSliderTwo from "./../components/common/sliders/client/client-slider-two";
+import BreadcrumbOne from "../components/common/breadcrumb/breadcrumb-one";
+import ClientSliderTwo from "../components/common/sliders/client/client-slider-two";
 
 import { createClient } from "next-sanity";
 
 const PricingSectionTwo = dynamic(
-  () => import("../components/common/pricing/pricing-section-two"),
+  () => import("../components/common/upgrade/pricing-section-two"),
   {
     ssr: false,
   }

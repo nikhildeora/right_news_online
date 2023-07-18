@@ -1,14 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 import { sanityClient } from "../../sanity_client";
 import Link from "next/link";
+import { format } from "date-fns";
 import useRazorpay from "react-razorpay";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 
-export default function BreadcrumbSection() {
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
+
+export default function BreadcrumbSection(props) {
   const Razorpay = useRazorpay();
   const [curLoggedUser, setCurLoggedUser] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     let curUserId = localStorage.getItem("currentUser") || null;
@@ -105,6 +113,29 @@ export default function BreadcrumbSection() {
     rzp1.open();
   };
 
+  const handlePlanBuy = (plan_amount) => {
+    let CurUserIdNow = localStorage.getItem("currentUser") || null;
+
+    if (CurUserIdNow) {
+      handlePayment(plan_amount);
+    } else {
+      Swal.fire({
+        title: "Can't find user",
+        text: "Please Login / Signup to proceed further",
+        icon: "error",
+        showCancelButton: true,
+        confirmButtonColor: "#26215c",
+        cancelButtonColor: "#757575",
+        confirmButtonText: "LOGIN / SIGNUP",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/signup");
+        }
+      });
+    }
+  };
+
   const handlePayment = (order_amount) => {
     console.log("button clicked");
     let amount_obj = {
@@ -112,7 +143,10 @@ export default function BreadcrumbSection() {
     };
 
     axios
-      .post(`http://localhost:3000/api/razorpay/order`, amount_obj)
+      .post(
+        `https://right-news-online.vercel.app/api/razorpay/order`,
+        amount_obj
+      )
       .then((order) => {
         console.log(order.data);
         handleRazorpayVerify(order.data);
@@ -138,58 +172,111 @@ export default function BreadcrumbSection() {
     // }
   };
 
+  const handleNavigate = (amount) => {
+    router.push("/pricing-two");
+  };
+
   return (
-    <div className="fugu--breadcrumbs-section">
-      <div className="fugu--breadcrumbs-data">
-        <h1>NFTs & Japanese Culture: a rising, diverse community</h1>
+    <>
+      {props.news && (
         <div
+          className="fugu--breadcrumbs-section imageBG"
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            backgroundImage: `url(${props.news.newsImage})`,
           }}
         >
-          <div>
-            <p>
-              The Japanese NFT community is in its early days. In this article,
-              we’ll provide an overview of the community from the standpoint of
-              cultural exports, namely the mangaverse and gaming.
-            </p>
-            <div className="fugu--blog-meta">
-              <ul>
-                <li>
-                  <Link href={"#"}>
-                    <img src="assets/images/svg2/calendar.svg" alt="" /> Art &
-                    Analusis
-                  </Link>
-                </li>
-                <li>
-                  <Link href={"#"}>
-                    <img src="assets/images/svg2/clock.svg" alt="" /> July 18,
-                    2022
-                  </Link>
-                </li>
-              </ul>
+          <div className="fugu--breadcrumbs-data">
+            <div className="row">
+              <div className="col-md-8">
+                <h1 className="video-title">{props.news.newsTitle}</h1>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <div>
+                    <p>{props.news.newsShortDescription}</p>
+                    <div className="fugu--blog-meta">
+                      <ul>
+                        <li>
+                          <Link href={"#"}>
+                            <img src="assets/images/svg2/calendar.svg" alt="" />{" "}
+                            {props.news.newsCategory}
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href={"#"}>
+                            <img src="assets/images/svg2/clock.svg" alt="" />{" "}
+                            {props.news.createdAt &&
+                              format(
+                                new Date(props.news.createdAt),
+                                "dd MMMM yyyy"
+                              )}
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div></div>
+                </div>
+              </div>
+              <div className="col-md-4 bcgrayTabs">
+                <Tabs defaultActiveKey="general" className="fugu-tab-menu">
+                  <Tab eventKey="general" title="Buy Now & Download">
+                    <p className="small-text">
+                      Starting from July 1st, 2023, single video download
+                      purchases will be available for a limited period of 30
+                      days.please refer to our updated terms and policies.
+                    </p>
+                    <button
+                      onClick={() => handlePlanBuy(300)}
+                      style={{
+                        color: "white",
+                        padding: "12px 28px",
+                        backgroundColor: "red",
+                        cursor: "pointer",
+                        fontWeight: "bold",
+                        borderRadius: "10px",
+                        fontSize: "16px",
+                        width: "100%",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      PAY &#8377; 300 & DOWNLOAD
+                    </button>
+                  </Tab>
+                  <Tab eventKey="general2" title="Subscribe & Save">
+                    <p className="small-text">
+                      Save big with our membership plans starting from just
+                      Rs.199! Unlock a world of benefits and exclusive content.
+                      Upgrade today and enjoy unlimited access. Don't miss out!
+                    </p>
+                    <button
+                      onClick={() => handleNavigate(300)}
+                      style={{
+                        color: "white",
+                        padding: "12px 28px",
+                        backgroundColor: "red",
+                        cursor: "pointer",
+                        fontWeight: "bold",
+                        borderRadius: "10px",
+                        fontSize: "16px",
+                        width: "100%",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      BUY Membership Plans
+                    </button>
+                  </Tab>
+                </Tabs>
+              </div>
             </div>
           </div>
-          <div>
-            <button
-              onClick={() => handlePayment(300)}
-              style={{
-                color: "white",
-                padding: "12px 28px",
-                backgroundColor: "red",
-                cursor: "pointer",
-                fontWeight: "bold",
-                borderRadius: "10px",
-                fontSize: "23px",
-              }}
-            >
-              &#8377; 300
-            </button>
-          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
