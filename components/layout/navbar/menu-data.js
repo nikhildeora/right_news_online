@@ -77,6 +77,14 @@ export const PagesDropdownMenus = [
       //   title: "Blog Dark Details",
       //   path: "/single-blog-dark",
       // },
+      {
+        title: "Agriculture",
+        path: "/news-agriculture",
+      },
+      {
+        title: "Sports",
+        path: "/news-sports",
+      },
     ],
   },
   {
