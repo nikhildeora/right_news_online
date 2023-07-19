@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import NewsCard from "../../components/NewsCard/NewsCard";
 
 export default function NewsFiltering({ newsdata }) {
-  console.log(newsdata);
   const isotope = useRef();
   const [activeClass, setActiveClass] = useState("*");
   const [filterKey, setFilterKey] = useState("*");
