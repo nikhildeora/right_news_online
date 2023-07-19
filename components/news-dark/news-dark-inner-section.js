@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 // import BlogTopSection from "../blog-light/blog-top-section";
-import BreadcrumbsSection from "../blog-light/breadcrumbs-section";
+// import BreadcrumbsSection from "../blog-light/breadcrumbs-section";
 import NewsPaginationDark from "./news-pagination";
 const NewsFiltering = dynamic(() => import("./news-filtering"), {
   ssr: false,
