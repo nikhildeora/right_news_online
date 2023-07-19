@@ -222,8 +222,10 @@ const NewsCard = (props) => {
                 ) : (
                   <div className="fugu--blog-thumb news-card-purchase-plan-div">
                     <h3 className="purchase-plan_text">
+
                       Purchase plan to see full length video & access download
                       video
+
                     </h3>
 
                     <button
