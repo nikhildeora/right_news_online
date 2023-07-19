@@ -335,9 +335,13 @@ export const BlogDropdownMenus = [
     title: "News Light",
     path: "/blog-light",
   },
+  //   {
+  //     title: "News Light Sidebar",
+  //     path: "/blog",
+  //   },
   {
-    title: "News Light Sidebar",
-    path: "/blog",
+    title: "Profile Page",
+    path: "/profile",
   },
   // {
   //   title: "News Light Sidebar 02",
