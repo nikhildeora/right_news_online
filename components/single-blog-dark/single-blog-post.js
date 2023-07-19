@@ -31,7 +31,7 @@ export default function SingleBlogPost(props) {
           {video ? (
             <div className="fugu--single-thumb single-news-video-container">
               <video width="100%" autoPlay controls controlsList="nodownload">
-                <source src={props.news.video.url} type={"video/mp4"}></source>
+                <source src={props.news.video&&props.news.video.url} type={"video/mp4"}></source>
               </video>
             </div>
           ) : (
