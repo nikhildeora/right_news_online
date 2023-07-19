@@ -11748,7 +11748,7 @@ circle {
 .single-news-purchase-plan-div {
   background-color: #f9a3a3;
   width: 100%;
-  height: 200px;
+  height: 250px;
   margin-bottom: 5rem;
   border: 5px solid #be7c7c;
   border-radius: 5px;
@@ -11756,6 +11756,11 @@ circle {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.single-news-video-container {
+  border: 2px solid #be7c7c;
+  border-radius: 5px;
 }
 
 .redAura {
@@ -11815,7 +11820,7 @@ circle {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: -3;
-  backdrop-filter: grayscale(0.5) blur(3.8px);
+  backdrop-filter: grayscale(0.5) blur(2px);
 }
 .imageBG::after {
   content: "";
@@ -11831,4 +11836,8 @@ circle {
 .video-title {
   font-size: 36px;
   line-height: 60px;
+}
+
+.news-cat-container {
+  margin-top: 2rem;
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PortableText from "react-portable-text";
 import BlockquoteSection from "./blockquote-section";
 import CommentRespondSection from "./comment-respond-section";
@@ -8,13 +8,15 @@ import PostNavigation from "./post-navigation";
 import TagSection from "./tag-section";
 import VideoPlayer from "../videoPlayer/VideoPlayer";
 import { useRouter } from "next/router";
+import { AuthContext } from "../../context/auth_context";
 
 export default function SingleBlogPost(props) {
   const [video, setVideo] = useState(true);
+  const { activePlan } = useContext(AuthContext);
 
   const router = useRouter();
   useEffect(() => {
-    if (video) {
+    if (video && activePlan == null) {
       setTimeout(() => {
         setVideo(false);
       }, 8000);
@@ -27,10 +29,7 @@ export default function SingleBlogPost(props) {
         <div className="fugu--single-blog-section">
           {/* <img className="fugu--single-thumb" src={props.news.newsImage} alt="" /> */}
           {video ? (
-            <div
-              className="fugu--single-thumb"
-              style={{ border: "2px solid #be7c7c", borderRadius: "5px" }}
-            >
+            <div className="fugu--single-thumb single-news-video-container">
               <video width="100%" autoPlay controls controlsList="nodownload">
                 <source src={props.news.video.url} type={"video/mp4"}></source>
               </video>
@@ -38,7 +37,7 @@ export default function SingleBlogPost(props) {
           ) : (
             <div className="fugu--blog-thumb single-news-purchase-plan-div">
               <h3 style={{ color: "black" }}>
-                Purchase plan to see whole video & access download Feature
+                Purchase plan to see full length video & access download feature
               </h3>
 
               <button
