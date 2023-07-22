@@ -4,24 +4,41 @@ import Link from "next/link";
 import { format } from "date-fns";
 import useRazorpay from "react-razorpay";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../context/auth_context";
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from "uuid";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-
+import { RiDownloadCloud2Line } from "react-icons/ri";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { brightness, opacity } from "@cloudinary/url-gen/actions/adjust";
+import { source } from "@cloudinary/url-gen/actions/overlay";
+import { Position } from "@cloudinary/url-gen/qualifiers";
+import { compass } from "@cloudinary/url-gen/qualifiers/gravity";
+import { image } from "@cloudinary/url-gen/qualifiers/source";
+import { Cloudinary, Transformation } from "@cloudinary/url-gen";
+import { scale } from "@cloudinary/url-gen/actions/resize";
+export default function BreadcrumbSection(props) {  
+const { orders, setOrders, setupdationState, updationState,} =
+useContext(AuthContext);
 
-export default function BreadcrumbSection(props) {
   const Razorpay = useRazorpay();
+  const [isPurchased, setisPurchased] = useState(false)
   const [curLoggedUser, setCurLoggedUser] = useState(null);
+  const [linkForDownload, setLinkForDownload] = useState("");
+  const [readyDownload, setReadyDownload] = useState(false);
+  const [state, setState] = useState(true);
+  const [rdstate, setRdState] = useState(true);
   const router = useRouter();
-
   useEffect(() => {
     let curUserId = localStorage.getItem("currentUser") || null;
     setCurLoggedUser(curUserId);
-  }, []);
+    if(curUserId&&props.news&&orders&&orders.filter((order)=>order.news._ref==props.news.id).length>0){
+      setisPurchased(true)
+    }
+  }, [props,orders]);
 
   const OrderPostInSanity = (status, response, order_data) => {
     let date = new Date();
@@ -81,6 +98,7 @@ export default function BreadcrumbSection(props) {
         // alert(response.razorpay_signature); // 8d8da0fdd32db21f1d19af584fa1a3ca7650f38accdddb2bd712551c58211f4a
 
         OrderPostInSanity("successfull", response, order_data.message);
+        setisPurchased(true)
       },
       prefill: {
         // here we will give data of user
@@ -171,11 +189,130 @@ export default function BreadcrumbSection(props) {
     // 	status :"created"
     // }
   };
+  let Video = props.news&&props.news.video
+  ? props.news.video
+  : {
+      url: "https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4",
+      mimeType: "video/mp4",
+    };
+console.log(Video);
+
+let Date2 = props.news&&props.news.createdAt?.slice(0, 10);
+
+const cloudinary = new Cloudinary({
+  cloud: {
+    cloudName: "dmdnkgldu",
+    apiKey: "824834376614351",
+    apiSecret: "6-p_NhIRezrfvdaVYdul8v_gpn0",
+  },
+});
+  const ReadyVideoForDownload = async () => {
+    let currentLoggedUser = localStorage.getItem("currentUser") || null;
+    if(currentLoggedUser){
+      if (!orders.filter((order)=>order.news._ref==props.news._id)) {
+        Swal.fire({
+          title: "🔒 Purchase Video first to Download🔒",
+          text: "To access our extensive collection of videos, we kindly ask you to purchase our plan.  Your privacy matters to us. Thank you for your cooperation!",
+          icon: "info",
+          showCancelButton: false,
+          confirmButtonColor: "#db0303",
+          cancelButtonColor: "#757575",
+          confirmButtonText: "Purchase Plan",
+          reverseButtons: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            router.push("/pricing-two");
+          }
+        });
+      } else {
+        let link = Video.url
+          ? Video.url
+          : "https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4";
+        setRdState(!state);
+        const formData = new FormData();
+        formData.append("file", link);
+        formData.append("upload_preset", "awesome_preset");
+        console.log("form", formData);
+        let data = await axios.post(
+          `https://api.cloudinary.com/v1_1/dmdnkgldu/video/upload`,
+          formData
+        );
+        console.log("res_data", data);
+        let myVideo = cloudinary.video(data.data.public_id);
+        console.log("myvideo", myVideo);
+
+        myVideo
+          .overlay(
+            source(
+              image("Newfitnexylogo_nl9uuy").transformation(
+                new Transformation()
+                  .resize(scale().width(0.5))
+                  .adjust(opacity(60))
+                  .adjust(brightness().level(50))
+              )
+            ).position(
+              new Position().gravity(compass("north_east")).offsetY(20)
+            )
+          )
+          .format("mp4");
+        console.log("my video after adding logo", myVideo);
+        let myVideoURL = myVideo.toURL();
+        console.log("myURL", myVideoURL);
+        setRdState(!state);
+        setReadyDownload(!readyDownload);
+        setLinkForDownload(myVideoURL);
+      }
+    } else {
+      Swal.fire({
+        title: "🔒 LOGIN REQUIRED🔒",
+        text: "To access our extensive collection of videos, we kindly ask you to log in. Logging in ensures a seamless and secure downloading experience. Your privacy matters to us, and by logging in, you can enjoy our content while keeping your data safe. Thank you for your cooperation!",
+        icon: "info",
+        showCancelButton: false,
+        confirmButtonColor: "#db0303",
+        cancelButtonColor: "#757575",
+        confirmButtonText: "LOGIN / SIGNUP",
+        reverseButtons: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/signup");
+        }
+      });
+    }
+  };
+
+  const DownloadVideo = () => {
+    setState(!state);
+    let url = linkForDownload;
+    fetch(url)
+      .then(async (res) => await res.blob())
+      .then((file) => {
+        let tempUrl = URL.createObjectURL(file);
+        const aTag = document.createElement("a");
+        aTag.href = tempUrl;
+        aTag.download = url.replace(/^.*[\\\/]/, "");
+        document.body.appendChild(aTag);
+        aTag.click();
+        URL.revokeObjectURL(tempUrl);
+        aTag.remove();
+      })
+      .then(() => setState((prev) => !prev))
+      .catch((err) => {
+        console.log("error", err);
+        Swal.fire({
+          title: "Download Failed",
+          text: "Due to some technical reason download failed",
+          icon: "error",
+          confirmButtonColor: "#26215c",
+          confirmButtonText: "Close",
+          reverseButtons: true,
+        });
+        setState(!state);
+      });
+  };
 
   const handleNavigate = (amount) => {
     router.push("/pricing-two");
   };
-
   return (
     <>
       {props.news && (
@@ -225,7 +362,97 @@ export default function BreadcrumbSection(props) {
               </div>
               <div className="col-md-4 bcgrayTabs">
                 <Tabs defaultActiveKey="general" className="fugu-tab-menu">
-                  <Tab eventKey="general" title="Buy Now & Download">
+                  {isPurchased ?
+                  <Tab eventKey="general" title="Download">
+                  <p className="small-text">
+                    Starting from July 1st, 2023, single video download
+                    purchases will be available for a limited period of 30
+                    days.please refer to our updated terms and policies.
+                  </p>
+                  {readyDownload ? (
+                  <>
+                    {state ? (
+                      <button
+                        onClick={DownloadVideo}
+                        style={{
+                          color: "white",
+                          padding: "12px 28px",
+                          backgroundColor: "red",
+                          cursor: "pointer",
+                          fontWeight: "bold",
+                          borderRadius: "10px",
+                          fontSize: "16px",
+                          width: "100%",
+                          textTransform: "uppercase",
+                        }}                      >
+                        Download
+                      </button>
+                    ) : (
+                      <button
+                      style={{
+                        color: "white",
+                        padding: "12px 28px",
+                        backgroundColor: "red",
+                        cursor: "pointer",
+                        fontWeight: "bold",
+                        borderRadius: "10px",
+                        fontSize: "16px",
+                        width: "100%",
+                        textTransform: "uppercase",
+                      }}>
+                         <img
+                          className="loading_icon"
+                          src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif"
+                          alt="Loading..."
+                          style={{
+                            width: "32px",
+                            height: "32px",
+                            marginTop: "-4px",
+                          }}
+                        />
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {rdstate ? (
+                      <button
+                        className="fugu--btn fugu--menu-btn1 downloadButton"
+                        onClick={ReadyVideoForDownload}
+                      >
+                        <RiDownloadCloud2Line className="download-icon" />
+                        Download Video
+                      </button>
+                    ) : (
+                      <button
+                        className="fugu--btn fugu--menu-btn1 downloadButton"
+                        style={{
+                          color: "white",
+                          padding: "12px 28px",
+                          backgroundColor: "red",
+                          cursor: "pointer",
+                          fontWeight: "bold",
+                          borderRadius: "10px",
+                          fontSize: "16px",
+                          width: "100%",
+                          textTransform: "uppercase",
+                        }}                      >
+                        <img
+                          className="loading_icon"
+                          src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif"
+                          alt="Loading..."
+                          style={{
+                            width: "32px",
+                            height: "32px",
+                            marginTop: "-4px",
+                          }}
+                        />
+                      </button>
+                    )}
+                  </>
+                )}
+                </Tab>
+                  :<Tab eventKey="general" title="Buy Now & Download">
                     <p className="small-text">
                       Starting from July 1st, 2023, single video download
                       purchases will be available for a limited period of 30
@@ -247,7 +474,7 @@ export default function BreadcrumbSection(props) {
                     >
                       PAY &#8377; 300 & DOWNLOAD
                     </button>
-                  </Tab>
+                  </Tab>}
                   <Tab eventKey="general2" title="Subscribe & Save">
                     <p className="small-text">
                       Save big with our membership plans starting from just
