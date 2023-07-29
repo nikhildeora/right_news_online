@@ -23,10 +23,7 @@ import { AuthContext } from "../../context/auth_context";
 const NewsCard = (props) => {
   // console.log(props);
   const [video, setVideo] = useState(false);
-  const [linkForDownload, setLinkForDownload] = useState("");
-  const [readyDownload, setReadyDownload] = useState(false);
   const [state, setState] = useState(true);
-  const [rdstate, setRdState] = useState(true);
   const router = useRouter();
   const { activePlan } = useContext(AuthContext);
   const [purchasePlan, setPurchasePlan] = useState(true);
@@ -104,10 +101,10 @@ const NewsCard = (props) => {
           }
         });
       } else {
+        setState(!state)
         let link = Video.url
           ? Video.url
           : "https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4";
-        setRdState(!state);
         const formData = new FormData();
         formData.append("file", link);
         formData.append("upload_preset", "awesome_preset");
@@ -136,10 +133,20 @@ const NewsCard = (props) => {
           .format("mp4");
         console.log("my video after adding logo", myVideo);
         let myVideoURL = myVideo.toURL();
-        console.log("myURL", myVideoURL);
-        setRdState(!state);
-        setReadyDownload(!readyDownload);
-        setLinkForDownload(myVideoURL);
+        myVideoURL=myVideoURL.slice(0, myVideoURL.indexOf('upload')) + 'upload/fl_attachment' + myVideoURL.slice(myVideoURL.indexOf('upload') + 6);
+        fetch(myVideoURL)
+        .then(async (res) => await res.blob())
+        .then((file) => {
+          const url = URL.createObjectURL(file);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = url.replace(/^.*[\\\/]/, "");
+          document.body.appendChild(a);
+          a.click();
+          URL.revokeObjectURL(url);
+          document.body.removeChild(a);
+          setState(true);
+        })
       }
     } else {
       Swal.fire({
@@ -158,37 +165,6 @@ const NewsCard = (props) => {
       });
     }
   };
-
-  const DownloadVideo = () => {
-    setState(!state);
-    let url = linkForDownload;
-    fetch(url)
-      .then(async (res) => await res.blob())
-      .then((file) => {
-        let tempUrl = URL.createObjectURL(file);
-        const aTag = document.createElement("a");
-        aTag.href = tempUrl;
-        aTag.download = url.replace(/^.*[\\\/]/, "");
-        document.body.appendChild(aTag);
-        aTag.click();
-        URL.revokeObjectURL(tempUrl);
-        aTag.remove();
-      })
-      .then(() => setState((prev) => !prev))
-      .catch((err) => {
-        console.log("error", err);
-        Swal.fire({
-          title: "Download Failed",
-          text: "Due to some technical reason download failed",
-          icon: "error",
-          confirmButtonColor: "#26215c",
-          confirmButtonText: "Close",
-          reverseButtons: true,
-        });
-        setState(!state);
-      });
-  };
-
   function handleClick() {
     setVideo(!video);
   }
@@ -311,36 +287,7 @@ const NewsCard = (props) => {
                 >
                   Download Video
                 </div> */}
-                {readyDownload ? (
-                  <>
                     {state ? (
-                      <button
-                        onClick={DownloadVideo}
-                        className="fugu--btn fugu--menu-btn1 downloadButton w-100"
-                      >
-                        Download
-                      </button>
-                    ) : (
-                      <button
-                        className="fugu--btn fugu--menu-btn1 downloadButton"
-                        style={{ width: "192px", height: "45px" }}
-                      >
-                        <img
-                          className="loading_icon"
-                          src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif"
-                          alt="Loading..."
-                          style={{
-                            width: "32px",
-                            height: "32px",
-                            marginTop: "-4px",
-                          }}
-                        />
-                      </button>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {rdstate ? (
                       <button
                         className="fugu--btn fugu--menu-btn1 downloadButton"
                         onClick={ReadyVideoForDownload}
@@ -365,8 +312,6 @@ const NewsCard = (props) => {
                         />
                       </button>
                     )}
-                  </>
-                )}
               </div>
             </div>
           </div>

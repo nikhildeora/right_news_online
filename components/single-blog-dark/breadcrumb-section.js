@@ -27,10 +27,7 @@ useContext(AuthContext);
   const Razorpay = useRazorpay();
   const [isPurchased, setisPurchased] = useState(false)
   const [curLoggedUser, setCurLoggedUser] = useState(null);
-  const [linkForDownload, setLinkForDownload] = useState("");
-  const [readyDownload, setReadyDownload] = useState(false);
   const [state, setState] = useState(true);
-  const [rdstate, setRdState] = useState(true);
   const router = useRouter();
   useEffect(() => {
     let curUserId = localStorage.getItem("currentUser") || null;
@@ -206,110 +203,113 @@ const cloudinary = new Cloudinary({
     apiSecret: "6-p_NhIRezrfvdaVYdul8v_gpn0",
   },
 });
-  const ReadyVideoForDownload = async () => {
-    let currentLoggedUser = localStorage.getItem("currentUser") || null;
-    if(currentLoggedUser){
-      if (!orders.filter((order)=>order.news._ref==props.news._id)) {
-        Swal.fire({
-          title: "🔒 Purchase Video first to Download🔒",
-          text: "To access our extensive collection of videos, we kindly ask you to purchase our plan.  Your privacy matters to us. Thank you for your cooperation!",
-          icon: "info",
-          showCancelButton: false,
-          confirmButtonColor: "#db0303",
-          cancelButtonColor: "#757575",
-          confirmButtonText: "Purchase Plan",
-          reverseButtons: false,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            router.push("/pricing-two");
-          }
-        });
-      } else {
-        let link = Video.url
-          ? Video.url
-          : "https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4";
-        setRdState(!state);
-        const formData = new FormData();
-        formData.append("file", link);
-        formData.append("upload_preset", "awesome_preset");
-        console.log("form", formData);
-        let data = await axios.post(
-          `https://api.cloudinary.com/v1_1/dmdnkgldu/video/upload`,
-          formData
-        );
-        console.log("res_data", data);
-        let myVideo = cloudinary.video(data.data.public_id);
-        console.log("myvideo", myVideo);
 
-        myVideo
-          .overlay(
-            source(
-              image("Newfitnexylogo_nl9uuy").transformation(
-                new Transformation()
-                  .resize(scale().width(0.5))
-                  .adjust(opacity(60))
-                  .adjust(brightness().level(50))
-              )
-            ).position(
-              new Position().gravity(compass("north_east")).offsetY(20)
-            )
-          )
-          .format("mp4");
-        console.log("my video after adding logo", myVideo);
-        let myVideoURL = myVideo.toURL();
-        console.log("myURL", myVideoURL);
-        setRdState(!state);
-        setReadyDownload(!readyDownload);
-        setLinkForDownload(myVideoURL);
+const checkMembership = async (curUser) => {
+  let result = await sanityClient
+    .fetch(`*[_type=="memberships" && user._ref=="${curUser}"]`)
+    .then((res) => {
+      console.log("respo", res);
+      if (res.length > 0) {
+        return false;
+      } else {
+        return true;
       }
-    } else {
+    })
+    .catch((err) => {
+      console.log("error while set plan", err);
+      return true;
+    });
+
+  console.log("result", result);
+  return result;
+};
+
+const ReadyVideoForDownload = async () => {
+  let currentLoggedUser = localStorage.getItem("currentUser") || null;
+
+  if (currentLoggedUser) {
+    let membershipExist = await checkMembership(currentLoggedUser);
+    console.log("men", membershipExist);
+    if (membershipExist) {
       Swal.fire({
-        title: "🔒 LOGIN REQUIRED🔒",
-        text: "To access our extensive collection of videos, we kindly ask you to log in. Logging in ensures a seamless and secure downloading experience. Your privacy matters to us, and by logging in, you can enjoy our content while keeping your data safe. Thank you for your cooperation!",
+        title: "🔒 Purchase Plan first to Download🔒",
+        text: "To access our extensive collection of videos, we kindly ask you to purchase our plan.  Your privacy matters to us. Thank you for your cooperation!",
         icon: "info",
         showCancelButton: false,
         confirmButtonColor: "#db0303",
         cancelButtonColor: "#757575",
-        confirmButtonText: "LOGIN / SIGNUP",
+        confirmButtonText: "Purchase Plan",
         reverseButtons: false,
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push("/signup");
+          router.push("/pricing-two");
         }
       });
-    }
-  };
+    } else {
+      setState(!state)
+      let link = Video.url
+        ? Video.url
+        : "https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4";
+      const formData = new FormData();
+      formData.append("file", link);
+      formData.append("upload_preset", "awesome_preset");
+      console.log("form", formData);
+      let data = await axios.post(
+        `https://api.cloudinary.com/v1_1/dmdnkgldu/video/upload`,
+        formData
+      );
+      console.log("res_data", data);
+      let myVideo = cloudinary.video(data.data.public_id);
+      console.log("myvideo", myVideo);
 
-  const DownloadVideo = () => {
-    setState(!state);
-    let url = linkForDownload;
-    fetch(url)
+      myVideo
+        .overlay(
+          source(
+            image("Newfitnexylogo_nl9uuy").transformation(
+              new Transformation()
+                .resize(scale().width(0.5))
+                .adjust(opacity(60))
+                .adjust(brightness().level(50))
+            )
+          ).position(
+            new Position().gravity(compass("north_east")).offsetY(20)
+          )
+        )
+        .format("mp4");
+      console.log("my video after adding logo", myVideo);
+      let myVideoURL = myVideo.toURL();
+      myVideoURL=myVideoURL.slice(0, myVideoURL.indexOf('upload')) + 'upload/fl_attachment' + myVideoURL.slice(myVideoURL.indexOf('upload') + 6);
+      fetch(myVideoURL)
       .then(async (res) => await res.blob())
       .then((file) => {
-        let tempUrl = URL.createObjectURL(file);
-        const aTag = document.createElement("a");
-        aTag.href = tempUrl;
-        aTag.download = url.replace(/^.*[\\\/]/, "");
-        document.body.appendChild(aTag);
-        aTag.click();
-        URL.revokeObjectURL(tempUrl);
-        aTag.remove();
+        const url = URL.createObjectURL(file);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = url.replace(/^.*[\\\/]/, "");
+        document.body.appendChild(a);
+        a.click();
+        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        setState(true);
       })
-      .then(() => setState((prev) => !prev))
-      .catch((err) => {
-        console.log("error", err);
-        Swal.fire({
-          title: "Download Failed",
-          text: "Due to some technical reason download failed",
-          icon: "error",
-          confirmButtonColor: "#26215c",
-          confirmButtonText: "Close",
-          reverseButtons: true,
-        });
-        setState(!state);
-      });
-  };
-
+    }
+  } else {
+    Swal.fire({
+      title: "🔒 LOGIN REQUIRED🔒",
+      text: "To access our extensive collection of videos, we kindly ask you to log in. Logging in ensures a seamless and secure downloading experience. Your privacy matters to us, and by logging in, you can enjoy our content while keeping your data safe. Thank you for your cooperation!",
+      icon: "info",
+      showCancelButton: false,
+      confirmButtonColor: "#db0303",
+      cancelButtonColor: "#757575",
+      confirmButtonText: "LOGIN / SIGNUP",
+      reverseButtons: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        router.push("/signup");
+      }
+    });
+  }
+};
   const handleNavigate = (amount) => {
     router.push("/pricing-two");
   };
@@ -369,53 +369,7 @@ const cloudinary = new Cloudinary({
                     purchases will be available for a limited period of 30
                     days.please refer to our updated terms and policies.
                   </p>
-                  {readyDownload ? (
-                  <>
-                    {state ? (
-                      <button
-                        onClick={DownloadVideo}
-                        style={{
-                          color: "white",
-                          padding: "12px 28px",
-                          backgroundColor: "red",
-                          cursor: "pointer",
-                          fontWeight: "bold",
-                          borderRadius: "10px",
-                          fontSize: "16px",
-                          width: "100%",
-                          textTransform: "uppercase",
-                        }}                      >
-                        Download
-                      </button>
-                    ) : (
-                      <button
-                      style={{
-                        color: "white",
-                        padding: "12px 28px",
-                        backgroundColor: "red",
-                        cursor: "pointer",
-                        fontWeight: "bold",
-                        borderRadius: "10px",
-                        fontSize: "16px",
-                        width: "100%",
-                        textTransform: "uppercase",
-                      }}>
-                         <img
-                          className="loading_icon"
-                          src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif"
-                          alt="Loading..."
-                          style={{
-                            width: "32px",
-                            height: "32px",
-                            marginTop: "-4px",
-                          }}
-                        />
-                      </button>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    {rdstate ? (
+                  {state ? (
                       <button
                         className="fugu--btn fugu--menu-btn1 downloadButton"
                         onClick={ReadyVideoForDownload}
@@ -426,17 +380,8 @@ const cloudinary = new Cloudinary({
                     ) : (
                       <button
                         className="fugu--btn fugu--menu-btn1 downloadButton"
-                        style={{
-                          color: "white",
-                          padding: "12px 28px",
-                          backgroundColor: "red",
-                          cursor: "pointer",
-                          fontWeight: "bold",
-                          borderRadius: "10px",
-                          fontSize: "16px",
-                          width: "100%",
-                          textTransform: "uppercase",
-                        }}                      >
+                        style={{ width: "192px", height: "45px" }}
+                      >
                         <img
                           className="loading_icon"
                           src="https://i.gifer.com/origin/34/34338d26023e5515f6cc8969aa027bca_w200.gif"
@@ -449,8 +394,6 @@ const cloudinary = new Cloudinary({
                         />
                       </button>
                     )}
-                  </>
-                )}
                 </Tab>
                   :<Tab eventKey="general" title="Buy Now & Download">
                     <p className="small-text">
