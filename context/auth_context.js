@@ -20,23 +20,26 @@ export default function AuthContextProvider({ children }) {
   const [userDetailSanity, setUserDetailSanity] = useState(null);
   const [curUser, setCurUser] = useState(null);
   const [activePlan, setActivePlan] = useState(null);
+  const [orders, setOrders] = useState(null)
   const [updationState, setupdationState] = useState(false);
   const [seq, setSeq] = useState(1);
   const router = useRouter();
 
-  useEffect(() => {
+  useEffect(()=>{
     let curUserId = localStorage.getItem("currentUser") || null;
-    if (curUserId) {
+    if(curUserId){
       sanityClient
-        .fetch(`*[_type=="users" && _id=="${curUserId}"]`)
-        .then((res) => {
-          if (res.length > 0) {
-            setUserDetailSanity(res[0]);
-          }
-        })
-        .catch((err) => console.log("error while set user", err));
+      .fetch(
+        `*[_type=="users" && _id=="${curUserId}"]`
+      )
+      .then((res) => {
+        if (res.length > 0) {
+          setUserDetailSanity(res[0]);
+        }
+      })
+      .catch((err) => console.log("error while set user", err));
     }
-  }, []);
+  },[])
 
   const Logout = () => {
     localStorage.removeItem("currentUser");
@@ -109,11 +112,21 @@ export default function AuthContextProvider({ children }) {
         .then((res) => {
           if (res.length > 0) {
             console.log("it is fetching cur plan", res);
-
             setActivePlan(res[0]);
           }
         })
         .catch((err) => console.log("error while set plan", err));
+        sanityClient
+        .fetch(
+          `*[_type=="orders" && user._ref=="${curUserId}"]`
+        )
+        .then((res) => {
+          if (res.length > 0) {
+            console.log("it is fetching cur orders", res);
+            setOrders(res);
+          }
+        })
+        .catch((err) => console.log("error while set orders", err));
     }
   }, [updationState]);
 
@@ -140,7 +153,8 @@ export default function AuthContextProvider({ children }) {
         updateUserDetailSanityLogin,
         activePlan,
         setActivePlan,
-        userDetailSanity,
+        orders,
+        userDetailSanity
       }}
     >
       {children}
