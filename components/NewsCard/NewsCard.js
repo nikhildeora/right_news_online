@@ -38,12 +38,10 @@ const NewsCard = (props) => {
     }
   }, [video]);
 
-  let Video = props.news.video
-    ? props.news.video
-    : {
-        url: "https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4",
-        mimeType: "video/mp4",
-      };
+  let Video = {
+      url: props.news.video?props.news.video:"https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4",
+      mimeType: "video/mp4",
+    }
   // console.log(Video);
 
   let Date = props.news.createdAt.slice(0, 10);
@@ -102,38 +100,8 @@ const NewsCard = (props) => {
         });
       } else {
         setState(!state)
-        let link = Video.url
-          ? Video.url
-          : "https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4";
-        const formData = new FormData();
-        formData.append("file", link);
-        formData.append("upload_preset", "awesome_preset");
-        console.log("form", formData);
-        let data = await axios.post(
-          `https://api.cloudinary.com/v1_1/dmdnkgldu/video/upload`,
-          formData
-        );
-        console.log("res_data", data);
-        let myVideo = cloudinary.video(data.data.public_id);
-        console.log("myvideo", myVideo);
-
-        myVideo
-          .overlay(
-            source(
-              image("Newfitnexylogo_nl9uuy").transformation(
-                new Transformation()
-                  .resize(scale().width(0.5))
-                  .adjust(opacity(60))
-                  .adjust(brightness().level(50))
-              )
-            ).position(
-              new Position().gravity(compass("north_east")).offsetY(20)
-            )
-          )
-          .format("mp4");
-        console.log("my video after adding logo", myVideo);
-        let myVideoURL = myVideo.toURL();
-        myVideoURL=myVideoURL.slice(0, myVideoURL.indexOf('upload')) + 'upload/fl_attachment' + myVideoURL.slice(myVideoURL.indexOf('upload') + 6);
+        let myVideoURL=Video.url
+      myVideoURL=myVideoURL.slice(0, myVideoURL.indexOf('upload')) + 'upload/fl_attachment' + myVideoURL.slice(myVideoURL.indexOf('upload') + 6);
         fetch(myVideoURL)
         .then(async (res) => await res.blob())
         .then((file) => {

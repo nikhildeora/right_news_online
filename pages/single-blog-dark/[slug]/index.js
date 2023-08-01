@@ -23,7 +23,7 @@ export async function getServerSideProps(props) {
 		"type":_type,
 		"slug":slug.current,
 		"createdAt":_createdAt,
-		"video":newsVideo.asset->,
+    "video":newscvid.url,
 		"newsImage":newsImage.asset->url,
 		"newsCategory":newsCatagory->catagoryName,
 		"Catagory" : newsCatagory->}`);
