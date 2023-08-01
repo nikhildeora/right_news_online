@@ -59,7 +59,7 @@ export default function PricingSectionTwo(props) {
 
     axios
       .post(
-        `https://right-news-online.vercel.app/api/razorpay/order`,
+        `https://rno-main.vercel.app/api/razorpay/order`,
         amount_obj
       )
       .then((order) => {
