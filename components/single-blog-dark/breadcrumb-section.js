@@ -13,13 +13,7 @@ import Tabs from "react-bootstrap/Tabs";
 import { RiDownloadCloud2Line } from "react-icons/ri";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-import { brightness, opacity } from "@cloudinary/url-gen/actions/adjust";
-import { source } from "@cloudinary/url-gen/actions/overlay";
-import { Position } from "@cloudinary/url-gen/qualifiers";
-import { compass } from "@cloudinary/url-gen/qualifiers/gravity";
-import { image } from "@cloudinary/url-gen/qualifiers/source";
 import { Cloudinary, Transformation } from "@cloudinary/url-gen";
-import { scale } from "@cloudinary/url-gen/actions/resize";
 export default function BreadcrumbSection(props) {  
 const { orders, setOrders, setupdationState, updationState,} =
 useContext(AuthContext);
@@ -49,7 +43,7 @@ useContext(AuthContext);
         _type: "reference",
       },
       news: {
-        _ref: "0cc3a36f-176d-4920-8731-a05d4dfc101a",
+        _ref: props.news.id,
         _type: "reference",
       },
       genre: status,
@@ -186,99 +180,20 @@ useContext(AuthContext);
     // 	status :"created"
     // }
   };
-  let Video = props.news&&props.news.video
-  ? props.news.video
-  : {
-      url: "https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4",
-      mimeType: "video/mp4",
-    };
-console.log(Video);
+  let Video = {
+    url: props.news.video?props.news.video:"https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4",
+    mimeType: "video/mp4",
+  }
 
 let Date2 = props.news&&props.news.createdAt?.slice(0, 10);
-
-const cloudinary = new Cloudinary({
-  cloud: {
-    cloudName: "dmdnkgldu",
-    apiKey: "824834376614351",
-    apiSecret: "6-p_NhIRezrfvdaVYdul8v_gpn0",
-  },
-});
-
-const checkMembership = async (curUser) => {
-  let result = await sanityClient
-    .fetch(`*[_type=="memberships" && user._ref=="${curUser}"]`)
-    .then((res) => {
-      console.log("respo", res);
-      if (res.length > 0) {
-        return false;
-      } else {
-        return true;
-      }
-    })
-    .catch((err) => {
-      console.log("error while set plan", err);
-      return true;
-    });
-
-  console.log("result", result);
-  return result;
-};
 
 const ReadyVideoForDownload = async () => {
   let currentLoggedUser = localStorage.getItem("currentUser") || null;
 
   if (currentLoggedUser) {
-    let membershipExist = await checkMembership(currentLoggedUser);
-    console.log("men", membershipExist);
-    if (membershipExist) {
-      Swal.fire({
-        title: "🔒 Purchase Plan first to Download🔒",
-        text: "To access our extensive collection of videos, we kindly ask you to purchase our plan.  Your privacy matters to us. Thank you for your cooperation!",
-        icon: "info",
-        showCancelButton: false,
-        confirmButtonColor: "#db0303",
-        cancelButtonColor: "#757575",
-        confirmButtonText: "Purchase Plan",
-        reverseButtons: false,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          router.push("/pricing-two");
-        }
-      });
-    } else {
       setState(!state)
-      let link = Video.url
-        ? Video.url
-        : "https://cdn.sanity.io/files/kbgpbmgs/production/4ab319d2c65d53b84ae81fa5d14a3035aba82b6f.mp4";
-      const formData = new FormData();
-      formData.append("file", link);
-      formData.append("upload_preset", "awesome_preset");
-      console.log("form", formData);
-      let data = await axios.post(
-        `https://api.cloudinary.com/v1_1/dmdnkgldu/video/upload`,
-        formData
-      );
-      console.log("res_data", data);
-      let myVideo = cloudinary.video(data.data.public_id);
-      console.log("myvideo", myVideo);
-
-      myVideo
-        .overlay(
-          source(
-            image("Newfitnexylogo_nl9uuy").transformation(
-              new Transformation()
-                .resize(scale().width(0.5))
-                .adjust(opacity(60))
-                .adjust(brightness().level(50))
-            )
-          ).position(
-            new Position().gravity(compass("north_east")).offsetY(20)
-          )
-        )
-        .format("mp4");
-      console.log("my video after adding logo", myVideo);
-      let myVideoURL = myVideo.toURL();
-      myVideoURL=myVideoURL.slice(0, myVideoURL.indexOf('upload')) + 'upload/fl_attachment' + myVideoURL.slice(myVideoURL.indexOf('upload') + 6);
+      let myVideoURL=Video.url
+    myVideoURL=myVideoURL.slice(0, myVideoURL.indexOf('upload')) + 'upload/fl_attachment' + myVideoURL.slice(myVideoURL.indexOf('upload') + 6);
       fetch(myVideoURL)
       .then(async (res) => await res.blob())
       .then((file) => {
@@ -292,7 +207,6 @@ const ReadyVideoForDownload = async () => {
         document.body.removeChild(a);
         setState(true);
       })
-    }
   } else {
     Swal.fire({
       title: "🔒 LOGIN REQUIRED🔒",
